@@ -6,6 +6,7 @@ use App\Models\Commande;
 use App\Models\Event;
 use App\Models\Portemonnaie;
 use App\Models\Tiket;
+use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use HTTP_Request2;
@@ -21,8 +22,9 @@ class CommandController extends Controller
    public $MOOV_REQUEST_URL='https://qosic.net:8443/QosicBridge/user/requestpaymentmv';
    public $MTN_CLIENT_ID="Massali5BF";
    public $MOOV_CLIENT_ID="Massali6MV";
-   private $current_client_id;
-   private $TRANSREF_INI="massali-20";
+   public $MTN_PREFIXES=[51, 52, 53, 54, 61, 62, 66, 67, 69, 90, 91, 96, 97];
+   public $MOOV_PREFIXES=[60,63,65,68,94,95,98,99,55];
+   private $TRANSREF_INI="msl";
    private $CURRENT_TRANS_REF;
 
 
@@ -34,15 +36,7 @@ class CommandController extends Controller
       if($type=="mtn"){
         $request->setUrl($this->MTN_REQUEST_URL);
         $this->current_client_id=$this->MTN_CLIENT_ID;
-      } // $request->setBody('
-      // {
-      //   "msisdn": "22966895585",
-      //   "amount": "1",
-      //   "transref" :"ange-12",
-      //   "narration": "payment",
-      //   "clientid": "Massali5BF"
-      // }'
-      //    );
+      } 
       else{
         $request->setUrl($this->MOOV_REQUEST_URL);
         $this->current_client_id=$this->MOOV_CLIENT_ID;
@@ -67,7 +61,7 @@ class CommandController extends Controller
 
    public function get_new_transref()
    {
-     $to_returned=str_replace("-","",substr(time().now(),10));
+     $to_returned=str_replace("-","",substr($this->TRANSREF_INI.''.time().now(),10));
      $to_returned=str_replace(":","",$to_returned);
      return str_replace(" ","",$to_returned);
    }
@@ -79,34 +73,49 @@ class CommandController extends Controller
 
     public function sale_ticket(Request $coming_request){
 
-      $reseau=$coming_request->reseau;
-      $num="229".$coming_request->phone_number;
+      $num=$coming_request->phone_number;
+      $reseau="";
 
-      $request=$this->request_header($reseau=="moov");
+      if(in_array(intval(substr($num,0,2)),$this->MTN_PREFIXES)){
+       $reseau="mtn";
+      }elseif(in_array(intval(substr($num,0,2)),$this->MOOV_PREFIXES)){
+         $reseau="moov";
+      }else{
+
+        return redirect()->back() ->with('alert', 'Les réseaux prit en compte sont MTN et MOOV ');
+      }
+      $num="229".$num;
+
+      $request=$this->request_header($reseau);
       $body=[
         "msisdn"=> $num,
         "amount"=> "1",
         "transref" =>$this->get_new_transref(),
         "narration"=>"payment",
-        "clientid"=>$this->MTN_CLIENT_ID
+        "clientid"=>$this->MOOV_CLIENT_ID
       ];
       echo "===>".$this->get_new_transref()."<=====";
       $request->setBody(json_encode($body));
 
           try {
             $response = $request->send();
+            echo json_decode($response->getBody())->responsecode;
 
-            if ($response->getStatus() == 202) {
+            if ($response->getStatus() == 202 || $response->getStatus() == 200) {
 
-              echo $this->CURRENT_TRANS_REF;
-         
-              echo json_decode($response->getBody())->responsecode;
-              while(json_decode($response->getBody())->responsecode=="01") {
-                
+              
+              try{
+                  while(json_decode($response->getBody())->responsecode=="01") {
+                    echo 'code --> '.json_decode($response->getBody())->responsecode;
+                   }
+                   echo 'code --> '.json_decode($response->getBody())->responsecode;
+                   if(json_decode($response->getBody())->responsecode=="00"){
+                    echo 'code --> '.json_decode($response->getBody())->responsecode; 
+                   }
+              }catch(Exception  $e){
+                echo ''.$e;
               }
-              if(json_decode($response->getBody())->responsecode=="00"){
-                           
-              }
+              
             }
             else {
               echo 'Unexpected HTTP status: ' . $response->getStatus() . ' ' .
