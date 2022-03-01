@@ -31,6 +31,7 @@ Route::get("/events",function(){
 })->name("events");
 
 Auth::routes();
+Route::get('/search',[App\Http\Controllers\EventsController::class,"search"])->name("search_event");
 
 Route::middleware(["auth"])->group(function(){
     Route::get('/event/new',[App\Http\Controllers\EventsController::class,"new"])->name("new_event");
@@ -39,7 +40,6 @@ Route::middleware(["auth"])->group(function(){
     Route::get('/event/edit/{id}',[App\Http\Controllers\EventsController::class,"edit"])->name("edit_event");
     Route::get('/event/delete/{id}',[App\Http\Controllers\EventsController::class,"delete"])->name("delete_event");
     Route::get('/event/publish/{id}',[App\Http\Controllers\EventsController::class,"publish"])->name("publish_event");
-    Route::get('/search',[App\Http\Controllers\EventsController::class,"search"])->name("search_event");
 
 
     Route::get('/ticket/add/{id}',[App\Http\Controllers\TicketsController::class,"new"])->name('event_ticket_add');

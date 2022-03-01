@@ -142,6 +142,7 @@
                         <!-- search button -->
                         <div class="search-right ml-lg-3">
                             <form action="{{ route('search_event') }}" method="GET" class="search-box position-relative">
+                               @csrf
                                 <div class="input-search">
                                     <input type="search" placeholder="Rechercher un évènement" name="search" required="required"
                                         autofocus="" class="search-popup" >
