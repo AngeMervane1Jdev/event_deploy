@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-<link rel="stylesheet" href="{{ asset('css/card.css') }}">
+<link rel="stylesheet" href="{{ secure_asset('css/card.css') }}">
 
 @section('content')
     <section class="w3l-main-slider" id="home">
@@ -188,7 +188,7 @@
 
                                 <article class="postcard home dark red">
                                     <a class="postcard__img_link" href="#">
-                                        <img class="postcard__img" src="{{asset('images/logo.png')}}" alt="Image Title" />
+                                        <img class="postcard__img" src="{{secure_asset('images/logo.png')}}" alt="Image Title" />
                                     </a>
                                     <div class="postcard__text">
                                         <h1 class="postcard__title red"><a href="#">{{$event->event_name}}</a></h1>
@@ -265,7 +265,7 @@
                         <div class="col-lg-6">
                             <div class="services-single d-flex p-sm-5 p-4">
                                 <div class="service-icon mr-sm-4 mr-3">
-                                    <img src="{{asset('images/s3.png')}}" alt="" class="img-fluid">
+                                    <img src="{{secure_asset('images/s3.png')}}" alt="" class="img-fluid">
                                 </div>
                                 <div class="services-content">
                                     <h5><a href="services.html">Ajouter un prometeur</a></h5>
@@ -277,7 +277,7 @@
                         <div class="col-lg-6">
                             <div class="services-single d-flex p-sm-5 p-4">
                                 <div class="service-icon mr-sm-4 mr-3">
-                                    <img src="{{asset('images/s1.png')}}" alt="" class="img-fluid">
+                                    <img src="{{secure_asset('images/s1.png')}}" alt="" class="img-fluid">
                                 </div>
                                 <div class="services-content">
                                     <h5><a href="services.html">Organiser un evènement</a></h5>
@@ -291,7 +291,7 @@
                         <div class="col-lg-6">
                             <div class="services-single d-flex p-sm-5 p-4 mb-lg-0">
                                 <div class="service-icon mr-sm-4 mr-3">
-                                    <img src="{{asset('images/s2.png')}}" alt="" class="img-fluid">
+                                    <img src="{{secure_asset('images/s2.png')}}" alt="" class="img-fluid">
                                 </div>
                                 <div class="services-content">
                                     <h5><a href="services.html">Publier votre evènement</a></h5>
@@ -303,7 +303,7 @@
                         <div class="col-lg-6">
                             <div class="services-single d-flex p-sm-5 p-4 mb-0">
                                 <div class="service-icon mr-sm-4 mr-3">
-                                    <img src="{{asset('images/s4.png')}}" alt="" class="img-fluid">
+                                    <img src="{{secure_asset('images/s4.png')}}" alt="" class="img-fluid">
                                 </div>
                                 <div class="services-content">
                                     <h5><a href="services.html">Evolution de L'évènement</a></h5>
@@ -356,7 +356,7 @@
                     <div class="col-lg-3 col-6 team-wrap">
                         <div class="team-member text-center">
                             <div class="team-img">
-                                <img src="{{asset('images/c1.png')}}" alt="" class="radius-image">
+                                <img src="{{secure_asset('images/c1.png')}}" alt="" class="radius-image">
                             </div>
                             <a href="#url" class="team-title">Mr Ange CYRILLE</a>
                             <div class="team-details text-center">
@@ -378,7 +378,7 @@
                     <div class="col-lg-3 col-6 team-wrap">
                         <div class="team-member text-center">
                             <div class="team-img">
-                                <img src="{{asset('images/testi1.jpg')}}" alt="" class="radius-image">
+                                <img src="{{secure_asset('images/testi1.jpg')}}" alt="" class="radius-image">
                             </div>
                             <a href="#url" class="team-title">Mr Mfid DAOUDA</a>
                             <div class="team-details text-center">
@@ -400,7 +400,7 @@
                     <div class="col-lg-3 col-6 team-wrap mt-lg-0 mt-5">
                         <div class="team-member last text-center">
                             <div class="team-img">
-                                <img src="{{asset('images/testi2.jpg')}}" alt="" class="radius-image">
+                                <img src="{{secure_asset('images/testi2.jpg')}}" alt="" class="radius-image">
                             </div>
                             <a href="#url" class="team-title">Mr Chola PATRICK</a>
                             <div class="team-details text-center">
@@ -422,7 +422,7 @@
                     <div class="col-lg-3 col-6 team-wrap mt-lg-0 mt-5">
                         <div class="team-member last text-center">
                             <div class="team-img">
-                                <img src="{{asset('images/testi3.jpg')}}" alt="" class="radius-image">
+                                <img src="{{secure_asset('images/testi3.jpg')}}" alt="" class="radius-image">
                             </div>
                             <a href="#url" class="team-title">Mr Gille DAHOUE</a>
                             <div class="team-details text-center">

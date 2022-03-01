@@ -46,7 +46,7 @@
                     </p>
                     <div class="row feat_top mt-4 pt-lg-3">
                         <div class="col-6 w3l-features-photo-7-box">
-                            <img src="assets/images/a1.png" alt="" class="img-fluid">
+                            <img src="secure_assets/images/a1.png" alt="" class="img-fluid">
                             <h5 class="w3l-feature-text mb-2 mt-3">Notre Mission</h5>
                             <p>
                                 Accompagner nos clients dans leurs évènements ;
@@ -55,7 +55,7 @@
                             </p>
                         </div>
                         <div class="col-6 w3l-features-photo-7-box">
-                            <img src="assets/images/s1.png" alt="" class="img-fluid">
+                            <img src="secure_assets/images/s1.png" alt="" class="img-fluid">
                             <h5 class="w3l-feature-text mb-2 mt-3">Notre Vision</h5>
                             <p>
                                 MASSALI EVENTS est la première entreprise informatique par excellence dans les secteurs de Développement logiciel, de Cyber Sécurité et de Réseaux.
@@ -65,7 +65,7 @@
                     </div>
                 </div>
                 <div class="col-lg-6 w3l-features-photo-7_top-right mt-lg-0 mt-sm-5 mt-4">
-                    <img src="{{asset('images/Apropos.png')}}" class="img-responsive" alt="" />
+                    <img src="{{secure_asset('images/Apropos.png')}}" class="img-responsive" alt="" />
                 </div>
             </div>
             <!-- fireworks effect -->
@@ -86,7 +86,7 @@
                         <div class="col-lg-6">
                             <div class=" d-flex p-sm-5 p-4">
                                 <div class="service-icon mr-sm-4 mr-3">
-                                    <img src="{{asset('images/s3.png')}}" alt="" class="img-fluid">
+                                    <img src="{{secure_asset('images/s3.png')}}" alt="" class="img-fluid">
                                 </div>
                                 <div class="services-content">
                                     <h5><a href="services.html">Ajouter un prometeur</a></h5>
@@ -98,7 +98,7 @@
                         <div class="col-lg-6">
                             <div class=" d-flex p-sm-5 p-4">
                                 <div class="service-icon mr-sm-4 mr-3">
-                                    <img src="{{asset('images/s1.png')}}" alt="" class="img-fluid">
+                                    <img src="{{secure_asset('images/s1.png')}}" alt="" class="img-fluid">
                                 </div>
                                 <div class="services-content">
                                     <h5><a href="services.html">Organiser un evènement</a></h5>

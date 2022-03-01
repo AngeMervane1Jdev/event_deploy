@@ -27,9 +27,9 @@
                 <div class="card-bodys">
                   <div class="d-flex flex-column align-items-center text-center">
                   @if(Auth::user()->profil_image!=null)
-                    <img src="{{asset('profils/'.Auth::user()->profil_image)}}" width="150" class="rounded-circle">
+                    <img src="{{secure_asset('profils/'.Auth::user()->profil_image)}}" width="150" class="rounded-circle">
                     @else
-                    <img src="{{asset('images/testi1.jpg')}}" width="150" class="rounded-circle">
+                    <img src="{{secure_asset('images/testi1.jpg')}}" width="150" class="rounded-circle">
                     @endif
                     <div class="mt-3">
                       <h4>{{Auth::user()->name}}</h4>

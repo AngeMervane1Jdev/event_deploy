@@ -49,7 +49,7 @@
 
                                 <article class="postcard dark red">
                 <a class="postcard__img_link" href="#">
-                    <img class="postcard__img" src="{{secure_asset('images/logo.png')}}" alt="Image Title" />
+                    <img class="postcard__img" src="{{secure_secure_asset('images/logo.png')}}" alt="Image Title" />
                 </a>
                 <div class="postcard__text">
                     <h1 class="postcard__title red"  style="color:wheat"><a href="#">{{$event->event_name}}</a></h1>
