@@ -2,6 +2,7 @@
 
 use App\Models\Commande;
 use App\Models\Event;
+use App\Models\Tiket;
 
 if (!function_exists("date_formater")) {
     function date_formater($date){
@@ -13,7 +14,7 @@ if (!function_exists("date_formater")) {
        $minutes=date('i',strtotime($date));
        $lundi=date('w',strtotime($date));
 
-       $Mois=["Jan","Fre","Mar","Avr","Mai","Jui","Juil","Aou","Sep","Oct","Nov","Dec"];
+       $Mois=["Janvier","Frevrier","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"];
        $mois=$Mois[$m-1];
        $Jours=["Dim","Lun","Mar","Mer","Jeu","Ven","Sam"];
        $jour=$Jours[$lundi];
@@ -22,16 +23,32 @@ if (!function_exists("date_formater")) {
        
 
     }
-}if (!function_exists("commandes_for_event")) {
-    function commandes_for_event($event){
-       $commandes=Commande::all()->where("event_id","=",$event)->first();
-       return $commandes;
+}if (!function_exists("event_status")) {
+    function event_status($event_id){
+       $e=Event::findOrFail($event_id);
+
+       $msg="";
+      if($e->end_time>now() and $e->start_time<now()){
+          $msg="En cours";
+      }
+      else if($e->start_time>now()){
+        $date=date_formater($e->start_time);
+       $msg="Commence le ".$date["jour"]." ".$date["jourMois"]." ".$date["mois"]." ".$date["annee"];
+      }
+      else if($e->end_time<now()){
+          $msg="Passé";
+      }
+       return $msg;
     }
 }
-if (!function_exists("event_for_commande")) {
-    function event_for_commande($id){
-       $event=Event::findOrFail($id);
-       return $event;
+if (!function_exists("event_and_tiket")) {
+    function event_and_tiket($ticket){
+          $t=Tiket::findOrFail($ticket);
+          $e=Event::findOrFail($t->event_id);
+          $events[$e->event_name]=$t;
+
+
+       return $events;
     }
 }
 

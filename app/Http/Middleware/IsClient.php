@@ -26,9 +26,9 @@ class IsClient
                      return $next($request);
                 }    
             } 
-            return redirect('auth/login')->with('error',"You don't have organizer access");
+            return redirect()->route('login')->withMessage("You don't have organizer access");
         } catch (Exception $e) {
-            return redirect('auth/login')->with('error',"You don't have organizer access");
+            return redirect()->route('login')->withMassage("You don't have organizer access");
         }
    
 }

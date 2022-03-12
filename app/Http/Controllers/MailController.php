@@ -38,9 +38,9 @@ class MailController extends Controller
     {
 
         $request->validate([
-            'name',
-            'email',
-            'phone',
+            'name'=> ['required' ,'string', 'max:255'],
+            'email'=> [ 'required' ,'string', 'email', 'max:255'],
+            'phone'=> ['required', 'string', 'min:8'],
             'message',
         ]);
 
@@ -52,10 +52,9 @@ class MailController extends Controller
             'message'=>$request->message,
         ];
 
+         Mail::to(env('MAIL_FROM_ADDRESS'))->send(new TestMail($details));
 
-         Mail::to('dagilles84@gmail.com')->send(new TestMail($details));
-
-         return redirect('welcome')->with('success');
+        //  return redirect('welcome')->with('success');
     }
 
     /**

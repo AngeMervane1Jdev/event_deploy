@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-<link rel="stylesheet" href="{{ secure_asset('css/card.css') }}">
+<link rel="stylesheet" href="{{ asset('css/card.css') }}">
 
 @section('content')
     <section class="w3l-main-slider" id="home">
@@ -177,6 +177,7 @@
                         <span style="--i:7">b</span>
                         <span style="--i:8">l</span>
                         <span style="--i:9">e</span>
+                        <span style="--i:9">s</span>
                     </div>
 
                 <div class="content-sec-11">
@@ -188,7 +189,12 @@
 
                                 <article class="postcard home dark red">
                                     <a class="postcard__img_link" href="#">
-                                        <img class="postcard__img" src="{{secure_asset('images/logo.png')}}" alt="Image Title" />
+                                    @if($event->cover!=null)
+                                    <img src="{{secure_asset('Upload/events/Covers/'.$event->cover)}}" class="postcard__img">
+
+                                    @else
+                                    <img class="postcard__img" src="{{secure_asset('images/logo.png')}}" alt="Image Title"  />
+                                    @endif
                                     </a>
                                     <div class="postcard__text">
                                         <h1 class="postcard__title red"><a href="#">{{$event->event_name}}</a></h1>
@@ -234,7 +240,7 @@
                         </div>
 
                         @empty
-                                <h1>Aucun evenement en cours</h1>
+                                <h1 style="text-align: center;font-size:20px">Aucun evenement en cours</h1>
 
                          @endforelse
                     </div>

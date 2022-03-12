@@ -26,7 +26,8 @@ class User extends Authenticatable
         'contact',
         'profil_image',
         "agence_id",
-        "type_user_id"
+        "type_user_id",
+        "is_admin"
     ];
 
     /**
@@ -58,6 +59,11 @@ class User extends Authenticatable
     }
     public function agence(){
         return $this->BelongsTo(Agence::class);
+    }
+
+    public function panier()
+    {
+        return $this->hasOne(Panier::class);
     }
  
 }

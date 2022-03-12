@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Commande;
 use App\Models\Event;
 use App\Models\Tiket;
+use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,14 +14,13 @@ use Illuminate\Support\Facades\Hash;
 class DashboardController extends Controller
 {
     function client(){
-      $commandes=Commande::all()->where("client_id","=",Auth::user()->id);
-      return view("/client/dashboard",compact('commandes'));
+      $transactions=Transaction::all()->where("client_id","=",Auth::user()->id);
+      return view("/client/dashboard",compact('transactions'));
     }
-
 
     function promotor(){
       $events=Event::all()->where("user_id",'=',Auth::user()->id);
-      $commandes=Commande::all();
+      $commandes=Transaction::all()->where("user_id");
       return view('/promotor/dashboard',compact("events","commandes"));
     }
 

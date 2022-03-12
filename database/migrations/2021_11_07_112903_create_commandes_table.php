@@ -15,7 +15,7 @@ class CreateCommandesTable extends Migration
     {
         Schema::create('commandes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('event_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('event_id')->constrained('events')->cascadeOnDelete();
             $table->foreignId('client_id')->constrained('users')->cascadeOnDelete();
             $table->double('price');
             $table->integer('status')->default(0);  // 0 pour en attente, 1 pour vendu,2 pour rejette

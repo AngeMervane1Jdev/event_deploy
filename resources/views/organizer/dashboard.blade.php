@@ -105,7 +105,7 @@
         @endforelse
     </div>
     <!-- Evenements du promoteur -->
-    <h1 style="text-align:center; color:var(--orange); margin-top:20px; font-size:20px">Evenement creer par votre promoteur</h1>
+    <!-- <h1 style="text-align:center; color:var(--orange); margin-top:20px; font-size:20px">Evenement creer par votre promoteur</h1>
     @forelse($promotors as $promotor)
 
     <h5 style="text-align:center; color:white; margin-top:20px; font-size:20px"> {{$promotor->name}}</h5>
@@ -179,9 +179,9 @@
         @empty
         <h1 style="text-align:center; color:var(--white); margin-top:20px; margin-bottom:20px;font-size:17px">Aucun evènement promoteur</h1>
 
-        @endforelse
+        @endforelse -->
 
-
+<!-- 
 <section class="bouton">
         <script type="text/javascript">
         function affCache(idDiv) {
@@ -195,13 +195,13 @@
 
 <div class="wrap">
   <button class="button"  href="#" onclick="affCache('ajouter');">Ajouter promoteur</button>
-</div>
+</div> -->
 
 
 </section>
 
 
-<div class="container" id="ajouter"  style="display: none">
+<!-- <div class="container" id="ajouter"  style="display: none">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -296,7 +296,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 </div>
 
 

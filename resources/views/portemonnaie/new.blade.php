@@ -18,6 +18,12 @@
 
 <div class="blog-section py-5" id="events">
         <div class="container py-md-5 py-4">
+        @if (session()->has('message'))
+            <div class="alert alert-success" id="success-alert">
+                <button type="button" class="close" data-dismiss="alert">x</button>
+                <strong>Message! </strong>{{ session('message') }}.
+            </div>
+        @endif
             <div class="waviy text-center mb-md-5 mb-4">
                 <span style="--i:1">P</span>
                 <span style="--i:2">o</span>
@@ -137,17 +143,15 @@
               <dt>
                   <form action="{{ route('sale_ticket') }}" method="POST">
                       @csrf
-                    <div class="form-group">
+                    <div class="form-group text-center">
                         <label>Votre numero de téléphone</label><br>
                       <p>
-                          <select name="reseau">
-                            <option style="background-color: white;" value="moov">Moov</option>
-                            <option style="background-color: white;" value="mtn">Mtn</option>
-                          </select>
+                          <input type="number" name="id" value={{$id}} hidden>
+                          <input type="number" name="is_panier" value="{{$is_panier}}" hidden>
                           <input type="text" name="phone_number" value="+229 00 00 00 00">
                        </p>
                     </div>
-                    <dd> <input type="submit" class="btn btn-success" value="Acheter"> </dd>
+                    <dd> <input type="submit" class="btn btn-success text-center" value="Acheter"> </dd>
 
                   </form>
                   </dt>

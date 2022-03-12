@@ -25,12 +25,27 @@
             <div class="col-md-4 mb-3">
               <div class="cards">
                 <div class="card-bodys">
-                  <div class="d-flex flex-column align-items-center text-center">
+                  <div class="d-flex flex-column align-items-center text-center profile-pic">
                   @if(Auth::user()->profil_image!=null)
-                    <img src="{{secure_asset('profils/'.Auth::user()->profil_image)}}" width="150" class="rounded-circle">
+                  <img src="{{secure_asset('profils/'.Auth::user()->profil_image)}}" width="150" class="rounded-circle">
+
                     @else
-                    <img src="{{secure_asset('images/testi1.jpg')}}" width="150" class="rounded-circle">
-                    @endif
+                        <img src="{{secure_asset('images/testi1.jpg')}}" id="profileImage" width="150" class="rounded-circle">
+                        @endif
+                        <div class="file-input">
+                            <form action="" method="get">
+                                <input
+                                type="file"
+                                name="file-input"
+                                id="file-input"
+                                class="file-input__input"
+                              />
+                            </form>
+
+                            <label class="file-input__label" for="file-input">
+                                <img src="https://img.icons8.com/material-outlined/24/fa314a/camera--v2.png"/>
+                             </label >
+                          </div>
                     <div class="mt-3">
                       <h4>{{Auth::user()->name}}</h4>
                       @if(Auth::user()->type_user_id==1)
@@ -72,6 +87,11 @@
                             <input class="form-control" type="text" value="{{Auth::user()->contact}}">
                           </div>
                     </div>
+                    @if(Auth::user()->type_user_id==3)
+                    <div class="btns" >
+                        <a href="" class="btn btn-info" style="margin-top:15px" >Enregistrer les modifications</a>
+                      </div>
+                      @endif
                   </div>
 
                 @if(Auth::user()->type_user_id==1)

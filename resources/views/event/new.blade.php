@@ -16,23 +16,6 @@
     </div>
     <!-- //inner banner -->
 
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css"
-        rel="stylesheet" />
-    <style>
-        .bootstrap-tagsinput .tag {
-            margin-right: 2px;
-            color: #000;
-            background: #f3e521;
-            padding: 3px 7px;
-            border-radius: 3px;
-        }
-
-        .bootstrap-tagsinput {
-            width: 100%;
-        }
-
-    </style>
-
 
 <section >
         <div class="contact-top py-md-5 py-4">
@@ -106,7 +89,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="start_time" class="col-md-4 col-form-label text-md-right">{{ __('Date de commencement') }}</label>
+                                        <label for="start_time" class="col-md-4 col-form-label text-md-right">{{ __('Date de début') }}</label>
 
                                         <div class="col-md-6">
                                             <input id="start_time" type="datetime-local" class="form-control @error('start_time') is-invalid @enderror" name="start_time" value="{{ old('start_time') }}" required autocomplete="start_time">
@@ -133,13 +116,11 @@
                                     </div>
 
                                     <div class="form-group row">
-                                        <label for="Tags" class="col-md-4 col-form-label text-md-right">{{ __('Etiquettes') }}</label>
+                                        <label for="cover" class="col-md-4 col-form-label text-md-right">{{ __('Cover') }}</label>
 
                                         <div class="col-md-6">
-                                        <input class="form-control" type="text" data-role="tagsinput" name="tags">
-                                        @if ($errors->has('tags'))
-                                           <span class="text-danger">{{ $errors->first('tags') }}</span>
-                                        @endif
+                                        <input class="form-control" type="file" name="cover" accept="image/png, image/jpeg ,image/jpg">
+                                       
                                         </div>
                                     </div>
 
@@ -148,7 +129,7 @@
                                         <label for="zone" class="col-md-4 col-form-label text-md-right">{{ __('categories:') }}</label>
 
                                         <div class="col-md-6">
-                                        <select class="form-control" name="categories[]" >
+                                        <select class="form-control" name="categories" >
                                             <option value="none" selected="" disabled="">Select Category</option>
                                                 @forelse ($categories as $cat)
                                                 <option value="{{$cat->name}}">{{$cat->name}}</option>

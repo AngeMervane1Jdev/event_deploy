@@ -11,11 +11,14 @@ use App\Models\Agence;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Mail\RegisterMail;
+use App\Models\Panier;
+use Illuminate\Support\Facades\Mail;
 
 class RegisterController extends Controller
 {
 
-    
+
 
     use RegistersUsers;
 
@@ -59,10 +62,10 @@ class RegisterController extends Controller
                 'contact' => ['required', 'string', 'min:8'],
                 'profil_image'=>'nullable|sometimes|image|mimes:png,jpg,jpeg|max:12288',
                 'type'=>["required",'integer'],
-              
-         
+
+
          ]);
-       
+
     }
 
     /**
@@ -80,13 +83,13 @@ class RegisterController extends Controller
 
     protected function create(array $data)
     {
-    
+
         $file1=null;
         $file2=null;
         $file3=null;
-        $agence=1;
+        $agence=null;
         $type_user_id=intval($data["type"]);
-      
+
 
         if($type_user_id==1){     // si il s'agit d'un organisateur on crée une agence
 
@@ -105,13 +108,13 @@ class RegisterController extends Controller
                 ]);
 
                 if(array_key_exists("logo",$data)){
-                    $imageName = time().'.'.$data["logo"]->extension();  
-                $file2=$data["logo"]->move(public_path('logos'), $imageName); 
+                    $file2 = time().'.'.$data["logo"]->extension();
+                    $data["logo"]->move(public_path('logos'), $file2);
                 }
-                
+
                 if(array_key_exists("banner",$data)){
-                    $imageName = time().'.'.$data["banner"]->extension();  
-                    $file3=$data["banner"]->move(public_path('banners'), $imageName);
+                    $file3 = time().'.'.$data["banner"]->extension();
+                    $data["banner"]->move(public_path('banners'), $file3);
                 }
 
                 $agence=Agence::create([
@@ -124,14 +127,24 @@ class RegisterController extends Controller
                 $agence=$agence->id;
            }
 
-            
+
         }
-      
-       
+
+
        if(array_key_exists("profil_image",$data)){
-        $file1 = time().'.'.$data["profil_image"]->extension();  
-        $data["profil_image"]->move(public_path('profils'), $file1); 
+        $file1 = time().'.'.$data["profil_image"]->extension();
+        $data["profil_image"]->move(public_path('profils'), $file1);
        }
+
+       /************************ mail ********************* */
+        //  $datareg=([
+        //         'name'=>$data['name'],
+        //  ]);
+
+
+      //*   Mail::to($data['email'])->send(new RegisterMail($datareg));
+
+         /**************************************************************** */
 
 
         //return view('<h1>'.$type_user_id.'</h1>');
@@ -143,7 +156,7 @@ class RegisterController extends Controller
 
              'password' => Hash::make($data['password']),
              "agence_id"=>$agence,
-             'type_user_id'=>(int)$type_user_id, 
+             'type_user_id'=>(int)$type_user_id,
          ]);
 
     }

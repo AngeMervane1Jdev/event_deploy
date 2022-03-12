@@ -46,7 +46,7 @@
                     </p>
                     <div class="row feat_top mt-4 pt-lg-3">
                         <div class="col-6 w3l-features-photo-7-box">
-                            <img src="secure_assets/images/a1.png" alt="" class="img-fluid">
+                            <img src="assets/images/a1.png" alt="" class="img-fluid">
                             <h5 class="w3l-feature-text mb-2 mt-3">Notre Mission</h5>
                             <p>
                                 Accompagner nos clients dans leurs évènements ;
@@ -55,7 +55,7 @@
                             </p>
                         </div>
                         <div class="col-6 w3l-features-photo-7-box">
-                            <img src="secure_assets/images/s1.png" alt="" class="img-fluid">
+                            <img src="assets/images/s1.png" alt="" class="img-fluid">
                             <h5 class="w3l-feature-text mb-2 mt-3">Notre Vision</h5>
                             <p>
                                 MASSALI EVENTS est la première entreprise informatique par excellence dans les secteurs de Développement logiciel, de Cyber Sécurité et de Réseaux.

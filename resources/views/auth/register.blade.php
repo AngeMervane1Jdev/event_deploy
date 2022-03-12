@@ -16,7 +16,7 @@
         rel="stylesheet">
     <link href="//fonts.googleapis.com/css2?family=Sail&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="{{ secure_asset('css/style-starter.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style-starter.css') }}">
 </head>
 
 <header id="site-header" class="fixed-top">
@@ -25,7 +25,7 @@
 
                   <!-- Logo -->
                   <a class="navbar-brand" href="{{url('/')}}">
-                    <img src="{{ secure_asset('images/logo.png') }}" alt="Your logo" title="Your logo" style="height:35px;" />
+                    <img src="{{ asset('images/logo.png') }}" alt="Your logo" title="Your logo" style="height:35px;" />
                 </a>
                  <!-- //Logo -->
                 <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse"
@@ -119,6 +119,12 @@
                 </section>
 
                <div class="container">
+               @if (session()->has('message'))
+                    <div class="alert alert-success" id="success-alert">
+                        <button type="button" class="close" data-dismiss="alert">x</button>
+                        <strong>Message! </strong>{{ session('message') }}.
+                    </div>
+               @endif
                 <div class="waviy text-center mb-md-5 mb-4">
 
                     <span style="--i:9"> </span>
@@ -204,17 +210,6 @@
                     </div>
 
                     <div class="top-inputs d-grid">
-                                <select class="form-control " name="categories[]" >
-                                <option value="none" selected="" disabled="">Choisisez une Categorie</option>
-                                    @forelse ($categories as $cat)
-                                    <option value="{{$cat->name}}">{{$cat->name}}</option>
-                                    @empty
-                                    @endforelse
-                                </select>
-                                <input name="type" value=1 id="type" type="number" hidden/>
-
-                    </div>
-                    <div class="top-inputs d-grid">
 
                                 <input id="password" placeholder="Password" type="password" class="form-control @error('password') is-invalid @enderror" name="password"  autocomplete="new-password">
 
@@ -249,6 +244,19 @@
                                 @enderror
 
                        </div>
+
+                       <div class="top-inputs ">
+                        <select class="form-control " name="categories[]" >
+                        <option value="none" selected="" disabled="">Choisisez une Categorie</option>
+                            @forelse ($categories as $cat)
+                            <option value="{{$cat->name}}">{{$cat->name}}</option>
+                            @empty
+                            @endforelse
+                        </select>
+                        <input name="type" value=1 id="type" type="number" hidden/>
+
+            </div>
+
                         <div class="top-inputs d-grid">
 
                                 <div class="custom-file">
@@ -378,7 +386,7 @@
 
     </script>
     @endif -->
-    <script src="{{ secure_asset('js/index.js') }}"></script>
+    <script src="{{ asset('js/index.js') }}"></script>
 
     <section class="w3l-footer-29-main">
         <div class="footer-29 py-5">
@@ -466,15 +474,15 @@
 
     <!-- common jquery plugin -->
 
-    <script src="{{ secure_asset('js/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
     <!-- //common jquery plugin -->
 
     <!-- slider-js -->
 
-    <script src=" {{ secure_asset('js/jquery.min.js') }}"></script>
-    <script src="{{ secure_asset('js/modernizr-2.6.2.min.js') }}"></script>
+    <script src=" {{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/modernizr-2.6.2.min.js') }}"></script>
 
-    <script src="{{ secure_asset('js/jquery.zoomslider.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.zoomslider.min.js') }}"></script>
 
     <script>
         $(document).ready(function () {
@@ -505,7 +513,7 @@
 
     <!-- theme switch js (light and dark)-->
 
-    <script src="{{ secure_asset('js/theme-change.js') }}"></script>
+    <script src="{{ asset('js/theme-change.js') }}"></script>
     <script>
         function autoType(elementClass, typingSpeed) {
             var thhis = $(elementClass);
@@ -584,7 +592,7 @@
 
     <!--bootstrap-->
 
-    <script src="{{ secure_asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <!-- //bootstrap-->
     <!-- //Js scripts -->
 </body>

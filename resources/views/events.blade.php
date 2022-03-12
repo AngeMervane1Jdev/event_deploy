@@ -21,13 +21,31 @@
 
     </div>
 
+    @if (session()->has('message'))
+    <div class="alert alert-success" id="success-alert">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        <strong>Message! </strong>{{ session('message') }}.
+    </div>
+    @endif
 
     <div class="" id="events">
         <div class="container ">
             <form class="seach_events"  action="{{ route('search_event') }}" method="GET">
+                @csrf
                 <div class="input-group">
+                    
+                    <select name="qcat" title="Categorie" class="btn" style="color: white;">
+                       <option value="none" selected="" disabled="">Categorie</option>
+                        @forelse ($cats as $cat)
+                        <option value="{{$cat->name}}" style="color:white;padding:5px;margin: 10px;">{{$cat->name}}</option>
+                        @empty
+                        @endforelse
+                    </select>
                     <input type="search" class="form-control" placeholder="Rechercher un évènement" name="q">
-                    <button type="submit" class="btn search-btn"><i class="fa fa-search"
+
+
+                    <button type="submit" class="btn search-btn" style="color: white;">
+                    <i class="fa fa-search"
                         aria-hidden="true"></i></button>
                 </div>
             </form>
@@ -46,7 +64,11 @@
                         <h1 class="h1 text-center" id="pageHeaderTitle"></h1>
                         <article class="postcard dark red">
                             <a class="postcard__img_link" href="#">
-                                <img class="postcard__img" src="{{secure_asset('images/logo.png')}}" alt="Image Title" />
+                            @if($event->cover!=null)
+                            <img src="{{secure_asset('Upload/events/Covers/'.$event->cover)}}" class="postcard__img">
+                            @else
+                            <img class="postcard__img" src="{{secure_asset('images/logo.png')}}" alt="Image Title"  />
+                            @endif
                             </a>
                             <div class="postcard__text">
                                 <h1 class="postcard__title red"  style="color:wheat"><a href="#">{{$event->event_name}}</a></h1>
@@ -80,11 +102,21 @@
                                             @endif
                                         </a>
                                     </li>
+                                    <li>
+                                      <h1 class="name_org">Evènement organisé par  <span style="color:#fd7e14; font-size:20px"> : {{strtoupper($event->user()->first()->name)}}</span></h1>
+
+                                    </li>
                                 </ul>
                             </div>
                         </article>
-                        <h1 style="" class="name_org">Evènement organisé par  <span style="color:#fd7e14; font-size:17px">Mfid</span></h1>
+                        <div class="btns" style="text-align:center; margin-top:11px">
+                            <a href="{{route('show_event',$event->id)}}" class="btn btn-yellow">Details</a>
+
+                            <a href="{{route('show_event',$event->id)}}" class="btn btn-black">Ticket</a>
+
+                        </div>
                     </div>
+
                 </div>
                 @empty
                 @endforelse

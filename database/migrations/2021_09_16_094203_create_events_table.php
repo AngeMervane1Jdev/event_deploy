@@ -18,15 +18,13 @@ class CreateEventsTable extends Migration
             $table->string('event_name');
             $table->string('event_description');
             $table->string('zone');
-            $table->string("status");  // publié=1; en attente=0; supprimé:2
+            $table->string("status");  // publié=1; en attente=0; supprimé:2 annulé=3
             $table->dateTime('start_time');
             $table->dateTime('end_time');
-            $table->string("tag");
-            $table->json('cats');
+            $table->string("cover",1024)->nullable();
+            $table->string('cats');
             $table->foreignId("user_id")->constrained("users");
-            $table->foreignId("agence_id")->constrained('agences');
             $table->dateTime("publish_date")->nullable();
-            $table->json('tikets')->nullable();
             $table->timestamps();
         });
     }

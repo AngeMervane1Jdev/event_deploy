@@ -14,10 +14,9 @@ class AddColumnsToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-             $table->foreignId('agence_id')->constrained('agences')
+             $table->foreignId('agence_id')
              ->nullable()
-             ->default(null)
-            ->onDelete('no action');
+             ->constrained();
             
              $table->foreignId('type_user_id')->constrained('type_users')
              ->nullable()

@@ -19,6 +19,11 @@
 
 <div class="blog-section py-5" id="events">
         <div class="container py-md-5 py-4">
+            
+
+        @if (session()->has('message'))
+              <div class="alert alert-info">{{ session('message') }}</div>
+        @endif
             <div class="waviy text-center mb-md-5 mb-4">
             <span style="--i:1">T</span>
                 <span style="--i:2">a</span>
@@ -44,46 +49,101 @@
 
 
 
-      @if(count($commandes)>0)
-      <table class="container">
+      @if(count($transactions)>0)
+      <div class="seach_events" >
+
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Rechercher une transaction" name="q" id="search-form" onkeyup="myFunction()" >
+                </div>
+            </div>
+            
+      <table class="container table-bordered table-sm m-3" id="myTable">
           <thead>
           <tr>
+            <th><h1>#</h1></th>
             <th><h1>Evènement</h1></th>
-            <th><h1>Durée de l'evènement</h1></th>
-            <th><h1>Prix du ticket</h1></th>
+            <th><h1>Type de Ticket</h1></th>
+            <th><h1>Prix ticket</h1></th>
             <th><h1>Statut</h1></th>
+            <th><h1>Date d'achat du ticket</h1></th>
         </tr>
           </thead>
           <tbody>
-          @foreach($commandes as $cmd)
+          @php $index=0 @endphp
+          @forelse($transactions as $trs)
 
+            @foreach(explode(",",$trs->ticket_id) as $id)
+                <tr>
+                <td>{{ ++$index}}</td>
+                 @php $e_and_t =event_and_tiket($id)  @endphp
+                    <td>
+                        
+                        {{ array_key_first($e_and_t) }}
+                        @php $ticket=$e_and_t[array_key_first($e_and_t)] @endphp
+                    </td>
 
-          <tr>
+                    <td>
+                            @if($ticket->type_id==1)
+                                {{__("VIP")}}
+                            @elseif($ticket->type_id==2)
+                                {{ __("RESERVATION")}}
+                            @else($ticket->type_id==3)
+                                {{__("SIMPLE")}}
+                            @endif
+                                        
+                    </td>
 
-              <td>{{$cmd->id}}</td>
-              <td> Evènement du {{event_for_commande($cmd->id)->start_time}} au <span style="">{{event_for_commande($cmd->id)->end_time}}</span> </td>
-              <td>{{$cmd->price}} FCFA</td>
-              <td>
-                  @if($cmd->status==0)
-                   <p style="color:blue"> En Attente </p>
-                  @elseif($cmd->status==1)
-                  <p style="color:green"> Vendu </p>
-                  @else
-                  <p style="color:red"> Rejetté </p>
-                  @endif
-              </td>
-          </tr>
-        @endforeach
-        @else
-        Aucune commande n'a encore été faite
-        @endif
+                    <td>
+                        {{ $ticket->price }} FCFA
+                    </td>
+                    
 
-    </tbody>
+                    <td>
+                        {{event_status($ticket->event_id) }}
+                    </td>
+                    <td>
+                            {{ $trs->created_at }}
+                        </td>
+             </tr>
+             @endforeach
+        @empty
+        @endforelse
+        </tbody>
       </table>
+    @else
+    Aucune commande n'a encore été faite
+    @endif
+
+    
 
 </div>
 
 </div>
 </div>
 
+ <script>
+    // const query=document.getElementById('search-form');
+    // query.addEventListener('click', function(e){
+    //     alert("salut")
+    // })
+
+function myFunction() {
+  var input1, filter, table, tr, td, i, txtValue;
+  const input=document.getElementById('search-form');
+  filter = input.value.toUpperCase();
+  table = document.getElementById('myTable');
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+ </script> 
 @endsection

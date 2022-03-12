@@ -8,9 +8,19 @@ use App\Models\Portemonnaie;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use App\Mail\EventMail;
+use App\Models\Image;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\DB;
 
 class EventsController extends Controller
 {
+
+    public $modelEvents=null;
+    public function __construct(){
+        $this->modelEvents=new Event;
+    }
+
     function new(){
         $categories=Categorie::all();
         return view('event/new',compact("categories"));
@@ -27,12 +37,24 @@ class EventsController extends Controller
             'event_name' => ['required' ,'string', 'max:255'],
             'event_description' => [ 'required' ,'string', 'max:255',],
             'zone' => ['required' , 'string'],
+            'cover' => 'required|image|mimes:png,jpg,jpeg|max:1024',
             'start_time' => 'required|date_format:"Y-m-d\TH:i"|after:today',
             'end_time'=>'required|date_format:"Y-m-d\TH:i"|after:start_time'
 
-
      ]);
+
     }
+
+    /**************************************************** */
+
+    public function events()
+    {
+        $events=Event::all()->where('status',"=",1)->where("end_time",">",now());
+        
+        $cats=Categorie::all();
+        return view('events',compact("events",'cats'));
+    }
+
 
     /*************************************************** */
 
@@ -42,7 +64,7 @@ class EventsController extends Controller
         $event->status=1;
         $event->publish_date= now();
         $event->save();
-        return redirect()->back();
+        return redirect()->back()->withMessage("Evènement plublié");
     }
 
     /*************************************************** */
@@ -52,8 +74,8 @@ class EventsController extends Controller
 
         $event=Event::findOrFail($id);
         $cats=json_decode($event->cats);
-        $tags=$event->tag;
-        return view('event/edit',compact('event','categories',"tags","cats"));
+       
+        return view('event/edit',compact('event','categories',"cats"));
 
     }
     /*************************************************** */
@@ -61,10 +83,9 @@ class EventsController extends Controller
     function update(Request $request){
        $event=Event::findOrFail($request['id']);
         $this->validator($request->all())->validate();
-        $tags = explode(",", $request->tags);
-        $request['tag']=$tags;
+       
         $event->update($request->all());
-       return redirect()->route("show_event",compact($event));
+       return redirect()->route("show_event",compact($event))->withMesage('Evènement mis à jour');
     }
 
     /*************************************************** */
@@ -79,7 +100,6 @@ class EventsController extends Controller
     /*************************************************** */
 
     function index() {
-        $events=Event::all();
         return redirect()->action([HomeController::class,'index']);
     }
 
@@ -89,18 +109,11 @@ class EventsController extends Controller
     function show($id)
     {
         $event=Event::findOrFail($id);
+        $images=Image::where('event_id',"=",$id)->first();
+        
+        $images? $images=json_decode($images->name):$images=[];
         $tickets=$event->tickets;
-        $buy_ids=[];
-        $table=[];
-        if(Auth::user()!=null and Auth::user()->type_user_id==3){
-            $ptm=Portemonnaie::where('id_client','=',Auth::user()->id)->first();
-
-            if($ptm!=$buy_ids){
-                $buy_ids=explode(" ",($ptm->first())->id_tickets);
-            }
-            return view('event/show',compact("event","tickets","buy_ids"));
-        }
-        return view('event/show',compact("event","tickets"));
+        return view('event/show',compact("event","tickets","images"));
 
     }
 
@@ -109,32 +122,50 @@ class EventsController extends Controller
     function create(Request $request){
 
         $this->validator($request->all())->validate();
-        $tags = explode(",", $request->tags);
-        $tags=$request->tags;
+
+        $file=$request["cover"];
+        $name = $file->getClientOriginalName();
+        $file->move(public_path().'/Upload/events/Covers', $name);
+
         $event=new Event($request->all());
-        $event->cats=json_encode($request['cats']);
-        $event->agence_id=Auth::user()->agence_id;
+        $event->cats=json_encode($request['categories']);
         $event->user_id=Auth::user()->id;
-        $event->tag=$tags;
+        $event->cover=$name;
         $event->status=0;
         $event->save();
 
-     return redirect()->route("show_event",[$event]);
+
+        $datamail=[
+
+            'event_name'=>$request->event_name,
+            'event_description'=>$request->event_description,
+            'zone'=>$request->zone,
+            'status'=>$request->status,
+            'cats'=>$request->cats,
+            'start_time'=>$request->start_time,
+            'end_time'=>$request->end_time,
+        ];
+
+        // Mail::to(Auth::user()->email)->send(new EventMail($datamail));
+
+
+     return redirect()->route("show_event",[$event])->withMessage('Evènement crée avec succès');
 
     }
 
-    function search(Request $request){
-        $search_event=$request->q;
-        $events=[];
-        if(strlen($search_event)>2){
-            $events=Event::query()
-            ->where('event_name','like',"%{$search_event}%")
-            ->orWhere('event_description','like',"%{$search_event}%")
-            ->orWhere('zone','like',"%{$search_event}%")
-            ->get();
-        }
+    // ->where('status',"=",1)
+    // ->where("end_time",">",now())
 
-        return view("events",compact("events"));
+    function search(Request $request){
+        $qword=$request->q;
+        $events=[];
+
+        if(strlen($qword)>2){
+          $events=$this->modelEvents->search($qword);
+        }
+        $cats=Categorie::all();
+
+        return view("events",compact("events","cats"));
 
     }
 }

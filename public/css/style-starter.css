@@ -1722,6 +1722,8 @@ pre code {
     }
 }
 
+
+/*
 .table {
     width: 100%;
     margin-bottom: 1rem;
@@ -2063,7 +2065,7 @@ pre code {
 
 .table-responsive>.table-bordered {
     border: 0;
-}
+} */
 
 .form-control {
     display: block;
@@ -10191,7 +10193,7 @@ a.text-dark:focus {
     .table-dark td,
     .table-dark thead th,
     .table-dark tbody+tbody {
-        border-color: #dee2e6;
+        /* border-color: #dee2e6; */
     }
     .table .thead-dark th {
         color: inherit;
@@ -18546,12 +18548,13 @@ a:hover {
     color: #fb667a;
 }
 
-.container tr:hover {
+
+/* .container tr:hover {
     background-color: #464a52;
     -webkit-box-shadow: 0 6px 6px -6px #0e1119;
     -moz-box-shadow: 0 6px 6px -6px #0e1119;
     box-shadow: 0 6px 6px -6px #0e1119;
-}
+} */
 
 @media (max-width: 800px) {
     .container th h1 {
@@ -19441,6 +19444,75 @@ a:hover {
         padding-right: 30px;
         padding-left: 30px;
     }
+}
+
+.table>tbody>tr>td,
+.table>tfoot>tr>td {
+    vertical-align: middle;
+}
+
+@media screen and (max-width: 600px) {
+    table#cart tbody td .form-control {
+        width: 20%;
+        display: inline !important;
+    }
+    .actions .btn {
+        width: 36%;
+        margin: 1.5em 0;
+    }
+    .actions .btn-info {
+        float: left;
+    }
+    .actions .btn-danger {
+        float: none;
+        margin-top: 25px;
+    }
+    table#cart thead {
+        display: none;
+    }
+    table#cart tbody td {
+        display: block;
+        padding: .6rem;
+        min-width: 320px;
+    }
+    table#cart tbody tr td:first-child {
+        background: #333;
+        color: #fff;
+    }
+    table#cart tbody td:before {
+        content: attr(data-th);
+        font-weight: bold;
+        display: inline-block;
+        width: 8rem;
+    }
+    table#cart tfoot td {
+        display: block;
+    }
+    table#cart tfoot td .btn {
+        display: block;
+    }
+}
+
+
+/***        Upload image    ²   **/
+
+.file-input__input {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.file-input__label {
+    cursor: pointer;
+    border-radius: 4px;
+    float: right;
+}
+
+.file-input__label img {
+    background-size: 50%;
 }
 
 @media (max-width: 400px) {
