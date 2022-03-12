@@ -13,7 +13,7 @@
         <title>Admin</title>
 
         <!-- Template CSS -->
-        <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+        <link rel="stylesheet" href="{{secure_asset('css/admin.css') }}">
 
         <!-- google fonts -->
         <link href="//fonts.googleapis.com/css?family=Nunito:300,400,600,700,800,900&display=swap" rel="stylesheet">
@@ -172,19 +172,19 @@
         <!-- /move top -->
 
 
-        <script src=" {{ asset('js/jquery-3.3.1.min.js') }}"></script>
-        <script src=" {{ asset('js/jquery-1.10.2.min.js') }}"></script>
+        <script src=" {{secure_asset('js/jquery-3.3.1.min.js') }}"></script>
+        <script src=" {{secure_asset('js/jquery-1.10.2.min.js') }}"></script>
 
         <!-- chart js -->
-        <script src="{{ asset('js/Chart.min.js') }}"></script>
-        <script src="{{ asset('js/utils.js') }}"></script>
+        <script src="{{secure_asset('js/Chart.min.js') }}"></script>
+        <script src="{{secure_asset('js/utils.js') }}"></script>
         <!-- //chart js -->
 
 
 
 
-        <script src=" {{ asset('js/jquery.nicescroll.js') }}"></script>
-        <script src=" {{ asset('js/scripts.js')}}"></script>
+        <script src=" {{secure_asset('js/jquery.nicescroll.js') }}"></script>
+        <script src=" {{secure_asset('js/scripts.js')}}"></script>
 
 
         <script>
@@ -210,7 +210,7 @@
         <!-- disable body scroll when navbar is in active -->
 
         <!-- loading-gif Js -->
-        <script src="{{ asset('js/modernizr.js') }}"></script>
+        <script src="{{secure_asset('js/modernizr.js') }}"></script>
         <script>
             $(window).load(function() {
                 // Animate loader off screen
@@ -220,7 +220,7 @@
         <!--// loading-gif Js -->
 
         <!-- Bootstrap Core JavaScript -->
-        <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+        <script src="{{secure_asset('js/bootstrap.min.js') }}"></script>
 
     </body>
 

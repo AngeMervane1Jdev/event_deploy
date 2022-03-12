@@ -16,7 +16,7 @@
         rel="stylesheet">
     <link href="//fonts.googleapis.com/css2?family=Sail&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="{{ asset('css/style-starter.css') }}">
+    <link rel="stylesheet" href="{{secure_asset('css/style-starter.css') }}">
 </head>
 
 
@@ -26,7 +26,7 @@
 
                  <!-- Logo -->
                  <a class="navbar-brand" href="{{url('/')}}">
-                    <img src="{{ asset('images/logo.png') }}" alt="Your logo" title="Your logo" style="height:35px;" />
+                    <img src="{{secure_asset('images/logo.png') }}" alt="Your logo" title="Your logo" style="height:35px;" />
                 </a>
                  <!-- //Logo -->
                 <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse"
@@ -263,15 +263,15 @@
 
     <!-- common jquery plugin -->
 
-    <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{secure_asset('js/jquery-3.3.1.min.js') }}"></script>
     <!-- //common jquery plugin -->
 
     <!-- slider-js -->
 
-    <script src=" {{ asset('js/jquery.min.js') }}"></script>
-    <script src="{{ asset('js/modernizr-2.6.2.min.js') }}"></script>
+    <script src=" {{secure_asset('js/jquery.min.js') }}"></script>
+    <script src="{{secure_asset('js/modernizr-2.6.2.min.js') }}"></script>
 
-    <script src="{{ asset('js/jquery.zoomslider.min.js') }}"></script>
+    <script src="{{secure_asset('js/jquery.zoomslider.min.js') }}"></script>
 
     <script>
         $(document).ready(function () {
@@ -302,7 +302,7 @@
 
     <!-- theme switch js (light and dark)-->
 
-    <script src="{{ asset('js/theme-change.js') }}"></script>
+    <script src="{{secure_asset('js/theme-change.js') }}"></script>
     <script>
         function autoType(elementClass, typingSpeed) {
             var thhis = $(elementClass);
@@ -381,7 +381,7 @@
 
     <!--bootstrap-->
 
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{secure_asset('js/bootstrap.min.js') }}"></script>
     <!-- //bootstrap-->
     <!-- //Js scripts -->
 </body>

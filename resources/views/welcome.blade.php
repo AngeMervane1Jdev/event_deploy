@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-<link rel="stylesheet" href="{{ asset('css/card.css') }}">
+<link rel="stylesheet" href="{{secure_asset('css/card.css') }}">
 
 @section('content')
     <section class="w3l-main-slider" id="home">

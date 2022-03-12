@@ -47,7 +47,7 @@
                     </div>
                 </div>
                <div class="mt-5 panier">
-                <link rel="stylesheet" href="{{ asset('css/panier.css') }}">
+                <link rel="stylesheet" href="{{secure_asset('css/panier.css') }}">
                     <!-- Mainbar-Starts-Here -->
                 <div class="main-bar">
                     <div class="product">
