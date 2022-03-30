@@ -5,7 +5,6 @@ use App\Models\User;
 use App\Models\Event;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use PHPUnit\TextUI\XmlConfiguration\Group;
 use App\Http\Controllers\MailController;
 use App\Models\Categorie;
 
@@ -19,23 +18,32 @@ use App\Models\Categorie;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::group(['middleware'=>['is_admin']],function(){
-Route::get('Admin', function(){
-    return view('admin.app');})->name('admin');
+ Route::group(['middleware'=>['auth','is_admin']],function(){
+    Route::get('Admin', function(){
+        return view('admin.app');})->name('admin');
+    
+    Route::get('Admin/home', function(){
+        return view('admin.home');})->name('admin_home');
 
-Route::get('Admin/home', function(){
-    return view('admin.home');})->name('admin_home');
-
-Route::get('Admin/login', function(){
-        return view('admin.login');})->name('admin_login');
-
-Route::get('Admin/listOrganize', [\App\Http\Controllers\AdminController::class,"show"])->name('admin_listOrganize');
-
- Route::get('Admin/listTicket', function(){
+        Route::get('Admin/profile', function(){
+            return view('admin.profile');})->name('admin_profile');
+    
+    Route::get('Admin/login', function(){
+            return view('admin.login');})->name('admin_login');
+    Route::get('Admin/listTicket', function(){
                 return view('admin.listTicket');})->name('admin_listTicket');
+    
+    Route::get('Admin/listOrganize', [\App\Http\Controllers\AdminController::class,"show"])->name('admin_listOrganize');
 
- Route::get('Admin/listevents', [\App\Http\Controllers\AdminController::class,"showEvents"])->name('admin_listEvents');
-});
+    Route::get('Admin/user/edit/{id}', [\App\Http\Controllers\AdminController::class,"edit"])->name('user_edit');
+    Route::get('Admin/user/delete/{id}', [\App\Http\Controllers\AdminController::class,"delete"])->name('user_delete');
+    Route::get('Admin/user/update/{id}', [\App\Http\Controllers\AdminController::class,"update"])->name('update_delete');
+
+     Route::get('Admin/listevents', [\App\Http\Controllers\AdminController::class,"showEvents"])->name('admin_listEvents');
+ });
+
+
+// });
 
 
 Route::get('/Massali/QuiSommesNous',function(){ return view ('infos');})->name('infos');
@@ -51,7 +59,9 @@ Auth::routes();
 Route::group(['middleware'=>['auth','is_client'],'prefix'=>'/messali/client' ],function(){
 
     Route::get("dashboard",[\App\Http\Controllers\DashboardController::class,"client"])->name('client_dashboard');
+
     Route::post("sale",[\App\Http\Controllers\CommandController::class,"sale_ticket"])->name('sale_ticket');
+
     Route::get("panier/show/",[\App\Http\Controllers\PanierController::class,"show"])->name('client_panier');
     Route::get("panier/add/{id}",[\App\Http\Controllers\PanierController::class,"add_ticket"])->name('add_ticket_to_panier');
     Route::get("panier/remove/{id}",[\App\Http\Controllers\PanierController::class,"remove_ticket"])->name('remove_ticket__from_panier');
@@ -89,7 +99,7 @@ Route::group(['middleware' => ['auth']],function(){
 });
 
 Route::group(['middleware' => ['auth','is_organizer']],function(){
-    Route::get("/messali/organizer/dashboard",[\App\Http\Controllers\DashboardController::class,"organizer"])->name('organizer_dashboard');
+    Route::get("/messali/organizer/dashboard",[\App\Http\Controllers\DashboardController::class,"organizer_promotor"])->name('organizer_dashboard');
     Route::post('/messali/new/promotor',[\App\Http\Controllers\DashboardController::class,"store_promotor"])->name("add_promotor");
 });
 
@@ -107,8 +117,12 @@ Route::get('/event/show/{id}',[App\Http\Controllers\EventsController::class,"sho
 Route::get("/events",[App\Http\Controllers\EventsController::class,"events"])->name("events");
 
 
-Route::get("/messali/promotor/dashboard",[\App\Http\Controllers\DashboardController::class,"promotor"])->middleware(['is_promotor'])->name('promotor_dashboard');
+Route::get("/messali/promotor/dashboard",[\App\Http\Controllers\DashboardController::class,"organizer_promotor"])->middleware(['is_promotor'])->name('promotor_dashboard');
+Route::get("/messali/transation/{id}",[\App\Http\Controllers\DashboardController::class,"organizer_promotor"])->name('organizer_promotor_transaction');
 
-
-
-
+//Request ajax
+Route::get('ticket/selected',[\App\Http\Controllers\PanierController::class,'select_id']);
+Route::get('ticket/deselected',[\App\Http\Controllers\PanierController::class,'deselect_id']);
+Route::get('panier/ticket/quantity',[\App\Http\Controllers\PanierController::class,'change_quantity']);
+Route::get('panier/ticket/select-all',[\App\Http\Controllers\PanierController::class,'select_all']);
+Route::get('panier/ticket/deselect-all',[\App\Http\Controllers\PanierController::class,'deselect_all']);

@@ -16,9 +16,9 @@
         rel="stylesheet">
     <link href="//fonts.googleapis.com/css2?family=Sail&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="{{secure_asset('css/style-starter.css') }}">
+    <link rel="stylesheet" href="{{ secure_asset('css/style-starter.css') }}">
 
-    <link rel="stylesheet" href="{{secure_asset('css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ secure_asset('css/font-awesome.min.css') }}">
 
 
 
@@ -32,7 +32,7 @@
 
                 <!-- Logo -->
                 <a class="navbar-brand" href="{{url('/')}}">
-                    <img src="{{secure_asset('images/logo.png') }}" alt="Your logo" title="Your logo" style="height:35px;" />
+                    <img src="{{ secure_asset('images/massali.png') }}" alt="Your logo" title="Your logo" style="height:35px;" />
                 </a>
                  <!-- //Logo -->
 
@@ -46,11 +46,11 @@
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                     <ul class="navbar-nav ml-lg-auto">
 
+                        
+                       @if(Request::path()=="/")
                         <li class="nav-item ">
                             <a class="nav-link" href="{{ route('register') }}">Home <span class="sr-only">(current)</span></a>
                         </li>
-                       @if(Request::path()=="/")
-
                         <li class="nav-item">
                             <a class="nav-link" href="#service">Services</a>
                         </li>
@@ -111,11 +111,11 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 
-                              <a class="dropdown-item" href="{{ url('/home') }}" style="color:#ffffff;"><img src="https://img.icons8.com/external-kmg-design-flat-kmg-design/19/000000/external-user-back-to-school-kmg-design-flat-kmg-design.png"/>{{ Auth::user()->name }}</a>
+                              <a class="dropdown-item" href="{{ url('/home') }}" style="color:#ffffff;">{{ Auth::user()->name }}</a>
                                 <div>
                                       <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                 document.getElementById('logout-form').submit();">
-                                                <img src="https://img.icons8.com/color/21/000000/shutdown--v1.png"/>  {{ __('Deconnecter') }}
+                                                {{ __('Deconnecter') }}
                                             </a>
                                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                                 @csrf
@@ -223,15 +223,15 @@
 
     <!-- common jquery plugin -->
 
-    <script src="{{secure_asset('js/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ secure_asset('js/jquery-3.3.1.min.js') }}"></script>
     <!-- //common jquery plugin -->
 
     <!-- slider-js -->
 
-    <script src=" {{secure_asset('js/jquery.min.js') }}"></script>
-    <script src="{{secure_asset('js/modernizr-2.6.2.min.js') }}"></script>
+    <script src=" {{ secure_asset('js/jquery.min.js') }}"></script>
+    <script src="{{ secure_asset('js/modernizr-2.6.2.min.js') }}"></script>
 
-    <script src="{{secure_asset('js/jquery.zoomslider.min.js') }}"></script>
+    <script src="{{ secure_asset('js/jquery.zoomslider.min.js') }}"></script>
 
     <script>
         $(document).ready(function () {
@@ -262,7 +262,7 @@
 
     <!-- theme switch js (light and dark)-->
 
-    <script src="{{secure_asset('js/theme-change.js') }}"></script>
+    <script src="{{ secure_asset('js/theme-change.js') }}"></script>
     <script>
         function autoType(elementClass, typingSpeed) {
             var thhis = $(elementClass);
@@ -341,7 +341,7 @@
 
     <!--bootstrap-->
 
-    <script src="{{secure_asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ secure_asset('js/bootstrap.min.js') }}"></script>
     <!-- //bootstrap-->
     <!-- //Js scripts -->
 

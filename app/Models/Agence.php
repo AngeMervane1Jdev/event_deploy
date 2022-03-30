@@ -16,29 +16,12 @@ class Agence extends Model
      */
     protected $fillable = [
         'name',
-        'categories',
+        'type',
         'description',
         'banner',
         'agence_name',
         'logo',
     ];
-    /**
-     * Set the categories
-     *
-     */
-    public function setCategoriesAttribute($value)
-    {
-        $this->attributes['categories'] = json_encode($value);
-    }
-
-   /**
-     * Get the categories
-     *
-     */
-    public function getCategoriesAttribute($value)
-    {
-        return $this->attributes['categories'] = json_decode($value);
-    }
 
     public function users()
     {

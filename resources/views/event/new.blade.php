@@ -3,10 +3,10 @@
 @section('content')
 
  <!-- inner banner -->
- <div class="inner-banner ">
+ <div class="inner-banner " style="background: url('{{ secure_asset('images/in2.jpg')}}') no-repeat top; background-size: cover;">
         <section class="w3l-breadcrumb">
             <div class="container py-md-5 py-4">
-                <h4 class="inner-text-title font-weight-bold text-white mb-sm-3 mb-2">{{ Auth::user()->name }}</h4>
+            <h4 class="inner-text-title font-weight-bold text-white mb-sm-3 mb-2">Evènement</h4>
                 <ul class="breadcrumbs-custom-path">
                     <li><a href="/">Accueil</a></li>
                     <li class="active"><span class="fa fa-chevron-right mx-2" aria-hidden="true"></span>Evènement</li>

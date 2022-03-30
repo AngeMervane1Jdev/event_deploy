@@ -1,3 +1,9 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" >
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- <link rel="stylesheets" href="{{ secure_asset('css/register.css')}}"> -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
 <!doctype html>
 
 <!doctype html>
@@ -16,7 +22,7 @@
         rel="stylesheet">
     <link href="//fonts.googleapis.com/css2?family=Sail&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="{{secure_asset('css/style-starter.css') }}">
+    <link rel="stylesheet" href="{{ secure_asset('css/start1.css') }}">
 </head>
 
 
@@ -26,7 +32,7 @@
 
                  <!-- Logo -->
                  <a class="navbar-brand" href="{{url('/')}}">
-                    <img src="{{secure_asset('images/logo.png') }}" alt="Your logo" title="Your logo" style="height:35px;" />
+                    <img src="{{ secure_asset('images/massali.png') }}" alt="Your logo" title="Your logo" style="height:35px;" />
                 </a>
                  <!-- //Logo -->
                 <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse"
@@ -115,7 +121,7 @@
                     <div class="container">
                         <ul class="breadcrumbs-custom-path">
                             <li><a href="/">Accueil</a></li>
-                            <li class="active" style="color: black"><span class="fa fa-chevron-right mx-2" aria-hidden="true"></span> Connexion</li>
+                            <li class="active" style="color: white"><span class="fa fa-chevron-right mx-2" aria-hidden="true"></span> Connexion</li>
                         </ul>
                     </div>
                 </section>
@@ -142,7 +148,7 @@
 
                 </div>
 
-                <div class="contacts12-main">
+               <!--  <div class="contacts12-main">
                 <form method="POST" action="{{ route('login') }}" class="login">
                         @csrf
 
@@ -170,7 +176,66 @@
                                     </a>
                                 @endif
                     </form>
-                </div>
+                </div> -->
+
+                      <div class="container register radius ">
+                            <div class="row">
+                                <div class="col-md-3 register-left">
+                                    <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
+                                    <h3>Un évènement, une histoire</h3>
+                                    <span style="color:#fff">Créez votre compte au près de nous. Créer où participer à des évènements inoubliables</span><br/>
+                                    <br/>
+                                    <a class="btn" style="background-color: #ff5100;color:#fff" href="{{route('register')}}">S'inscrire</a>
+                                    <br/>
+                                    <br/>
+                                </div>
+                                <div class="col-md-6 register-right">                                 
+                                    <div class="tab-content" id="myTabContent">
+                                    
+                                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                            <form method="POST" action="{{ route('login') }}" enctype="multipart/form-data"
+                                                >
+                                                    @csrf
+                                                <h3 class="register-heading">Welcome</h3>
+                                                <div class="row register-form ali">
+                                                   
+                                                    <div class="form-group" style=" margin-left: 70px;">
+                                                      <input style="margin-bottom:15px;" id="email" type="email" placeholder="Adresse Email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"  autocomplete="email">
+
+                                                        @error('email')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
+
+
+                                                          <input style="margin-bottom:15px;" id="password" type="password" placeholder="Mot de passe" class="form-control @error('password') is-invalid @enderror" name="password"  autocomplete="new-password">
+
+                                                            @error('password')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+
+                                                                <!-- <button type="submit" class="btn btn-style">Se connecter</button> -->
+                                                            <div>
+                                                                     <input type="submit" class="btnRegister"  value="SE CONNECTER"/>
+                                                                
+                                                                @if (Route::has('password.request'))
+                                                                        <a class="btn btn-link" href="{{ route('password.request') }}">
+                                                                            {{ __('Forgot Your Password?') }}
+                                                                        </a>
+                                                                    @endif
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
             </div>
         </div>
@@ -263,15 +328,15 @@
 
     <!-- common jquery plugin -->
 
-    <script src="{{secure_asset('js/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ secure_asset('js/jquery-3.3.1.min.js') }}"></script>
     <!-- //common jquery plugin -->
 
     <!-- slider-js -->
 
-    <script src=" {{secure_asset('js/jquery.min.js') }}"></script>
-    <script src="{{secure_asset('js/modernizr-2.6.2.min.js') }}"></script>
+    <script src=" {{ secure_asset('js/jquery.min.js') }}"></script>
+    <script src="{{ secure_asset('js/modernizr-2.6.2.min.js') }}"></script>
 
-    <script src="{{secure_asset('js/jquery.zoomslider.min.js') }}"></script>
+    <script src="{{ secure_asset('js/jquery.zoomslider.min.js') }}"></script>
 
     <script>
         $(document).ready(function () {
@@ -302,7 +367,7 @@
 
     <!-- theme switch js (light and dark)-->
 
-    <script src="{{secure_asset('js/theme-change.js') }}"></script>
+    <script src="{{ secure_asset('js/theme-change.js') }}"></script>
     <script>
         function autoType(elementClass, typingSpeed) {
             var thhis = $(elementClass);
@@ -381,9 +446,127 @@
 
     <!--bootstrap-->
 
-    <script src="{{secure_asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ secure_asset('js/bootstrap.min.js') }}"></script>
     <!-- //bootstrap-->
     <!-- //Js scripts -->
 </body>
 
 </html>
+
+<style>
+   .register{
+    background: -webkit-linear-gradient(left, #ff5100 0%, #000);
+    margin-top: 3%;
+    padding: 3%;
+}
+
+.radius{
+     border-radius: 25px ;
+}
+.register2 {
+    /* background: var(--bg-light); */
+    background: url(../images/bgp2.jpg) no-repeat top;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    -ms-background-size: cover;
+    z-index: 1;
+   
+}
+.register-left{
+    text-align: center;
+    color: #fff;
+    margin-top: 4%;
+}
+.register-left input{
+    border: none;
+    border-radius: 1.5rem;
+    padding: 2%;
+    width: 60%;
+    background: #f8f9fa;
+    font-weight: bold;
+    color: #383d41;
+    margin-top: 30%;
+    margin-bottom: 3%;
+    cursor: pointer;
+}
+.register-right{
+    background: #f8f9fa;
+    border-top-left-radius: 20% 50%;
+    border-bottom-left-radius: 20% 50%;
+    border-top-right-radius: 20% 50%;
+    border-bottom-right-radius: 20% 50%;
+
+}
+.register-left img{
+    margin-top: 15%;
+    margin-bottom: 5%;
+    width: 25%;
+    -webkit-animation: mover 2s infinite  alternate;
+    animation: mover 1s infinite  alternate;
+}
+@-webkit-keyframes mover {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-20px); }
+}
+@keyframes mover {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-20px); }
+}
+.register-left p{
+    font-weight: lighter;
+    padding: 12%;
+    margin-top: -9%;
+}
+.register .register-form{
+    padding-top: 10%;
+    padding-right: 10%;
+    padding-left: 10%;
+    margin-top: 10%;
+}
+.btnRegister{
+    float: right;
+    margin-top: 10%;
+    border: none;
+    border-radius: 1.5rem;
+    padding: 2%;
+    background: #ff5100;
+    color: #fff;
+    font-weight: 600;
+    width: 50%;
+    cursor: pointer;
+}
+.register .nav-tabs{
+    margin-top: 3%;
+    border: none;
+    background: #ff5100;
+    border-radius: 1.5rem;
+    width: 28%;
+    float: right;
+}
+.register .nav-tabs .nav-link{
+    padding: 2%;
+    height: 34px;
+    font-weight: 600;
+    color: #fff;
+    border-top-right-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
+}
+.register .nav-tabs .nav-link:hover{
+    border: none;
+}
+.register .nav-tabs .nav-link.active{
+    width: 100px;
+    color: #ff5100;
+    border: 2px solid #ff5100;
+    border-top-left-radius: 1.5rem;
+    border-bottom-left-radius: 1.5rem;
+}
+.register-heading{
+    text-align: center;
+    margin-top: 8%;
+    margin-bottom: -15%;
+    color: #495057;
+}
+</style>

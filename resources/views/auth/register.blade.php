@@ -1,3 +1,9 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" >
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- <link rel="stylesheets" href="{{ secure_asset('css/register.css')}}"> -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<!------ Include the above in your HEAD tag ---------->
 <!doctype html>
 
 <!doctype html>
@@ -16,7 +22,7 @@
         rel="stylesheet">
     <link href="//fonts.googleapis.com/css2?family=Sail&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="{{secure_asset('css/style-starter.css') }}">
+    <link rel="stylesheet" href="{{ secure_asset('css/start1.css') }}">
 </head>
 
 <header id="site-header" class="fixed-top">
@@ -25,7 +31,7 @@
 
                   <!-- Logo -->
                   <a class="navbar-brand" href="{{url('/')}}">
-                    <img src="{{secure_asset('images/logo.png') }}" alt="Your logo" title="Your logo" style="height:35px;" />
+                    <img src="{{ secure_asset('images/massali.png') }}" alt="Your logo" title="Your logo" style="height:35px;" />
                 </a>
                  <!-- //Logo -->
                 <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse"
@@ -101,10 +107,6 @@
             </nav>
         </div>
     </header>
-    <!--//header-->
-
-    <!-- inner banner -->
-
     <section class="w3l-w3l-contacts-12 py-5">
         <div class="contact-top py-md-5 py-4">
             <div class="container">
@@ -119,482 +121,541 @@
                 </section>
 
                <div class="container">
-               @if (session()->has('message'))
-                    <div class="alert alert-success" id="success-alert">
-                        <button type="button" class="close" data-dismiss="alert">x</button>
-                        <strong>Message! </strong>{{ session('message') }}.
-                    </div>
-               @endif
-                <div class="waviy text-center mb-md-5 mb-4">
+                    @if (session()->has('message'))
+                            <div class="alert alert-success" id="success-alert">
+                                <button type="button" class="close" data-dismiss="alert">x</button>
+                                <strong>Message! </strong>{{ session('message') }}.
+                            </div>
+                    @endif
+                    <div class="waviy text-center mb-md-5 ">
 
-                    <span style="--i:9"> </span>
-                    <span style="--i:10">I</span>
-                    <span style="--i:1">n</span>
-                    <span style="--i:2">s</span>
-                    <span style="--i:3">c</span>
-                    <span style="--i:4">r</span>
-                    <span style="--i:5">i</span>
-                    <span style="--i:6">p</span>
-                    <span style="--i:7">t</span>
-                    <span style="--i:8">i</span>
-                    <span style="--i:9">o</span>
-                    <span style="--i:10">n</span>
-             <div class="btns onglets">
-                  <a href="#"  id="onglet_organisateur" onclick="javascript:change_onglet('organisateur');" class="btn onglet_0 onglet ">Organisteur</a>
-                    <a href="#"   class="btn  onglet_0 onglet" id="onglet_client" onclick="javascript:change_onglet('client');">Client</a>
-
-              </div>
-                </div>
-                <script type="text/javascript">
-        //<!--
-                function change_onglet(name)
-                {
-                        document.getElementById('onglet_'+anc_onglet).className = 'onglet_0 onglet';
-                        document.getElementById('onglet_'+name).className = 'onglet_1 onglet';
-                        document.getElementById('contenu_onglet_'+anc_onglet).style.display = 'none';
-                        document.getElementById('contenu_onglet_'+name).style.display = 'block';
-                        anc_onglet = name;
-                }
-        //-->
-
-
-
-
-        </script>
-
-
-              <div class=" contacts12-main">
-                <div  class="contenu_onglet" id="contenu_onglet_organisateur">
-                    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
-                        @csrf
-
-                       <div class="top-inputs d-grid">
-
-                                <input id="name" placeholder="Nom complet" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}"  autocomplete="name" autofocus>
-
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-
-
-                                <input id="email" placeholder="Adresse-Email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"  autocomplete="email">
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-
-                       </div>
-                    <div class="top-inputs d-grid">
-
-                                <input id="contact" placeholder="Contact" type="text" class="form-control @error('contact') is-invalid @enderror" name="contact" value="{{ old('contact') }}"  autocomplete="contact">
-
-                                @error('contact')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                                <div class="custom-file">
-                                        <input type="file" class="custom-file-input @error('profil_image') is-invalid @enderror" id="customFile" name="profil_image">
-                                        <label class="custom-file-label" for="customFile">Votre image de profile</label>
-                                    </div>
-                                @error('profil_image')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-
+                        <span style="--i:9"> </span>
+                        <span style="--i:10">I</span>
+                        <span style="--i:1">n</span>
+                        <span style="--i:2">s</span>
+                        <span style="--i:3">c</span>
+                        <span style="--i:4">r</span>
+                        <span style="--i:5">i</span>
+                        <span style="--i:6">p</span>
+                        <span style="--i:7">t</span>
+                        <span style="--i:8">i</span>
+                        <span style="--i:9">o</span>
+                        <span style="--i:10">n</span>
+                      
                     </div>
 
-                    <div class="top-inputs d-grid">
+                        <div class="container register radius">
+                            <div class="row">
+                                <div class="col-md-3 register-left">
+                                    <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
+                                    <h3>Un évènement, une histoire</h3>
+                                    <span style="color:#fff">Créez votre compte au près de nous. Créer où participer à des évènements inoubliables</span><br/>
+                                    <br/>
+                                    <a class="btn" style="background-color: #ff5100;color:#fff" href="{{route('login')}}">Se connecter</a>
+                                    <br/>
+                                    <br/>
+                                </div>
+                                <div class="col-md-9 register-right">
+                                    <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Organisateur</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Spectacteur</a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content" id="myTabContent">
+                                    
+                                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                            <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data"
+                                                >
+                                                    @csrf
+                                                <h3 class="register-heading">Compte organisateur</h3>
+                                                <div class="row register-form">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                        <input placeholder="Nom et prénom" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}"  autocomplete="name" autofocus>
 
-                                <input id="password" placeholder="Password" type="password" class="form-control @error('password') is-invalid @enderror" name="password"  autocomplete="new-password">
+                                                            @error('name')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+                                                        <div class="form-group">
+                                                        <input id="password" placeholder="Mot de passe" type="password" class="form-control @error('password') is-invalid @enderror" name="password" value="{{ old('password') }}">
 
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                                            @error('password')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+                                                    
+                                                    
+                                                        <div class="form-group">
+                                                        <input id="password-confirm" placeholder="Repeter le mot de passe" type="password" class="form-control" name="password_confirmation"  autocomplete="new-password">
+                                                        </div>
 
-                                <input id="password-confirm" placeholder="Confirm Password" type="password" class="form-control" name="password_confirmation"  autocomplete="new-password">
+                                                        
+                                                    
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                        <input  placeholder="Adresse E-mail" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"  autocomplete="email">
+
+                                                            @error('email')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+                                                        <div class="form-group">
+                                                        <input  placeholder="Contact" type="text" class="form-control @error('contact') is-invalid @enderror" name="contact" value="{{ old('contact') }}"  autocomplete="contact">
+
+                                                            @error('contact')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+                                                    
+                                                        <div class="form-group">
+                                                            <input type="file" class="form-control @error('profil_image') is-invalid @enderror"  name="profil_image">
+                                                            @error('profil_image')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <input name="type" value=1 id="type" type="number" hidden/>
+                                                <h3 class="text-center text-dark mb-3">Informations agence</h3>
+                                                <div class="row" style="padding-left: 10%;padding-right: 10%; margin-top:0px">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                        <input id="agence_name" placeholder="Nom agence" type="text" class="form-control @error('agence_name') is-invalid @enderror" name="agence_name" value="{{ old('agence_name') }}"  autocomplete="agence_name">
+                                                            @error('agence_name')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
 
 
-                        </div>
-            <h1 style="margin-bottom:10px; color:white;">Aidez nous à connaitre de votre agence</h1>
+                                                        <div class="form-group">
+                                                            <input id="description" placeholder="Description Agence" type="text" class="form-control @error('description') is-invalid @enderror" name="description" value="{{ old('description') }}"  autocomplete="description">
+                                                            @error('agence_description')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>     
+                                                    
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <input type="file" class="form-control  @error('logo') is-invalid @enderror" id="customFile" name="logo">
+                                                            @error('logo')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <input id="addresse" placeholder="Addresse" type="text" class="form-control @error('addresse') is-invalid @enderror" name="addresse" value="{{ old('addresse') }}"  autocomplete="addresse">
+                                                            @error('addresse')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+                                                    
+                                                        <div class="form-group">
+                                                            <select class="form-control " name="type" id="typeAgence">
+                                                            <option value="none" selected="" disabled="">Type d'agence</option>
+                                                                @forelse ($types_agences as $type)
+                                                                <option value="{{$type->name}}">{{$type->name}}</option>
+                                                                @empty
+                                                                @endforelse
+                                                            </select>
+                                                        </div>
 
-                       <div class="top-inputs d-grid">
+                                                        <input type="submit" class="btnRegister"  value="Je m'inscrit"/>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        
+                                        
+                                        <div class="tab-pane fade show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                        <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data"
+                                            >
+                                                @csrf
+                                            <h3  class="register-heading">Compte spectateur</h3>
+                                            <div class="row register-form">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                    <input id="name" placeholder="Nom et prénom" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}"  autocomplete="name" autofocus>
 
-                                <input id="agence_name" placeholder="Agence name" type="text" class="form-control @error('agence_name') is-invalid @enderror" name="agence_name" value="{{ old('agence_name') }}"  autocomplete="agence_name">
-                                @error('agence_name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                                        @error('name')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
+                                                    </div>
+                                                
+                                                    
+                                                
+                                                    <div class="form-group">
+                                                    <input  placeholder="Mot de passe" type="password" class="form-control @error('password') is-invalid @enderror" name="password" value="{{ old('password') }}" autocomplete="new-password">
 
+                                                        @error('password')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
+                                                    </div>
+                                                    <input name="type" value=3 type="number" hidden/>
 
+                                                    <div class="form-group">
+                                                    <input placeholder="Repeter le mot de passe" type="password" class="form-control" name="password_confirmation"  autocomplete="new-password">
+                                                    </div>
 
-                                <input id="description" placeholder="Agence description" type="text" class="form-control @error('description') is-invalid @enderror" name="description" value="{{ old('description') }}"  autocomplete="description">
-                                @error('agence_name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                                    
+                                                
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                    <input id="email" placeholder="Adresse E-mail" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"  autocomplete="email">
 
-                       </div>
+                                                        @error('email')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="form-group">
+                                                    <input id="contact" placeholder="Contact" type="text" class="form-control @error('contact') is-invalid @enderror" name="contact" value="{{ old('contact') }}"  autocomplete="contact">
 
-                       <div class="top-inputs ">
-                        <select class="form-control " name="categories[]" >
-                        <option value="none" selected="" disabled="">Choisisez une Categorie</option>
-                            @forelse ($categories as $cat)
-                            <option value="{{$cat->name}}">{{$cat->name}}</option>
-                            @empty
-                            @endforelse
-                        </select>
-                        <input name="type" value=1 id="type" type="number" hidden/>
+                                                        @error('contact')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
+                                                    </div>
+                                                
+                                                    <div class="form-group">
+                                                        <input type="file" class="form-control @error('profil_image') is-invalid @enderror"  name="profil_image">
+                                                        @error('profil_image')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
+                                                    </div>
+                                                    <input type="submit" class="btnRegister"  value="Je m'inscrit"/>
 
-            </div>
-
-                        <div class="top-inputs d-grid">
-
-                                <div class="custom-file">
-                                        <input type="file" class="custom-file-input @error('logo') is-invalid @enderror" id="customFile" name="logo">
-                                        <label class="custom-file-label" for="customFile">Votre logo</label>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        </div>
+                                        
                                     </div>
-                                @error('logo')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                                  <div class="custom-file">
-                                        <input type="file" class="custom-file-input @error('banner') is-invalid @enderror" id="customFile" name="banner">
-                                        <label class="custom-file-label" for="customFile">Votre banner</label>
-                                    </div>
-                                @error('banner')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __("Je m'inscris") }}
-                                </button>
+                                </div>
                             </div>
                         </div>
-                    </form>
-                </div>
-                <div class="onglet_contenu" id="contenu_onglet_client" style="display: none">
-                    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data"
-                    >
-                        @csrf
-
-                       <div class="top-inputs d-grid">
-
-                                <input id="name" placeholder="Nom complet" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}"  autocomplete="name" autofocus>
-
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-
-
-                                <input id="email" placeholder="Adresse-Email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"  autocomplete="email">
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-
-                       </div>
-                    <div class="top-inputs d-grid">
-
-                                <input id="contact" placeholder="Contact" type="text" class="form-control @error('contact') is-invalid @enderror" name="contact" value="{{ old('contact') }}"  autocomplete="contact">
-
-                                @error('contact')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                                <div class="custom-file">
-                                        <input type="file" class="custom-file-input @error('profil_image') is-invalid @enderror" id="customFile" name="profil_image">
-                                        <label class="custom-file-label" for="customFile">Votre image de profile</label>
-                                    </div>
-                                @error('profil_image')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-
-                    </div>
-
-                        <div class="top-inputs d-grid">
-
-                                <input id="password" placeholder="Password" type="password" class="form-control @error('password') is-invalid @enderror" name="password"  autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-
-                                <input id="password-confirm" placeholder="Confirm Password" type="password" class="form-control" name="password_confirmation"  autocomplete="new-password">
-
-                                <input name="type" value=3 id="type" type="number" hidden/>
-                        </div>
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __(" Je m'inscrit") }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-              </div>
-
+                  
                </div>
             </div>
         </div>
     </section>
-    <script type="text/javascript">
 
-        var anc_onglet = 'organisateur';
-        change_onglet(anc_onglet);
 
-        </script>
-    <!-- @if(old('type')==1)
-    <script type="text/javascript">
 
-                var anc_onglet = 'organisateur';
-                change_onglet(anc_onglet);
+<script src="{{ secure_asset('js/index.js') }}"></script>
 
-        </script>
-        @else
-
-        <script type="text/javascript">
-
-            var anc_onglet = 'client';
-            change_onglet(anc_onglet);
-
-    </script>
-    @endif -->
-    <script src="{{secure_asset('js/index.js') }}"></script>
-
-    <section class="w3l-footer-29-main">
-        <div class="footer-29 py-5">
-            <div class="container py-lg-4">
-                <div class="row footer-top-29">
-                    <div class="col-lg-6 col-12 footer-list-29">
-                        <h2>
-                            <a class="footer-logo" href="index.html">
-                                Massali Events</a>
-                        </h2>
-                        <p class="sub-list-text mt-4 pt-lg-2">Lorem ipsum dolor sit amet enim. Etiam ullamcorper.
-                            Suspendisse a pellentesque
-                            dui, non
-                            felis. Maecenas malesuada elit lectus felis, malesuada ultricies.</p>
-                    </div>
-                    <div class="col-lg-3 col-sm-6 footer-list-29 mt-lg-0 mt-sm-5 mt-4 pt-sm-0 pt-2">
-                        <h6 class="footer-title-29">SUPPORT</h6>
-                        <ul>
-                            <li><a href="#privacy">Privacy Policy</a></li>
-                            <li><a href="#terms"> Terms of Service</a></li>
-                            <li><a href="contact.html">Contact us</a></li>
-                            <li><a href="#support"> Support</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-3 col-sm-6 footer-contact-list mt-lg-0 mt-sm-5 mt-4 pt-sm-0 pt-2">
-                        <h6 class="footer-title-29">Contact Info </h6>
-                        <ul>
-                            <li class="d-flex align-items-center py-2"><i class="fa fa-map-marker mr-2"
-                                    aria-hidden="true"></i>10001, 5th Avenue, USA</li>
-                            <li class="d-flex align-items-center py-2"><i class="fa fa-phone mr-2"
-                                    aria-hidden="true"></i><a href="tel:+12 23456790">+12
-                                    23456790</a></li>
-                            <li class="d-flex align-items-center py-2"><i class="fa fa-envelope mr-2"
-                                    aria-hidden="true"></i><a href="mailto:info@example.com">info@example.com</a></li>
-                        </ul>
-                    </div>
+<!-- copyright -->
+<section class="w3l-copyright">
+    <div class="container">
+        <div class="row bottom-copies">
+            <p class="col-lg-8 copy-footer-29">© 2022 MASSALI EVENTS. Tous droits reservés.</p>
+            <div class="col-lg-4 text-right">
+                <div class="main-social-footer-29">
+                    <a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
+                    <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
+                    <a href="#google"><span class="fa fa-google-plus" aria-hidden="true"></span></a>
+                    <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
+                    <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>
                 </div>
             </div>
         </div>
-    </section>
-    <!-- //footer -->
-    <!-- copyright -->
-    <section class="w3l-copyright">
-        <div class="container">
-            <div class="row bottom-copies">
-                <p class="col-lg-8 copy-footer-29">© 2022 MASSALI EVENTS. Tous droits reservés.</p>
-                <div class="col-lg-4 text-right">
-                    <div class="main-social-footer-29">
-                        <a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
-                        <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
-                        <a href="#google"><span class="fa fa-google-plus" aria-hidden="true"></span></a>
-                        <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
-                        <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- //copyright -->
+    </div>
+</section>
+<!-- //copyright -->
 
-    <button onclick="topFunction()" id="movetop" title="Go to top">
-        <span class="fa fa-level-up" aria-hidden="true"></span>
-    </button>
-    <script>
-        // When the user scrolls down 20px from the top of the document, show the button
-        window.onscroll = function () {
-            scrollFunction()
-        };
+<button onclick="topFunction()" id="movetop" title="Go to top">
+    <span class="fa fa-level-up" aria-hidden="true"></span>
+</button>
+<script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function () {
+        scrollFunction()
+    };
 
-        function scrollFunction() {
-            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                document.getElementById("movetop").style.display = "block";
-            } else {
-                document.getElementById("movetop").style.display = "none";
-            }
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
         }
+    }
 
-        // When the user clicks on the button, scroll to the top of the document
-        function topFunction() {
-            document.body.scrollTop = 0;
-            document.documentElement.scrollTop = 0;
-        }
-    </script>
-    <!-- //move top -->
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+</script>
+<!-- //move top -->
 
-    <!-- common jquery plugin -->
+<!-- common jquery plugin -->
 
-    <script src="{{secure_asset('js/jquery-3.3.1.min.js') }}"></script>
-    <!-- //common jquery plugin -->
+<script src="{{ secure_asset('js/jquery-3.3.1.min.js') }}"></script>
+<!-- //common jquery plugin -->
 
-    <!-- slider-js -->
+<!-- slider-js -->
 
-    <script src=" {{secure_asset('js/jquery.min.js') }}"></script>
-    <script src="{{secure_asset('js/modernizr-2.6.2.min.js') }}"></script>
+<script src=" {{ secure_asset('js/jquery.min.js') }}"></script>
+<script src="{{ secure_asset('js/modernizr-2.6.2.min.js') }}"></script>
 
-    <script src="{{secure_asset('js/jquery.zoomslider.min.js') }}"></script>
+<script src="{{ secure_asset('js/jquery.zoomslider.min.js') }}"></script>
 
-    <script>
-        $(document).ready(function () {
-            $("#owl-demo2").owlCarousel({
-                loop: true,
-                margin: 20,
-                nav: false,
-                responsiveClass: true,
-                autoplay: true,
-                autoplayTimeout: 5000,
-                autoplaySpeed: 1000,
-                autoplayHoverPause: false,
-                responsive: {
-                    0: {
-                        items: 1,
-                        nav: false
-                    },
-                    1000: {
-                        items: 1,
-                        nav: false,
-                        loop: false
-                    }
+<script>
+    $(document).ready(function () {
+        $("#owl-demo2").owlCarousel({
+            loop: true,
+            margin: 20,
+            nav: false,
+            responsiveClass: true,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            autoplaySpeed: 1000,
+            autoplayHoverPause: false,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: false
+                },
+                1000: {
+                    items: 1,
+                    nav: false,
+                    loop: false
                 }
-            })
+            }
         })
-    </script>
-    <!-- //script for tesimonials carousel slider -->
+    })
+</script>
+<!-- //script for tesimonials carousel slider -->
 
-    <!-- theme switch js (light and dark)-->
+<!-- theme switch js (light and dark)-->
 
-    <script src="{{secure_asset('js/theme-change.js') }}"></script>
-    <script>
-        function autoType(elementClass, typingSpeed) {
-            var thhis = $(elementClass);
-            thhis.css({
-                "position": "relative",
-                "display": "inline-block"
-            });
-            thhis.prepend('<div class="cursor" style="right: initial; left:0;"></div>');
-            thhis = thhis.find(".text-js");
-            var text = thhis.text().trim().split('');
-            var amntOfChars = text.length;
-            var newString = "";
-            thhis.text("|");
-            setTimeout(function () {
-                thhis.css("opacity", 1);
-                thhis.prev().removeAttr("style");
-                thhis.text("");
-                for (var i = 0; i < amntOfChars; i++) {
-                    (function (i, char) {
-                        setTimeout(function () {
-                            newString += char;
-                            thhis.text(newString);
-                        }, i * typingSpeed);
-                    })(i + 1, text[i]);
-                }
-            }, 1500);
-        }
-
-        $(document).ready(function () {
-            // Now to start autoTyping just call the autoType function with the
-            // class of outer div
-            // The second paramter is the speed between each letter is typed.
-            autoType(".type-js", 200);
+<script src="{{ secure_asset('js/theme-change.js') }}"></script>
+<script>
+    function autoType(elementClass, typingSpeed) {
+        var thhis = $(elementClass);
+        thhis.css({
+            "position": "relative",
+            "display": "inline-block"
         });
-    </script>
-    <!-- //theme switch js (light and dark)-->
-
-    <!-- MENU-JS -->
-    <script>
-        $(window).on("scroll", function () {
-            var scroll = $(window).scrollTop();
-
-            if (scroll >= 80) {
-                $("#site-header").addClass("nav-fixed");
-            } else {
-                $("#site-header").removeClass("nav-fixed");
+        thhis.prepend('<div class="cursor" style="right: initial; left:0;"></div>');
+        thhis = thhis.find(".text-js");
+        var text = thhis.text().trim().split('');
+        var amntOfChars = text.length;
+        var newString = "";
+        thhis.text("|");
+        setTimeout(function () {
+            thhis.css("opacity", 1);
+            thhis.prev().removeAttr("style");
+            thhis.text("");
+            for (var i = 0; i < amntOfChars; i++) {
+                (function (i, char) {
+                    setTimeout(function () {
+                        newString += char;
+                        thhis.text(newString);
+                    }, i * typingSpeed);
+                })(i + 1, text[i]);
             }
-        });
+        }, 1500);
+    }
 
-        //Main navigation Active Class Add Remove
-        $(".navbar-toggler").on("click", function () {
-            $("header").toggleClass("active");
-        });
-        $(document).on("ready", function () {
+    $(document).ready(function () {
+        // Now to start autoTyping just call the autoType function with the
+        // class of outer div
+        // The second paramter is the speed between each letter is typed.
+        autoType(".type-js", 200);
+    });
+</script>
+<!-- //theme switch js (light and dark)-->
+
+<!-- MENU-JS -->
+<script>
+    $(window).on("scroll", function () {
+        var scroll = $(window).scrollTop();
+
+        if (scroll >= 80) {
+            $("#site-header").addClass("nav-fixed");
+        } else {
+            $("#site-header").removeClass("nav-fixed");
+        }
+    });
+
+    //Main navigation Active Class Add Remove
+    $(".navbar-toggler").on("click", function () {
+        $("header").toggleClass("active");
+    });
+    $(document).on("ready", function () {
+        if ($(window).width() > 991) {
+            $("header").removeClass("active");
+        }
+        $(window).on("resize", function () {
             if ($(window).width() > 991) {
                 $("header").removeClass("active");
             }
-            $(window).on("resize", function () {
-                if ($(window).width() > 991) {
-                    $("header").removeClass("active");
-                }
-            });
         });
-    </script>
-    <!-- //MENU-JS -->
+    });
+</script>
+<!-- //MENU-JS -->
 
-    <!-- disable body scroll which navbar is in active -->
-    <script>
-        $(function () {
-            $('.navbar-toggler').click(function () {
-                $('body').toggleClass('noscroll');
-            })
-        });
-    </script>
-    <!-- //disable body scroll which navbar is in active -->
+<!-- disable body scroll which navbar is in active -->
+<script>
+    $(function () {
+        $('.navbar-toggler').click(function () {
+            $('body').toggleClass('noscroll');
+        })
+    });
+</script>
+<!-- //disable body scroll which navbar is in active -->
 
-    <!--bootstrap-->
+<!--bootstrap-->
 
-    <script src="{{secure_asset('js/bootstrap.min.js') }}"></script>
-    <!-- //bootstrap-->
-    <!-- //Js scripts -->
-</body>
+<script src="{{ secure_asset('js/bootstrap.min.js') }}"></script>
 
-</html>
+
+
+
+<style>
+   .register{
+    background: -webkit-linear-gradient(left, #ff5100 0%, #000);
+    margin-top: 3%;
+    padding: 3%;
+}
+
+.radius{
+     border-radius: 25px ;
+}
+.register2 {
+    /* background: var(--bg-light); */
+    background: url(../images/bgp2.jpg) no-repeat top;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    -ms-background-size: cover;
+    z-index: 1;
+   
+}
+.register-left{
+    text-align: center;
+    color: #fff;
+    margin-top: 4%;
+}
+.register-left input{
+    border: none;
+    border-radius: 1.5rem;
+    padding: 2%;
+    width: 60%;
+    background: #f8f9fa;
+    font-weight: bold;
+    color: #383d41;
+    margin-top: 30%;
+    margin-bottom: 3%;
+    cursor: pointer;
+}
+.register-right{
+    background: #f8f9fa;
+    border-top-left-radius: 10% 50%;
+    border-bottom-left-radius: 10% 50%;
+}
+.register-left img{
+    margin-top: 15%;
+    margin-bottom: 5%;
+    width: 25%;
+    -webkit-animation: mover 2s infinite  alternate;
+    animation: mover 1s infinite  alternate;
+}
+@-webkit-keyframes mover {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-20px); }
+}
+@keyframes mover {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-20px); }
+}
+.register-left p{
+    font-weight: lighter;
+    padding: 12%;
+    margin-top: -9%;
+}
+.register .register-form{
+    padding-top: 10%;
+    padding-right: 10%;
+    padding-left: 10%;
+    margin-top: 10%;
+}
+.btnRegister{
+    float: right;
+    margin-top: 10%;
+    border: none;
+    border-radius: 1.5rem;
+    padding: 2%;
+    background: #ff5100;
+    color: #fff;
+    font-weight: 600;
+    width: 50%;
+    cursor: pointer;
+}
+.register .nav-tabs{
+    margin-top: 3%;
+    border: none;
+    background: #ff5100;
+    border-radius: 1.5rem;
+    width: 28%;
+    float: right;
+}
+.register .nav-tabs .nav-link{
+    padding: 2%;
+    height: 34px;
+    font-weight: 600;
+    color: #fff;
+    border-top-right-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
+}
+.register .nav-tabs .nav-link:hover{
+    border: none;
+}
+.register .nav-tabs .nav-link.active{
+    width: 100px;
+    color: #ff5100;
+    border: 2px solid #ff5100;
+    border-top-left-radius: 1.5rem;
+    border-bottom-left-radius: 1.5rem;
+}
+.register-heading{
+    text-align: center;
+    margin-top: 8%;
+    margin-bottom: -15%;
+    color: #495057;
+}
+</style>

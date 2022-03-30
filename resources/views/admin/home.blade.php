@@ -65,19 +65,19 @@
                 <div class="card-header chart-grid__header">
                     Bootstrap Accordions
                 </div>
-                <div class="card-body">
+                <div class="card-body1">
                     <div class="accordion" id="accordionExample">
                         <div class="card">
                             <div class="card-header bg-white p-0" id="headingOne">
                                 <a href="#" class="card__title p-3" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Collapsed accordion heading </a>
                             </div>
 
-                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                            <!-- <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                                 <div class="card-body para__style">
                                     Nulla tincidunt quam justo, in tincidunt tortor sollicitudin a. Donec porta posuere libero sed varius. Phasellus hendrerit commodo sem, at sagittis sapien semper quis. Etiam vitae facilisis nibh. Maecenas erat nisl, blandit at nunc a, lobortis sagittis
                                     ex. Maecenas pharetra pulvinar tincidunt.
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="card">
                             <div class="card-header bg-white p-0" id="headingTwo">

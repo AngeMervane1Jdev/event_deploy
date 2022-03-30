@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePaniers extends Migration
+class AddColumnStatusToTransactions extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreatePaniers extends Migration
      */
     public function up()
     {
-        Schema::create('paniers', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId("user_id")->constrained('users')->cascadeOnDelete();
-            $table->json("tickets")->nullable();
-            $table->timestamps();
+        Schema::table('transactions', function (Blueprint $table) {
+            $table->integer("status")->default(0) ; // -1 failed, 1 passed , 0 en attente
         });
     }
 
@@ -28,6 +25,8 @@ class CreatePaniers extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('paniers');
+        Schema::table('transactions', function (Blueprint $table) {
+            //
+        });
     }
 }

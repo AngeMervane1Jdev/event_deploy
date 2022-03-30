@@ -1,11 +1,11 @@
 
-<h1 style="text-align:center; margin-top:20px; color:var(--orange)">Liste des tickets de l'évenement</h1>
+<h1 style="text-align:center; margin-top:20px; color:var(--orange)">Tickets disponibles</h1>
 <div class="row">
     {{-- <div class="grids-area-hny main-cont-wthree-fea row">
 
         <div class="col-lg-4 col-md-6 grids-feature mt-md-0 mt-4">
             <div class="area-box">
-                <img src="{{secure_asset('')}}" alt="" class="img-fluid">
+                <img src="{{ secure_asset('')}}" alt="" class="img-fluid">
                 <h4><a href="#feature" class="title-head">Unique Scenarios</a></h4>
                 <p class="">Vivamus a ligula quam tesque et libero ut justo, ultrices in. Ut eu leo non. Duis
                     sed dolor et amet.</p>

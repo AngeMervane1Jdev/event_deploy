@@ -19,7 +19,7 @@ class CreateTransactions extends Migration
             $table->string("amount");
             $table->string("transref");
             $table->foreignId("client_id");
-            $table->string('ticket_id');
+            $table->json('ticket_id');
             $table->timestamps();
         });
     }

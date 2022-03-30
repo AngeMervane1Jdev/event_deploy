@@ -12,7 +12,8 @@ class Panier extends Model
     protected $fillable=[
         "user_id",
         "tickets",
-        "price"
+        "price",
+        "tickets_validated"
     ];
 
     // Put this in any model and use
@@ -20,6 +21,6 @@ class Panier extends Model
     public static function findOrCreate()
     {
         $obj = static::where("user_id","=",Auth::user()->id)->first();
-        return $obj ?: static::create(['tickets'=>"","user_id"=>Auth::user()->id,"price"=>0]);
+        return $obj ?: static::create(['tickets'=>null,"user_id"=>Auth::user()->id,"price"=>0,"tickets_validated"=>null]);
     }
 }

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Categorie;
 use App\Models\Event;
 use App\Models\Portemonnaie;
 use Illuminate\Support\Facades\Auth;
@@ -10,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use App\Mail\EventMail;
 use App\Models\Image;
+use App\Models\TypeAgence;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
 
@@ -22,7 +22,7 @@ class EventsController extends Controller
     }
 
     function new(){
-        $categories=Categorie::all();
+        $categories=TypeAgence::all();
         return view('event/new',compact("categories"));
     }
       /**
@@ -49,9 +49,8 @@ class EventsController extends Controller
 
     public function events()
     {
-        $events=Event::all()->where('status',"=",1)->where("end_time",">",now());
-        
-        $cats=Categorie::all();
+        $events=Event::all()->where('status',"=",1)->where("end_time",">",now()); 
+        $cats=TypeAgence::all();
         return view('events',compact("events",'cats'));
     }
 
@@ -70,7 +69,7 @@ class EventsController extends Controller
     /*************************************************** */
 
     function edit($id){
-        $categories=Categorie::all();
+        $categories=TypeAgence::all();
 
         $event=Event::findOrFail($id);
         $cats=json_decode($event->cats);
@@ -157,14 +156,14 @@ class EventsController extends Controller
     // ->where("end_time",">",now())
 
     function search(Request $request){
+       
         $qword=$request->q;
         $events=[];
-
         if(strlen($qword)>2){
           $events=$this->modelEvents->search($qword);
         }
-        $cats=Categorie::all();
-
+        $cats=TypeAgence::all();
+        
         return view("events",compact("events","cats"));
 
     }

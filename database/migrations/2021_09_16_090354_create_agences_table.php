@@ -16,7 +16,7 @@ class CreateAgencesTable extends Migration
         Schema::create('agences', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->json("categories");
+            $table->string("type");
             $table->string('agence_name');
             $table->string('banner')->nullable();
             $table->string('logo')->nullable();

@@ -3,7 +3,7 @@
 @section('content')
 
  <!-- inner banner -->
- <div class="inner-banner ">
+ <div class="inner-banner " style="background: url('{{ secure_asset('images/in.jpg')}}') no-repeat top; background-size: cover;">
         <section class="w3l-breadcrumb">
             <div class="container py-md-5 py-4">
                 <h4 class="inner-text-title font-weight-bold text-white mb-sm-3 mb-2">{{ Auth::user()->name }}</h4>
@@ -18,7 +18,7 @@
 
 <div class="blog-section py-5" id="events">
         <div class="container py-md-5 py-4">
-        @if (session()->has('message'))
+        @if(session()->has('message'))
             <div class="alert alert-success" id="success-alert">
                 <button type="button" class="close" data-dismiss="alert">x</button>
                 <strong>Message! </strong>{{ session('message') }}.
@@ -40,8 +40,6 @@
 
             </div>
   <div class="container mt-5">
-    <form action="{{ route('portemonnaie_ticket_create') }}" method="POST">
-        @csrf
   <div class="row">
     <div class="col-lg-7 mx-auto">
       <div class="bg-white rounded-lg shadow-sm p-5">
@@ -131,7 +129,7 @@
                   </div>
                 </div>
               </div>
-              <button type="submit" class="subscribe btn btn-primary btn-block rounded-pill shadow-sm"> Confirmer</button>
+              <button  class="subscribe btn btn-primary btn-block rounded-pill shadow-sm"> Confirmer</button>
             </form>
           </div>
           <!-- End -->
@@ -141,22 +139,22 @@
           <h6>Détail de compte banquaire</h6>
             <dl>
               <dt>
-                  <form action="{{ route('sale_ticket') }}" method="POST">
+                  <form  id="form" action="{{route('sale_ticket')}}" method="POST" >
                       @csrf
                     <div class="form-group text-center">
                         <label>Votre numero de téléphone</label><br>
                       <p>
-                          <input type="number" name="id" value={{$id}} hidden>
-                          <input type="number" name="is_panier" value="{{$is_panier}}" hidden>
-                          <input type="text" name="phone_number" value="+229 00 00 00 00">
+                          <input type="number" name="id" id="id" value={{$id}} hidden>
+                          <input type="number" name="is_panier" id="is_panier" value="{{$is_panier}}" hidden>
+                          <input type="text" name="phone_number" id="phone_number" value="63000000">
+                          <p><input class="btn btn-success text-center m-3" type="submit" value="Acheter"/></p>
                        </p>
                     </div>
-                    <dd> <input type="submit" class="btn btn-success text-center" value="Acheter"> </dd>
-
+                  
                   </form>
                   </dt>
             </dl>
-            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            <p class="text-muted">Pour toutes vos transactions rassurez vous. Vous serez rembourser au cas où l'evènement ne tienne plus. Merci de votre confiance !
             </p>
           </div>
           <!-- End -->
@@ -165,15 +163,14 @@
       </div>
     </div>
   </div>
-  </form>
   </div>
 
   </div>
     </div>
 
 
-<style>
-    .rounded-lg {
+<style >
+  .rounded-lg {
   border-radius: 1rem;
 }
 
@@ -185,8 +182,10 @@
   color: #fff;
 }
 </style>
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+<script type="text/javascript">
 
-<script>
 
 $('#advanced').flagStrap({
 	buttonSize: "btn-lg",

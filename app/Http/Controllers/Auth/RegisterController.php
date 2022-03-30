@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Mail\RegisterMail;
 use App\Models\Panier;
+use App\Models\TypeAgence;
 use Illuminate\Support\Facades\Mail;
 
 class RegisterController extends Controller
@@ -25,9 +26,9 @@ class RegisterController extends Controller
 
     public function showRegistrationForm()
     {
-        $categories=Categorie::all();
+        $types_agences=TypeAgence::all();
         $types=TypeUser::all();
-        return view('auth.register',compact('categories','types'));
+        return view('auth.register',compact('types_agences','types'));
     }
     /**
      * Where to redirect users after registration.
@@ -58,7 +59,7 @@ class RegisterController extends Controller
                 'name' => ['required' ,'string', 'max:255'],
                 'email' => [ 'required' ,'string', 'email', 'max:255', 'unique:users'],
                 'password' => ['required' , 'string', 'min:8', 'confirmed'],
-                'categories' => [],
+                'type' => [],
                 'contact' => ['required', 'string', 'min:8'],
                 'profil_image'=>'nullable|sometimes|image|mimes:png,jpg,jpeg|max:12288',
                 'type'=>["required",'integer'],
@@ -100,13 +101,12 @@ class RegisterController extends Controller
             // sinon
             else{
 
-                Validator::make($data, [
+                $valid=Validator::make($data, [
                     'agence_name'=>["string","max:255"],
                     "description"=>['string','max:255'],
                     'logo'=>'nullable|sometimes|image|mimes:png,jpg,jpeg|max:12288',
                     'banner'=>'nullable|sometimes|image|mimes:png,jpg,jpeg|max:12288'
                 ]);
-
                 if(array_key_exists("logo",$data)){
                     $file2 = time().'.'.$data["logo"]->extension();
                     $data["logo"]->move(public_path('logos'), $file2);
@@ -122,7 +122,7 @@ class RegisterController extends Controller
                     "description"=>$data["description"],
                     "logo"=>$file2,
                     "banner"=>$file3,
-                    'categories'=>json_encode($data['categories'])
+                    'type'=>$data['type']
                 ]);
                 $agence=$agence->id;
            }

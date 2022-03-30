@@ -13,24 +13,32 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 class DashboardController extends Controller
 {
+    public $modelTransactions=null;
+
+    public function __construct(){
+        $this->modelTransactions=new Transaction;
+    }
+
     function client(){
       $transactions=Transaction::all()->where("client_id","=",Auth::user()->id);
       return view("/client/dashboard",compact('transactions'));
     }
 
-    function promotor(){
-      $events=Event::all()->where("user_id",'=',Auth::user()->id);
-      $commandes=Transaction::all()->where("user_id");
-      return view('/promotor/dashboard',compact("events","commandes"));
+    function organizer_promotor($id=null){
+      $events=Event::all()->where("user_id",'=',Auth::user()->id)->sortByDesc("created_at");
+      if($id!=null){
+        $commandes=$this->modelTransactions->achat_transaction($id);
+        return view("/transaction/show",compact('commandes'));
+      }
+      return view('/dashoard_organizer_promotor/dashboard',compact("events"));
     }
 
 
-    function organizer(){
-      $promotors=User::all()->where('agence_id',"=",Auth::user()->agence_id)->where("id","!=",Auth::user()->id);
-      $my_events=Event::all()->where("user_id","=",Auth::user()->id);
-      //liste des achats
-      return view('/organizer/dashboard',compact("promotors","my_events")); 
-    }
+    // function organizer(){
+    //   $promotors=User::all()->where('agence_id',"=",Auth::user()->agence_id)->where("id","!=",Auth::user()->id);
+    //   $events=Event::all()->where("user_id",'=',Auth::user()->id)->sortByDesc("created_at");
+    //   return view('/dashoard_organizer_promotor/dashboard',compact("events")); 
+    // }
 
     protected function validator($data)
     {

@@ -4,7 +4,7 @@
 
 
  <!-- inner banner -->
- <div class="inner-banner ">
+ <div class="inner-banner " style="background: url('{{ secure_asset('images/in.jpg')}}') no-repeat top; background-size: cover;">
         <section class="w3l-breadcrumb">
             <div class="container py-md-5 py-4">
                 <h4 class="inner-text-title font-weight-bold text-white mb-sm-3 mb-2">Client</h4>
@@ -64,15 +64,16 @@
             <th><h1>Evènement</h1></th>
             <th><h1>Type de Ticket</h1></th>
             <th><h1>Prix ticket</h1></th>
-            <th><h1>Statut</h1></th>
+            <th><h1>Statut evenemnt</h1></th>
             <th><h1>Date d'achat du ticket</h1></th>
+            <th><h1>Status transaction</h1></th>
         </tr>
           </thead>
           <tbody>
           @php $index=0 @endphp
           @forelse($transactions as $trs)
 
-            @foreach(explode(",",$trs->ticket_id) as $id)
+            @foreach(json_decode($trs->ticket_id,true) as $quantity => $id)
                 <tr>
                 <td>{{ ++$index}}</td>
                  @php $e_and_t =event_and_tiket($id)  @endphp
@@ -104,6 +105,10 @@
                     <td>
                             {{ $trs->created_at }}
                         </td>
+
+                  <td>
+                      {{$trs->status }}
+                  </td>
              </tr>
              @endforeach
         @empty

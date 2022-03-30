@@ -1,5 +1,23 @@
 @extends('layouts.app')
 
+<link rel="stylesheet" href="{{ secure_asset('css/carousel.css') }}">
+<link rel="stylesheet" href="{{ secure_asset('css/carousel.rlt.css') }}">
+<style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
 @section('content')
 
     <!-- inner banner -->
@@ -65,7 +83,57 @@
                     </div>
                 </div>
                 <div class="col-lg-6 w3l-features-photo-7_top-right mt-lg-0 mt-sm-5 mt-4">
-                    <img src="{{secure_asset('images/Apropos.png')}}" class="img-responsive" alt="" />
+                    <!-- <img src="{{ secure_asset('images/Apropos.png')}}" class="img-responsive" alt="" /> -->
+                    <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
+                       <img src="{{ secure_asset('images/hero_1.jpg')}}" alt="" class="bd-placeholder-img" width="100%" height="100%"><rect width="100%" height="100%" fill="#777"/>
+                        <div class="container">
+                        <div class="carousel-caption text-start">
+                            <!-- <h1>Example headline.</h1>
+                            <p>Some representative placeholder content for the first slide of the carousel.</p>
+                            <p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p> -->
+                        </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
+                        <img src="{{ secure_asset('images/hero_2.jpg')}}" alt="" class="bd-placeholder-img" width="100%" height="100%"><rect width="100%" height="100%" fill="#777"/>
+                        <div class="container">
+                        <div class="carousel-caption">
+                            <!-- <h1>Another example headline.</h1>
+                            <p>Some representative placeholder content for the second slide of the carousel.</p>
+                            <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p> -->
+                        </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
+                        <img src="{{ secure_asset('images/hero_3.jpg')}}" alt="" class="bd-placeholder-img" width="100%" height="100%"><rect width="100%" height="100%" fill="#777"/>
+                        <div class="container">
+                        <div class="carousel-caption text-end">
+                            <!-- <h1>One more for good measure.</h1>
+                            <p>Some representative placeholder content for the third slide of this carousel.</p>
+                            <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p> -->
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                    <!-- <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                    </button> -->
+                </div>
                 </div>
             </div>
             <!-- fireworks effect -->
@@ -86,7 +154,7 @@
                         <div class="col-lg-6">
                             <div class=" d-flex p-sm-5 p-4">
                                 <div class="service-icon mr-sm-4 mr-3">
-                                    <img src="{{secure_asset('images/s3.png')}}" alt="" class="img-fluid">
+                                    <img src="{{ secure_asset('images/s3.png')}}" alt="" class="img-fluid">
                                 </div>
                                 <div class="services-content">
                                     <h5><a href="services.html">Ajouter un prometeur</a></h5>
@@ -98,7 +166,7 @@
                         <div class="col-lg-6">
                             <div class=" d-flex p-sm-5 p-4">
                                 <div class="service-icon mr-sm-4 mr-3">
-                                    <img src="{{secure_asset('images/s1.png')}}" alt="" class="img-fluid">
+                                    <img src="{{ secure_asset('images/s1.png')}}" alt="" class="img-fluid">
                                 </div>
                                 <div class="services-content">
                                     <h5><a href="services.html">Organiser un evènement</a></h5>
@@ -116,3 +184,5 @@
         </div>
     </section>
 @endsection
+
+<script src="{{ secure_asset('js/bootstrap.bundle.min.js') }}"></script>
