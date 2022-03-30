@@ -2,7 +2,7 @@
     padding: 13px;
     max-width: 318px;
     width: 100%;
-    background: linear-gradient(-120deg, #ff5100 0%, #fff 60%, #ff5100 100%);
+    background: linear-gradient(-120deg, #f0590e 0%, #fff 60%, #f0590e 100%);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -100,7 +100,7 @@
 }
 .card__buttons .primary {
     position: relative;
-    background-image: linear-gradient(to right, #ffbb00, #ffbb00);
+    background-image: linear-gradient(to right, #f0590e, #f0590e);
     background-size: 150% 150%;
     transition: all 0.4s ease;
     z-index: 1;
