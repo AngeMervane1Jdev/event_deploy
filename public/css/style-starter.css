@@ -18768,13 +18768,9 @@ a:hover {
     }
     .show-me-ticket{
         display: none;
-        margin: 2px;
-        max-width: 150px;
-        padding:5px
       }
     .courses-container:hover .show-me-ticket{
       display: inline-block;
-      
     }
     .courses-container:hover .prix{
       top:-1px;
@@ -18829,7 +18825,9 @@ a:hover {
         letter-spacing: 1px;
     }
 }
-
+.show-me-ticket{
+    display: none;
+  }
 @media screen and (max-width: 480px) {
     .social-panel-container.visible {
         transform: translateX(0px);
@@ -18844,10 +18842,13 @@ a:hover {
         flex-direction: column;
     }
     .show-me-ticket{
-        display: inline-block;
+        display: none;
         margin-left: 2px;
         padding:2px;
         font-size: 10px;
+      }
+      .courses-container:hover .show-me-ticket{
+        display: inline-block;
       }
 
 
