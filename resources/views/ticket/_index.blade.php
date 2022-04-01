@@ -20,13 +20,14 @@
             @else
                   SIMPLE
             @endif
-            </h2>
+            @auth
             @if(Auth::user()->type_user_id==3)
 
             <p><a href="{{ route('new_portemonnaie',[$ticket->id,$ticket->price]) }}" class=" show-me-ticket" style="background-color:#f15000;color:white;border-radius:10px" >Acheter</a>
             <a href="{{ route('add_ticket_to_panier',$ticket->id) }}" class=" show-me-ticket" style="background-color:#f15000;color:white;border-radius:10px "  >Ajouter au panier</a></p>
 
             @endif
+            @endauth
 			<h1 class="prix">XOF {{$ticket->price}}</h1>
             
             
