@@ -9418,31 +9418,6 @@ li {
 /*-- //container --*/
 
 
-/*-- toggle switch --*/
-
-.theme-switch-wrapper {
-    display: flex;
-    align-items: center;
-}
-
-.theme-switch-wrapper em {
-    margin-left: 10px;
-    font-size: 1rem;
-}
-
-.theme-switch {
-    display: inline-block;
-    position: relative;
-    margin: 0;
-}
-
-.theme-switch input {
-    display: none;
-}
-
-
-/*-- //toggle switch --*/
-
 
 /* //bootstrap */
 
@@ -12507,33 +12482,6 @@ a.blockquote-footer:hover {
 }
 
 
-/**********************************************Inscription  *******************/
-
-
-/* .card-body {
-    background: url(../images/blog3.jpg) no-repeat center;
-    background-size: cover;
-    -webkit-background-size: cover;
-    -o-background-size: cover;
-    -moz-background-size: cover;
-    -ms-background-size: cover;
-    position: relative;
-    z-index: 1;
-    align-items: center;
-} */
-
-
-/* .card-body::before {
-    background-color: rgba(0, 0, 0, 0.61);
-    content: "";
-    position: absolute;
-    top: 0;
-    min-height: 100%;
-    left: 0;
-    right: 0;
-    z-index: -1;
-} */
-
 .card-body-sans-image {
     background-size: cover;
     -webkit-background-size: cover;
@@ -13326,71 +13274,6 @@ a:hover {
 
 .li {
     margin: 1em;
-}
-
-
-/* ***********************************New ticket********* */
-
-.ticket {
-    font-family: "Muli", sans-serif;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-}
-
-.course {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
-    display: flex;
-    max-width: 100%;
-    margin: 20px;
-    overflow: hidden;
-    width: 700px;
-}
-
-.course h6 {
-    color: white;
-    margin: 0;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-}
-
-.course h2 {
-    color: white;
-    letter-spacing: 1px;
-    margin: 10px 0;
-}
-
-.course-preview {
-    background-image: url(../images/logo.png);
-    color: #fff;
-    padding: 30px;
-    max-width: 250px;
-}
-
-.course-info {
-    background: linear-gradient(to bottom, #a9c9ff 0%, #18151f 100%);
-    padding: 30px;
-    position: relative;
-    width: 100%;
-}
-
-.prix {
-    color: var(--orange);
-    font-size: 16px;
-    padding: 12px 25px;
-    position: absolute;
-    bottom: 30px;
-    right: 30px;
-    letter-spacing: 1px;
-}
-
-@media screen and (max-width: 480px) {
-    .social-panel-container.visible {
-        transform: translateX(0px);
-    }
 }
 
 

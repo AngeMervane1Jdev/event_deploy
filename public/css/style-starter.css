@@ -2217,6 +2217,7 @@ textarea.form-control {
 
 .form-group {
     margin-bottom: 1rem;
+    margin-left: 70px;
 }
 
 .form-text {
@@ -2523,6 +2524,7 @@ textarea.form-control.is-invalid {
         flex-flow: row wrap;
         align-items: center;
         margin-bottom: 0;
+        align-items: center;
     }
     .form-inline .form-control {
         display: inline-block;
@@ -13453,31 +13455,6 @@ p.white {
 /*-- //container --*/
 
 
-/*-- toggle switch --*/
-
-.theme-switch-wrapper {
-    display: flex;
-    align-items: center;
-}
-
-.theme-switch-wrapper em {
-    margin-left: 10px;
-    font-size: 1rem;
-}
-
-.theme-switch {
-    display: inline-block;
-    position: relative;
-    margin: 0;
-}
-
-.theme-switch input {
-    display: none;
-}
-
-
-/*-- //toggle switch --*/
-
 
 /* //bootstrap */
 
@@ -14509,7 +14486,7 @@ button.search-btn:hover {
         font-size: 20px;
         line-height: 1.2em;
         color: #fff;
-        background: var(--primary-color);
+        background: #00000000;
         line-height: 34px;
     }
     .navbar-toggler {
@@ -16570,107 +16547,212 @@ a.footer-logo:hover {
 
 /** lIST EVENTS IN HOME STYLE**/
 
-.containerlist {
-    position: relative;
-    display: flex;
-    justify-content: space-between;
+
+@media(max-width:45rem){
+
+    .containerlist {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        /* justify-content: space-between; */
+    }
+    
+    .containerlist .cardlist {
+        position: relative;
+        border-radius: 10px;
+        text-align: center;
+       
+    }
+    
+    .containerlist .cardlist .icon {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-attachment: fixed;
+        transition: 0.7s;
+        z-index: 1;
+    }
+    
+    .containerlist .cardlist .face {
+        width: 250px;
+        height: 150px;
+        transition: 0.5s;
+    }
+    .containerlist .cardlist .face.face1 {
+        position: relative;
+        background: #333;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1;
+        transform: translateY(75px);
+    }
+    .containerlist .cardlist:hover .face.face1 {
+        background: #ff0057;
+        transform: translateY(0px);
+    }
+
+    .containerlist .cardlist .face.face1 .content {
+        opacity: 1;
+        transition: 0.5s;
+    }
+
+    .containerlist .cardlist:hover .face.face1 .content {
+        opacity: 1;
+    }
+
+    /* .containerlist .cardlist .face.face1 .content i {
+        max-width: 50px;
+    } */
+
+    .containerlist .cardlist .face.face2 {
+        position: relative;
+        position:center;
+        background-color:black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        box-sizing: border-box;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+        transform: translateY(-100px);
+    }
+
+    .containerlist .cardlist:hover .face.face2 {
+        transform: translateY(0);
+    }
+
+    .containerlist .cardlist .face.face2 .content p {
+        margin: 0;
+        padding: 0;
+        color: #414141;
+    }
+
+    .containerlist .cardlist .face.face2 .content h1 {
+        margin: 0 0 10px 0;
+        padding: 0;
+        color: var(--orange);
+        font-size: 25px;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .containerlist .cardlist .face.face2 .content p {
+        color: white;
+    }
+
+    .containerlist a {
+        text-decoration: none;
+        color: #414141;
+    }
+
+
 }
+@media(min-width:46rem){
 
-.containerlist .cardlist {
-    position: relative;
-    border-radius: 10px;
-    margin-left: 30px;
+    .containerlist {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .containerlist .cardlist {
+        position: relative;
+        border-radius: 10px;
+        margin-left: 30px;
+    }
+    
+    .containerlist .cardlist .icon {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        /* background: url(../images/inner4.jpg), no-repeat; */
+        background-size: cover;
+        background-attachment: fixed;
+        transition: 0.7s;
+        z-index: 1;
+    }
+    
+    .containerlist .cardlist .face {
+        width: 300px;
+        height: 200px;
+        transition: 0.5s;
+    }
+    .containerlist .cardlist .face.face1 {
+        position: relative;
+        background: #333;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1;
+        transform: translateY(100px);
+    }
+    .containerlist .cardlist:hover .face.face1 {
+        background: #ff0057;
+        transform: translateY(0px);
+    }
+
+    .containerlist .cardlist .face.face1 .content {
+        opacity: 1;
+        transition: 0.5s;
+    }
+
+    .containerlist .cardlist:hover .face.face1 .content {
+        opacity: 1;
+    }
+
+    .containerlist .cardlist .face.face1 .content i {
+        max-width: 100px;
+    }
+
+    .containerlist .cardlist .face.face2 {
+        position: relative;
+        background: black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        box-sizing: border-box;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+        transform: translateY(-100px);
+    }
+
+    .containerlist .cardlist:hover .face.face2 {
+        transform: translateY(0);
+    }
+
+    .containerlist .cardlist .face.face2 .content p {
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        color: #414141;
+    }
+
+    .containerlist .cardlist .face.face2 .content h1 {
+        margin: 0 0 10px 0;
+        padding: 0;
+        color: var(--orange);
+        font-size: 25px;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .containerlist .cardlist .face.face2 .content p {
+        color: white;
+    }
+
+    .containerlist a {
+        text-decoration: none;
+        color: #414141;
+    }
+
+
 }
-
-.containerlist .cardlist .icon {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    /* background: url(../images/inner4.jpg), no-repeat; */
-    background-size: cover;
-    background-attachment: fixed;
-    transition: 0.7s;
-    z-index: 1;
-}
-
-.containerlist .cardlist .face {
-    width: 300px;
-    height: 200px;
-    transition: 0.5s;
-}
-
-.containerlist .cardlist .face.face1 {
-    position: relative;
-    background: #333;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1;
-    transform: translateY(100px);
-}
-
-.containerlist .cardlist:hover .face.face1 {
-    background: #ff0057;
-    transform: translateY(0px);
-}
-
-.containerlist .cardlist .face.face1 .content {
-    opacity: 1;
-    transition: 0.5s;
-}
-
-.containerlist .cardlist:hover .face.face1 .content {
-    opacity: 1;
-}
-
-.containerlist .cardlist .face.face1 .content i {
-    max-width: 100px;
-}
-
-.containerlist .cardlist .face.face2 {
-    position: relative;
-    background: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    box-sizing: border-box;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
-    transform: translateY(-100px);
-}
-
-.containerlist .cardlist:hover .face.face2 {
-    transform: translateY(0);
-}
-
-.containerlist .cardlist .face.face2 .content p {
-    margin: 0;
-    padding: 0;
-    text-align: center;
-    color: #414141;
-}
-
-.containerlist .cardlist .face.face2 .content h1 {
-    margin: 0 0 10px 0;
-    padding: 0;
-    color: var(--orange);
-    font-size: 25px;
-    font-weight: bold;
-    text-align: center;
-}
-
-.containerlist .cardlist .face.face2 .content p {
-    color: white;
-}
-
-.containerlist a {
-    text-decoration: none;
-    color: #414141;
-}
-
-
 /* inner-banner */
 
 .inner-banner {
@@ -18676,60 +18758,76 @@ a:hover {
 
 /* ***********************************New ticket********* */
 
-.ticket {
-    font-family: "Muli", sans-serif;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-}
-
-.course {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
-    display: flex;
-    max-width: 100%;
-    margin: 20px;
-    overflow: hidden;
-    width: 700px;
-}
-
-.course h6 {
-    color: white;
-    margin: 0;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-}
-
-.course h2 {
-    color: white;
-    letter-spacing: 1px;
-    margin: 10px 0;
-}
-
-.course-preview {
-    background-image: url(../images/logo.png);
-    color: #fff;
-    padding: 30px;
-    max-width: 250px;
-}
-
-.course-info {
-    background: linear-gradient(to bottom, #a9c9ff 0%, #18151f 100%);
-    padding: 30px;
-    position: relative;
-    width: 100%;
-}
-
-.prix {
-    color: var(--orange);
-    font-size: 16px;
-    padding: 12px 25px;
-    position: absolute;
-    bottom: 30px;
-    right: 30px;
-    letter-spacing: 1px;
+@media(min-width:27rem){
+    .ticket {
+        font-family: "Muli", sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+    .show-me-ticket{
+        display: none;
+        margin: 2px;
+        max-width: 150px;
+        padding:5px
+      }
+    .courses-container:hover .show-me-ticket{
+      display: inline-block;
+      
+    }
+    .courses-container:hover .prix{
+      top:-1px;
+    }
+    .course {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+        display: flex;
+        max-width: 100%;
+        margin: 20px;
+        overflow: hidden;
+        width: 700px;
+    }
+    
+    .course h6 {
+        color: white;
+        margin: 0;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+    }
+    
+    .course h2 {
+        color: white;
+      
+    }
+    
+    .course-preview {
+        background-image: url(../images/logo.png);
+        color: #fff;
+        padding: 30px;
+        max-width: 250px;
+    }
+    
+    .course-info {
+        background: linear-gradient(to bottom, #a9c9ff 0%, #18151f 100%);
+        padding: 30px;
+        position: relative;
+        width: 100%;
+    }
+    .prix2{
+        display: none;
+    }
+    .prix {
+        display: inline;
+        color: black;
+        font-size: 20px;
+        padding: 12px 25px;
+        position: absolute;
+        bottom: 30px;
+        right: 30px;
+        letter-spacing: 1px;
+    }
 }
 
 @media screen and (max-width: 480px) {
@@ -18737,6 +18835,67 @@ a:hover {
         transform: translateX(0px);
     }
 }
+@media (max-width: 27rem) {
+    .ticket {
+        font-family: "Muli", sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+    .show-me-ticket{
+        display: inline-block;
+        margin-left: 2px;
+        padding:2px;
+        font-size: 10px;
+      }
+
+
+    
+    .course {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+        display: flex;
+        max-width: 100%;
+        margin-bottom: 20px;
+    }
+    
+    .course h6 {
+        color: white;
+        margin: 0;
+        font-size: 16px;
+        text-transform: uppercase;
+    }
+    
+    .course h2 {
+        color: white;
+        margin: 0;
+        font-size: 16px;
+    }
+    
+    .course-preview {
+        background-image: url(../images/logo.png);
+        color: #fff;
+        padding: 5px;
+    }
+    
+    .course-info {
+        background: linear-gradient(to bottom, #a9c9ff 0%, #18151f 100%);
+        padding: 15px;
+        position: relative;
+        width: 100%;
+    }
+    
+    .prix{
+        display: none;
+    }.prix2{
+        font-size: 10px;
+    }
+
+    
+}
+
 
 
 /***********************************Slide************************************/
