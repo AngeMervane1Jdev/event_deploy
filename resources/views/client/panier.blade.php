@@ -3,7 +3,7 @@
 @section('content')
 
  <!-- inner banner -->
- <div class="inner-banner " style="background: url('{{asset('images/inner4.jpg')}}') no-repeat top; background-size: cover;">
+ <div class="inner-banner " style="background: url('{{secure_asset('images/inner4.jpg')}}') no-repeat top; background-size: cover;">
      
         <section class="w3l-breadcrumb">
             <div class="container py-md-5 py-4">
@@ -42,7 +42,7 @@
 
 
             <div class="container">
-                <link rel="stylesheet" href="{{asset('css/table.css')}}">
+                <link rel="stylesheet" href="{{secure_asset('css/table.css')}}">
                 @if ($tickets!=null)
                 <div class="seach_events" >
                     <div class="input-group ">

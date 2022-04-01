@@ -13,13 +13,13 @@
         <title>Admin</title>
 
         <!-- Template CSS -->
-        <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{secure_asset('css/admin.css') }}">
+        <link rel="stylesheet" href="{{secure_asset('css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
         <!-- google fonts -->
         <link href="//fonts.googleapis.com/css?family=Nunito:300,400,600,700,800,900&display=swap" rel="stylesheet">
 
-        <link rel="stylesheet" href="{{ asset('css/style-starter.css') }}">
+        <link rel="stylesheet" href="{{secure_asset('css/style-starter.css') }}">
         @yield('style')
     </head>
 
@@ -44,7 +44,7 @@
         <-- //image logo -->
 
                 <div class="logo-icon text-center">
-                    <a href="{{ route('admin') }}" title="logo"><img src="{{asset('/images/logo1.png')}}" alt="logo-icon"> </a>
+                    <a href="{{ route('admin') }}" title="logo"><img src="{{secure_asset('/images/logo1.png')}}" alt="logo-icon"> </a>
                 </div>
                 <!-- //logo end -->
 
@@ -97,7 +97,7 @@
                     @endif
                     <div class="flex-shrink-0 dropdown">
                         <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="{{asset('images/user-admin.png')}}" alt="mdo" width="32" height="32" class="rounded-circle">
+                            <img src="{{secure_asset('images/user-admin.png')}}" alt="mdo" width="32" height="32" class="rounded-circle">
                         </a>
 
                         <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
@@ -134,7 +134,7 @@
                     <br><br>
                     </div>
                     <div style="text-align: center">
-                         <img src="{{asset('images/logo.png')}}" alt=""> 
+                         <img src="{{secure_asset('images/logo.png')}}" alt=""> 
                     </div>
                     <a href="{{ route('admin_login') }}" class="btn btn-primary btn-style mt-4" style="text-align: center" type="submit" >Connecter vous</a>
                     @endif
@@ -179,19 +179,19 @@
         <!-- /move top -->
 
 
-        <script src=" {{ asset('js/jquery-3.3.1.min.js') }}"></script>
-        <script src=" {{ asset('js/jquery-1.10.2.min.js') }}"></script>
+        <script src=" {{secure_asset('js/jquery-3.3.1.min.js') }}"></script>
+        <script src=" {{secure_asset('js/jquery-1.10.2.min.js') }}"></script>
 
         <!-- chart js -->
-        <script src="{{ asset('js/Chart.min.js') }}"></script>
-        <script src="{{ asset('js/utils.js') }}"></script>
+        <script src="{{secure_asset('js/Chart.min.js') }}"></script>
+        <script src="{{secure_asset('js/utils.js') }}"></script>
         <!-- //chart js -->
 
 
 
 
-        <script src=" {{ asset('js/jquery.nicescroll.js') }}"></script>
-        <script src=" {{ asset('js/scripts.js')}}"></script>
+        <script src=" {{secure_asset('js/jquery.nicescroll.js') }}"></script>
+        <script src=" {{secure_asset('js/scripts.js')}}"></script>
 
 
         <script>
@@ -217,7 +217,7 @@
         <!-- disable body scroll when navbar is in active -->
 
         <!-- loading-gif Js -->
-        <script src="{{ asset('js/modernizr.js') }}"></script>
+        <script src="{{secure_asset('js/modernizr.js') }}"></script>
         <script>
             $(window).load(function() {
                 // Animate loader off screen
@@ -227,8 +227,8 @@
         <!--// loading-gif Js -->
 
         <!-- Bootstrap Core JavaScript -->
-        <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-        <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+        <script src="{{secure_asset('js/bootstrap.min.js') }}"></script>
+        <script src="{{secure_asset('js/bootstrap.bundle.min.js') }}"></script>
 
     </body>
 
