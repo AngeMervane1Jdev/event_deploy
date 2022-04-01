@@ -14,6 +14,7 @@
 
 <!-- statistics data -->
 <div class="statistics">
+    <!-- style="margin-right:15px" -->
     <div class="row">
         <div class="col-xl-6 pr-xl-2">
             <div class="row">

@@ -37,9 +37,10 @@ use App\Models\Categorie;
 
     Route::get('Admin/user/edit/{id}', [\App\Http\Controllers\AdminController::class,"edit"])->name('user_edit');
     Route::get('Admin/user/delete/{id}', [\App\Http\Controllers\AdminController::class,"delete"])->name('user_delete');
-    Route::get('Admin/user/update/{id}', [\App\Http\Controllers\AdminController::class,"update"])->name('update_delete');
+    Route::post('Admin/user/update/{id}', [\App\Http\Controllers\AdminController::class,"update"])->name('user_update');
 
      Route::get('Admin/listevents', [\App\Http\Controllers\AdminController::class,"showEvents"])->name('admin_listEvents');
+     Route::get("Admin/listevents/{id}",[\App\Http\Controllers\DashboardController::class,"showEvents"])->name('admin_transaction');
  });
 
 

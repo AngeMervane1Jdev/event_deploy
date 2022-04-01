@@ -4,7 +4,7 @@
 
 
  <!-- inner banner -->
- <div class="inner-banner " style="background: url('{{ secure_asset('images/in.jpg')}}') no-repeat top; background-size: cover;">
+ <div class="inner-banner " style="background: url('{{asset('images/in.jpg')}}') no-repeat top; background-size: cover;">
         <section class="w3l-breadcrumb">
             <div class="container py-md-5 py-4">
                 <h4 class="inner-text-title font-weight-bold text-white mb-sm-3 mb-2">Client</h4>
@@ -22,6 +22,24 @@
             
 
         @if (session()->has('message'))
+        <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content modal-popup">
+                    <a href="#" class="close-link"><i class="icon_close_alt2"></i></a>
+                    
+                    <form  method="POST" action="" class="popup-form">
+                        @csrf
+                        <div class="form-group">
+                            <p>Voullez-vous vider le panier?</p>
+                        </div>
+                        <button type="submit" class="btn" style="background-color: red; color:white"><a href="" class=""  >Oui</a></button>
+                        <!-- {{ route('delete_all_from_panier',$id) }} -->
+                        
+                        <button type="submit" class="btn" style="background-color: red; color:white"><a style=" color:white" class="" href="#">Non</a></button>
+                    </form>
+                </div>
+            </div>
+	    </div>
               <div class="alert alert-info">{{ session('message') }}</div>
         @endif
             <div class="waviy text-center mb-md-5 mb-4">

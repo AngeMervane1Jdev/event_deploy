@@ -1,6 +1,6 @@
 @extends('admin.app')
 @section('content')
- <link rel="stylesheet" href="{{ secure_asset('css/adminTable.css')}}">
+ <link rel="stylesheet" href="{{asset('css/adminTable.css')}}">
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb my-breadcrumb">
         <li class="breadcrumb-item"><a href="index.html">Home</a></li>
@@ -15,7 +15,7 @@
           <div class="card mb-4">
             <div class=" text-center">
              
-              <img src="{{ secure_asset('images/user-admin.png')}}" alt="avatar" class="rounded-circle img-fluid mt-2" style="width: 150px;">
+              <img src="{{asset('images/user-admin.png')}}" alt="avatar" class="rounded-circle img-fluid mt-2" style="width: 150px;">
               <div class="file-inpute">
                 <form action="" method="get">
                     <input

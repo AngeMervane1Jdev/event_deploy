@@ -3,7 +3,7 @@
 @section('content')
 
  <!-- inner banner -->
- <div class="inner-banner " style="background: url('{{ secure_asset('images/in.jpg')}}') no-repeat top; background-size: cover;">
+ <div class="inner-banner " style="background: url('{{asset('images/in.jpg')}}') no-repeat top; background-size: cover;">
         <section class="w3l-breadcrumb">
             <div class="container py-md-5 py-4">
                 <h4 class="inner-text-title font-weight-bold text-white mb-sm-3 mb-2">{{ Auth::user()->name }}</h4>
@@ -16,7 +16,7 @@
     </div>
     <!-- //inner banner -->
 
-<div class="blog-section py-5" id="events">
+<div class="blog-section" id="events">
         <div class="container py-md-5 py-4">
         @if(session()->has('message'))
             <div class="alert alert-success" id="success-alert">
@@ -24,7 +24,7 @@
                 <strong>Message! </strong>{{ session('message') }}.
             </div>
         @endif
-            <div class="waviy text-center mb-md-5 mb-4">
+            <div class="waviy text-center mb-md-5">
                 <span style="--i:1">P</span>
                 <span style="--i:2">o</span>
                 <span style="--i:3">r</span>
@@ -39,24 +39,25 @@
 
 
             </div>
-  <div class="container mt-5">
+  <div class="container">
   <div class="row">
     <div class="col-lg-7 mx-auto">
-      <div class="bg-white rounded-lg shadow-sm p-5">
+      <div class="bg-white rounded-lg shadow-sm" id="container-padding">
         <!-- Credit card form tabs -->
         <ul role="tablist" class="nav bg-light nav-pills rounded-pill nav-fill mb-3">
-          <li class="nav-item">
-            <a data-toggle="pill" href="#nav-tab-card" class="nav-link active rounded-pill">
-                <i class="fa fa-credit-card"></i>
-                Carte de Credit
-            </a>
-          </li>
-          <li class="nav-item">
-            <a data-toggle="pill" href="#nav-tab-mobile" class="nav-link rounded-pill">
+        <li class="nav-item">
+            <a data-toggle="pill" href="#nav-tab-mobile" class="nav-link active rounded-pill">
                 <i class="fa fa-paypal"></i>
                   Mobile Money
             </a>
           </li>
+          <li class="nav-item">
+            <a data-toggle="pill" href="#nav-tab-card" class="nav-link rounded-pill">
+                <i class="fa fa-credit-card"></i>
+                Carte de Credit
+            </a>
+          </li>
+         
 
         </ul>
         <!-- End -->
@@ -64,11 +65,11 @@
         <!-- Credit card form content -->
         <div class="tab-content">
           <!-- credit card info-->
-          <div id="nav-tab-card" class="tab-pane fade show active">
+          <div id="nav-tab-card" class="tab-pane fade">
             <!-- <p class="alert alert-success">Some text success or error</p> -->
-            <form action="{{ route('portemonnaie_ticket_create') }}" method="POST">
+            <form class="form" action="{{ route('portemonnaie_ticket_create') }}" method="POST">
               @csrf
-              <div class="form-group">
+              <div class="">
                 <label for="username">Nom Complet (sur la carte)</label>
                   <input type="text" name="username" id="username" placeholder="Jason Doe" class="form-control @error("username") is-invalid @enderror" value="{{ old('username') }}">
                   @error('username')
@@ -77,7 +78,7 @@
                     </span>
                   @enderror
               </div>
-              <div class="form-group">
+              <div class="">
                 <label for="cardNumber">Numéro de carte</label>
                 <div class="input-group">
                   <input type="text" name="card_number" id="card_number" placeholder="Votre numero de carte" class="form-control @error("card_number") is-invalid @enderror" value="{{ old('card_number') }}">
@@ -97,7 +98,7 @@
               </div>
               <div class="row">
                 <div class="col-sm-8">
-                  <div class="form-group">
+                  <div class="">
                     <label><span class="hidden-xs">Expiration</span></label>
                     <div class="input-group">
                       <input type="number" placeholder="MM" name="mm" id="mm" class="form-control @error('mm') is-invalid @enderror" value="{{ old('mm') }}">
@@ -116,7 +117,7 @@
                   </div>
                 </div>
                 <div class="col-sm-4">
-                  <div class="form-group mb-4">
+                  <div class=" mb-4">
                     <label data-toggle="tooltip" title="Les trois chiffres derriere votre carte">CVV
                         <i class="fa fa-question-circle"></i>
                     </label>
@@ -135,18 +136,17 @@
           <!-- End -->
 
           <!-- bank transfer info -->
-          <div id="nav-tab-mobile" class="tab-pane fade">
-          <h6>Détail de compte banquaire</h6>
+          <div id="nav-tab-mobile" class="tab-pane fade active show">
             <dl>
               <dt>
-                  <form  id="form" action="{{route('sale_ticket')}}" method="POST" >
+                  <form  id="form" style="align-items: center;" action="{{route('sale_ticket')}}" method="POST" >
                       @csrf
-                    <div class="form-group text-center">
-                        <label>Votre numero de téléphone</label><br>
+                    <div class="text-center" 
+                        <h6>Votre numero de téléphone</h6><br>
                       <p>
                           <input type="number" name="id" id="id" value={{$id}} hidden>
                           <input type="number" name="is_panier" id="is_panier" value="{{$is_panier}}" hidden>
-                          <input type="text" name="phone_number" id="phone_number" value="63000000">
+                          <p Class="text-center"><input id="myphone" type="text" name="phone_number" id="phone_number" value="63000000" style="max-width:200px"></p>
                           <p><input class="btn btn-success text-center m-3" type="submit" value="Acheter"/></p>
                        </p>
                     </div>
@@ -181,6 +181,20 @@
 .nav-pills .nav-link.active {
   color: #fff;
 }
+@media(max-width:45rem){
+  #myphone{
+    width:100%;
+  }
+  #container-padding{
+    padding: 10px;;
+  }
+}
+@media(min-width:45rem){
+  #container-padding{
+    padding: 30px;;
+  }
+}
+
 </style>
   
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
@@ -194,6 +208,7 @@ $('#advanced').flagStrap({
 	scrollable: false,
 	scrollableHeight: "350px"
 });
+
 </script>
 
 @endsection

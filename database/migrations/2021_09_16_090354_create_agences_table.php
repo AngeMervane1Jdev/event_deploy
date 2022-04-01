@@ -18,6 +18,7 @@ class CreateAgencesTable extends Migration
             $table->timestamps();
             $table->string("type");
             $table->string('agence_name');
+            $table->string('adress')->nullable();
             $table->string('banner')->nullable();
             $table->string('logo')->nullable();
             $table->string("description");

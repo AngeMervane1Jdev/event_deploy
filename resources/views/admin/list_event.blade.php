@@ -1,6 +1,6 @@
 @extends('admin.app')
 @section('content')
- <link rel="stylesheet" href="{{ secure_asset('css/adminTable.css')}}">
+ <link rel="stylesheet" href="{{asset('css/adminTable.css')}}">
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb my-breadcrumb">
         <li class="breadcrumb-item"><a href="index.html">Home</a></li>
@@ -18,12 +18,11 @@
 
             <div class="container py-md-5 py-4">
                 <div class="waviy text-center mb-md-5 mb-4">
-                    <h1>Liste complette des évènements </h1>
+                    <h1>Liste complet des évènements </h1>
                     
                       <div class="main-content">
                         <div class="container mt-7">
                         @if(count($events)>0)
-                    
                             <div class="col">
                               <div class="cardtable shadow">
                                 <div class="card-header border-0">
@@ -42,15 +41,24 @@
                                       </tr>
                                     </thead>
                                     <tbody>
+                                      @foreach ($events as $event)
                                         <tr class="tr">
-                                            <td >Bonjout</td>
-                                            <td >$2,500 USD </td>
-                                            <td > Zero</td>
-                                            <td >Moufid</td>
+                                            <td >{{ $event->event_name }}</td>
+                                            <td >
+                                              <time datetime="2020-05-25 12:00:00">
+                                                {{date('d/m/Y H:i', strtotime($event->start_time))}}
+                                              </time>
+                                            </td>
+                                            <td > 
+                                              <time datetime="2020-05-25 12:00:00" >
+                                                {{date('d/m/Y H:i', strtotime($event->end_time))}}
+                                              </time>
+                                            </td>
+                                            <td >{{$event->zone}}</td>
                                             <td >
                                               <div class="accordion" id="accordionExample">
                                                 <div class="p-0" id="headingTwo">
-                                                  <a href="#" class="card__title " data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="color: white; font-size:16px">Transactions <i class="fa fa-chevron-down"></i></a>
+                                                  <a href="{{route('admin_transaction',$event->id)}}" class="card__title " data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="color: white; font-size:16px">Transactions <i class="fa fa-chevron-down"></i></a>
                                               </div>
                                               </div>
                                             </td>
@@ -61,15 +69,16 @@
                                                        Ticket liste <i class="fa fa-chevron-down"></i>
                                                     </a>
                                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                                      <li><p class="dropdown-item" href="#">VIP Simple 2500f</p></li>
-                                                      <li><p class="dropdown-item" href="#">VIP Simple 2500f</p></li>
-                                                      <li><p class="dropdown-item" href="#">VIP Simple 2500f</p></li>
+                                                      @foreach (tickeEvent($event->id) as $ticket)
+                                                      <li><p class="dropdown-item" href="#">{{ $ticket->type_name }} {{ $ticket->price }}f</p></li>
+                                                      @endforeach
+
                                                     </ul>
                                                   </div>
                                               
                                             </td>
                                           </tr>
-                                          
+                                      @endforeach    
                                     </tbody>
                                   </table>
                                 </div>
@@ -81,19 +90,18 @@
                                   <div class="card-body para__style">
                                     <table class="table align-items-center table-flush">
                                       <thead class="thead-light">
-                                        <th>Transaction</th>
                                         <th>Prix du ticket</th>
                                         <th>Date</th>
                                         <th>Status</th>
                                       </thead>
                                       <tbody>
+                                      @foreach ($commandes as $commande)
                                        <tr class="tr">
-                                         <td style="color: white">Reservation</td>
-                                         <td >25000f</td>
-                                         <td >2022-03-05</td>
-                                         <td >En cours</td>
+                                         <td >{{ $commande->price }} F</td>
+                                         <td >{{ $commande->created_at }}</td>
+                                         <td >{{ event_status($commande->event_id) }}</td>
                                        </tr>
-                                      
+                                       @endforeach
                                       </tbody>
                                     </table>
                                    </div>

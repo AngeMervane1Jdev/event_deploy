@@ -2,7 +2,7 @@
 @section('content')
 
  <!-- inner banner -->
- <div class="inner-banner " style="background: url('{{ secure_asset('images/inner-bannerList.jpg')}}') no-repeat top; background-size: cover;">
+ <div class="inner-banner " style="background: url('{{asset('images/inner-bannerList.jpg')}}') no-repeat top; background-size: cover;">
         <section class="w3l-breadcrumb">
             <div class="container py-md-5 py-4">
                 @auth
@@ -65,9 +65,9 @@
                         <article class="postcard dark red">
                             <a class="postcard__img_link" href="#">
                             @if($event->cover!=null)
-                              <img src="{{ secure_asset('Upload/events/Covers/'.$event->cover)}}" class="postcard__img">
+                              <img src="{{asset('Upload/events/Covers/'.$event->cover)}}" class="postcard__img">
                             @else
-                              <img class="postcard__img" src="{{ secure_asset('images/logo.png')}}" alt="Image Title"  />
+                              <img class="postcard__img" src="{{asset('images/logo.png')}}" alt="Image Title"  />
                             @endif
                             </a>
                             <div class="postcard__text">

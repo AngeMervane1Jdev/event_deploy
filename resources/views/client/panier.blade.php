@@ -3,7 +3,7 @@
 @section('content')
 
  <!-- inner banner -->
- <div class="inner-banner " style="background: url('{{ secure_asset('images/inner4.jpg')}}') no-repeat top; background-size: cover;">
+ <div class="inner-banner " style="background: url('{{asset('images/inner4.jpg')}}') no-repeat top; background-size: cover;">
      
         <section class="w3l-breadcrumb">
             <div class="container py-md-5 py-4">
@@ -42,7 +42,7 @@
 
 
             <div class="container">
-                <link rel="stylesheet" href="{{ secure_asset('css/table.css')}}">
+                <link rel="stylesheet" href="{{asset('css/table.css')}}">
                 @if ($tickets!=null)
                 <div class="seach_events" >
                     <div class="input-group ">
@@ -55,14 +55,15 @@
                         
                         <div class="table-wrap">
                             <table class="container table-dark" >
-                                <thead class="">
+                                <thead>
                                     <tr>
                                         <th>Selection</th>
                                         <th>Produit</th>
                                         <th>Prix unitaire</th>
-                                        <th>Quantité</th>
-                                        <th>Prix Total</th>
-                                        <th>&nbsp;</th>
+                                        <th style="height:72.5px;margin-top:35px">Quantité</th>
+                                        <th>Prix total</th>
+                                       
+                                        <th>Retirer</th>
                                     </tr>
                                 </thead>
                                 <tbody >
@@ -85,24 +86,24 @@
 
                                         {{-- td du checkbox --}}
 
-                                        <td >                             
+                                        <td>                             
                                                 <label class="checkbox-wrap checkbox-primary"  >
                                                 
-                                             @if(in_array($ticket->id,$tickets_validated))
-                                              <input type="checkbox" checked value="{{  $ticket->id  }}" onclick="
-                                                    var id=parseInt('{{$ticket->id}}');
-                                                    var price=parseInt('{{$ticket->price}}');
-                                                    this.checked ? selected(parseInt(id),price,1) : selected(parseInt(id),price,-1);
-                                              ">
-                                              @else
-                                              
-                                             <input type="checkbox" value="{{  $ticket->id  }}" onclick="
-                                                    var id=parseInt('{{$ticket->id}}');
-                                                    var price=parseInt('{{$ticket->price}}');
-                                                    this.checked ? selected(parseInt(id),price,1) : selected(parseInt(id),price,-1);
-                                              ">
+                                                @if(in_array($ticket->id,$tickets_validated))
+                                                <input type="checkbox" checked value="{{  $ticket->id  }}" onclick="
+                                                        var id=parseInt('{{$ticket->id}}');
+                                                        var price=parseInt('{{$ticket->price}}');
+                                                        this.checked ? selected(parseInt(id),price,1) : selected(parseInt(id),price,-1);
+                                                ">
+                                                @else
+                                                
+                                                <input type="checkbox" value="{{  $ticket->id  }}" onclick="
+                                                        var id=parseInt('{{$ticket->id}}');
+                                                        var price=parseInt('{{$ticket->price}}');
+                                                        this.checked ? selected(parseInt(id),price,1) : selected(parseInt(id),price,-1);
+                                                ">
 
-                                              @endif
+                                                @endif
                                               <span class="checkmark"></span>
                                             </label>
                                             
@@ -117,10 +118,9 @@
                                                
                                             </div>
                                         </td>
-                                        <td class="border-bottom-0" ><span id='price{{$ticket->id}}'>{{ $ticket->price }}</span> XOF</td>
-                                        <td class="quantity border-bottom-0">
-                                            <div class="input-group">
-                                                    <select class="form-control" id="select{{$ticket->id}}" onchange="
+                                        <td><span id='price{{$ticket->id}}'>{{ $ticket->price }}</span> XOF</td>
+                                        <td>
+                                                <select class="form-control" id="select{{$ticket->id}}" onchange="
                                                     
                                                     var id=parseInt('{{$ticket->id}}');
                                                     var price=parseInt('{{$ticket->price}}');
@@ -140,11 +140,10 @@
                                                             <option>{{$i}}</option>
                                                            @endif
                                                         @endfor
-                                                    </select>
+                                                </select>
                                                 
-                                            </div>
                                         </td>
-                                        <td class="border-bottom-0" ><span id="total_price{{$ticket->id}}">{{$ticket->price*$quantity}} </span> XOF</td>
+                                        <td  ><span id="total_price{{$ticket->id}}">{{$ticket->price*$quantity}} </span> XOF</td>
                                         <td>
                                            <span aria-hidden="true"> <a class="btn btn-danger btn-sm" data-confirm="vous estes sur" rel='nofollow' data-method="delete"  href="{{route('remove_ticket__from_panier',$ticket->id)}}"><i class="fa fa-trash-o"></i></a></i></span>     
                                            
@@ -154,7 +153,7 @@
                                  @endforeach
                                  <tr>
                                      <td style="color: black">Tout Selectionner</td>
-                                     <td colspan="3">
+                                     <td >
                                         <label class="checkbox-wrap checkbox-primary">
                                             <input type="checkbox" id="select_all" onclick="
                                              var checkboxes =$('table input:checkbox');
@@ -165,21 +164,34 @@
                                             </label>
     
                                      </td>
+                                     <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
                                  </tr>
-                                    <tr colspan="2" style="background: black">
-                                        <td colspan="4" style="color: white;font-weight:bold;font-size:25px">Total général : </td>
-                                        <td colspan="2">
+                                    <tr style="background: black">
+                                        <td style="color: white;font-weight:bold;"class="panier_total_price">Total général: </td>
+                                        <td >
                                             <!-- On affiche total général -->
-                                            <strong id="price_total">{{ $total }} </strong><strong> XOF</strong>
+                                            <strong id="price_total" >{{ $total }} </strong><strong> XOF</strong>
                                         </td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        
                                     </tr>
                                     
-                                    <tr colspan="2" style="background: black">
-                                        <td colspan="4" style="color: white;font-weight:bold;font-size:25px">Total à payer :</td>
-                                        <td colspan="2">
+                                    <tr style="background: black">
+                                        <td style="color: white;font-weight:bold;" class="panier_total_price" >Total à payer:</td>
+                                        <td >
                                             <!-- On affiche total général -->
                                             <strong id="priceB">{{ $price }} </strong><strong> XOF</strong>
                                         </td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
                                     </tr>
                                    
                                 </tbody>
@@ -194,9 +206,10 @@
             </div>
            <div style="margin-top: 15px">
                 <!-- Lien pour vider le panier -->
-            <a class="btn btn-danger" href="#" data-toggle="modal" data-target="#modal2" title="Retirer tous les produits du panier" >Vider le panier</a>
-            <a class="btn btn-success" href="{{ route('paid_all_from_panier',$id) }}" title="Passer au paiement" >Faire le paiement</a> 
-
+            <p style="display: inline-block; text-align:center">
+              <a class="btn btn-danger vider m-2" href="#" data-toggle="modal" data-target="#modal2" title="Retirer tous les produits du panier" >Vider le panier</a>
+              <a class="btn btn-success acheter" href="{{ route('paid_all_from_panier',$id) }}" title="Passer au paiement" >Faire le paiement</a> 
+            </p>
            </div>
 
         </div>
@@ -204,10 +217,9 @@
         
 
         <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content modal-popup">
                    
-                    
                     <form  method="GET" action="" class="popup-form">
                         @csrf
                         <div class="form-group">
@@ -222,7 +234,7 @@
 	    </div>
 
         <div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content modal-popup">
                     <a href="#" class="close-link"><i class="icon_close_alt2"></i></a>
                     
@@ -374,5 +386,39 @@
 
     </script>
     </div>   
+
+
+<style>
+@media(max-width:45rem){
+    .panier_total_price{
+        font-size: 15px;
+        display:inline-block
+    }
+    select{
+        width:30px;
+        margin:0px;
+        padding:0px;
+        margin-top: 8px;
+    }
+    .acheter .vider{
+        display:inline-block;
+        font-size: 15px;
+       
+    
+    }
+}
+
+@media(min-width:45rem){
+.panier_total_price{
+    font-size: 25px;
+}
+}
+td{
+    min-width:100px;
+}
+
+
+
+</style>
 @endsection
 

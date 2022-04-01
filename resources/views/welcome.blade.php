@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-<link rel="stylesheet" href="{{ secure_asset('css/card.css') }}">
+<link rel="stylesheet" href="{{ asset('css/card.css') }}">
 
 @section('content')
     <section class="w3l-main-slider" id="home">
@@ -180,45 +180,43 @@
                         <span style="--i:9">s</span>
                     </div>
 
-                   <div class="list containerlist container content-sec-11">
-                  <div class="card-group">
-                    @forelse ($events as $event)
-                    <div class="cardlist" >
-                        <div class="face face1">
-                            <div class="content">
-                                @if($event->cover!=null)
-                                <img src="{{ secure_asset('Upload/events/Covers/'.$event->cover)}}" class="icon">
+                    <div class="list containerlist container content-sec-11">
+                       <div class="card-group">
+                       @forelse ($events as $event)
+ 
+                            <div class="cardlist" >
+                                <div class="face face1">
+                                    <div class="content">
+                                        @if($event->cover!=null)
+                                        <img src="{{asset('Upload/events/Covers/'.$event->cover)}}" class="icon">
 
-                                @else
-                                <img class="icon" src="{{ secure_asset('images/logo.png')}}" alt="Image Title"  />
-                                @endif
-                                {{-- <div class="icon">
-                                    <i class="fa fa-linkedin-square" aria-hidden="true"></i>
-                                </div> --}}
-                            </div>
-                        </div>
-                        <div class="face face2">
-                            <div class="content">
-                                <h1>{{$event->event_name}}</h1>
-                                <p> {{date('d/m/Y H:i:s', strtotime($event->start_time))}}</p>
-                                <p><span style="color: rgb(128, 124, 124)">Lieu</span>: {{$event->zone}}</p>
-
-                                <div class="btns" style="text-align:center; margin-top:12px">
-                                    <a href="{{route('show_event',$event->id)}}" class="btn btn-yellow">Details</a>
+                                        @else
+                                        <img class="icon" src="{{asset('images/logo.png')}}" alt="Image Title"  />
+                                        @endif
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
+                                <div class="face face2">
+                                    <div class="content">
+                                        <h1>{{$event->event_name}}</h1>
+                                        <p> {{date('d/m/Y H:i:s', strtotime($event->start_time))}}</p>
+                                        <p><span style="color: rgb(128, 124, 124)">Lieu</span>: {{$event->zone}}</p>
+
+                                        <div class="btns" style="text-align:center; margin-top:12px">
+                                            <a href="{{route('show_event',$event->id)}}" class="btn btn-yellow">Détails</a>
+                                        </div>
+                                    </div>
+                                </div>
                     </div>
                    
                     @empty
-                    <h1 style="text-align: center;font-size:20px">Aucun evenement en cours</h1>
+                    <h1 style="text-align: center;font-size:20px">Aucun évenement en cours</h1>
              @endforelse
                   </div>                  
                    </div>
 
-                @if (count($events)>0)
+                @if (count($events)>5)
                     <div class="mt-5 text-center">
-                         <a type="button" class="btn btn-style" href="{{ route('events') }}">En savoir plus</a>
+                         <a type="button" class="btn btn-style" href="{{ route('events') }}">Voir savoir plus</a>
                     </div>
                 @endif
             </div>
@@ -242,7 +240,7 @@
                         <div class="col-lg-6">
                             <div class="services-single d-flex p-sm-5 p-4">
                                 <div class="service-icon mr-sm-4 mr-3">
-                                    <img src="{{ secure_asset('images/s3.png')}}" alt="" class="img-fluid">
+                                    <img src="{{asset('images/s3.png')}}" alt="" class="img-fluid">
                                 </div>
                                 <div class="services-content">
                                     <h5><a href="services.html">Ajouter un prometeur</a></h5>
@@ -254,7 +252,7 @@
                         <div class="col-lg-6">
                             <div class="services-single d-flex p-sm-5 p-4">
                                 <div class="service-icon mr-sm-4 mr-3">
-                                    <img src="{{ secure_asset('images/s1.png')}}" alt="" class="img-fluid">
+                                    <img src="{{asset('images/s1.png')}}" alt="" class="img-fluid">
                                 </div>
                                 <div class="services-content">
                                     <h5><a href="services.html">Organiser un evènement</a></h5>
@@ -268,7 +266,7 @@
                         <div class="col-lg-6">
                             <div class="services-single d-flex p-sm-5 p-4 mb-lg-0">
                                 <div class="service-icon mr-sm-4 mr-3">
-                                    <img src="{{ secure_asset('images/s2.png')}}" alt="" class="img-fluid">
+                                    <img src="{{asset('images/s2.png')}}" alt="" class="img-fluid">
                                 </div>
                                 <div class="services-content">
                                     <h5><a href="services.html">Publier votre evènement</a></h5>
@@ -280,7 +278,7 @@
                         <div class="col-lg-6">
                             <div class="services-single d-flex p-sm-5 p-4 mb-0">
                                 <div class="service-icon mr-sm-4 mr-3">
-                                    <img src="{{ secure_asset('images/s4.png')}}" alt="" class="img-fluid">
+                                    <img src="{{asset('images/s4.png')}}" alt="" class="img-fluid">
                                 </div>
                                 <div class="services-content">
                                     <h5><a href="services.html">Evolution de L'évènement</a></h5>
@@ -304,128 +302,8 @@
     </section>
     <!-- //actions section -->
 
-
-    <!-- team sections -->
-    <section class="w3l-team-main" id="team">
-        <div class="team py-5">
-            <div class="container py-md-5 py-4">
-                <div class="waviy white-text text-center mb-sm-5 mb-4">
-                    <span style="--i:1">O</span>
-                    <span style="--i:2">u</span>
-                    <span style="--i:3">r</span>
-                    <span style="--i:4"></span>
-                    <span style="--i:5">T</span>
-                    <span style="--i:6">e</span>
-                    <span style="--i:7">a</span>
-                    <span style="--i:8">m</span>
-                    <span style="--i:9"></span>
-                    <span style="--i:10">M</span>
-                    <span style="--i:11">e</span>
-                    <span style="--i:12">m</span>
-                    <span style="--i:13">b</span>
-                    <span style="--i:14">e</span>
-                    <span style="--i:15">r</span>
-                    <span style="--i:16">s</span>
-                </div>
-                <!-- fireworks effect -->
-
-                <div class="row team-row mt-md-5 mt-4">
-                    <div class="col-lg-3 col-6 team-wrap">
-                        <div class="team-member text-center">
-                            <div class="team-img">
-                                <img src="{{ secure_asset('images/c1.png')}}" alt="" class="radius-image">
-                            </div>
-                            <a href="#url" class="team-title">Mr Ange CYRILLE</a>
-                            <div class="team-details text-center">
-                                <div class="socials mt-20">
-                                    <a href="#url">
-                                        <span class="fa fa-facebook-f"></span>
-                                    </a>
-                                    <a href="#url">
-                                        <span class="fa fa-twitter"></span>
-                                    </a>
-                                    <a href="#url">
-                                        <span class="fa fa-instagram"></span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end team member -->
-                    <div class="col-lg-3 col-6 team-wrap">
-                        <div class="team-member text-center">
-                            <div class="team-img">
-                                <img src="{{ secure_asset('images/testi1.jpg')}}" alt="" class="radius-image">
-                            </div>
-                            <a href="#url" class="team-title">Mr Mfid DAOUDA</a>
-                            <div class="team-details text-center">
-                                <div class="socials mt-20">
-                                    <a href="#url">
-                                        <span class="fa fa-facebook-f"></span>
-                                    </a>
-                                    <a href="#url">
-                                        <span class="fa fa-twitter"></span>
-                                    </a>
-                                    <a href="#url">
-                                        <span class="fa fa-instagram"></span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end team member -->
-                    <div class="col-lg-3 col-6 team-wrap mt-lg-0 mt-5">
-                        <div class="team-member last text-center">
-                            <div class="team-img">
-                                <img src="{{ secure_asset('images/testi2.jpg')}}" alt="" class="radius-image">
-                            </div>
-                            <a href="#url" class="team-title">Mr Chola PATRICK</a>
-                            <div class="team-details text-center">
-                                <div class="socials mt-20">
-                                    <a href="#url">
-                                        <span class="fa fa-facebook-f"></span>
-                                    </a>
-                                    <a href="#url">
-                                        <span class="fa fa-twitter"></span>
-                                    </a>
-                                    <a href="#url">
-                                        <span class="fa fa-instagram"></span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end team member -->
-                    <div class="col-lg-3 col-6 team-wrap mt-lg-0 mt-5">
-                        <div class="team-member last text-center">
-                            <div class="team-img">
-                                <img src="{{ secure_asset('images/testi3.jpg')}}" alt="" class="radius-image">
-                            </div>
-                            <a href="#url" class="team-title">Mr Gilles DAHOUE</a>
-                            <div class="team-details text-center">
-                                <div class="socials mt-20">
-                                    <a href="#url">
-                                        <span class="fa fa-facebook-f"></span>
-                                    </a>
-                                    <a href="#url">
-                                        <span class="fa fa-twitter"></span>
-                                    </a>
-                                    <a href="#url">
-                                        <span class="fa fa-instagram"></span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end team member -->
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- //team sections -->
-
-    <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
+    <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+		<div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content modal-popup">
 				<a href="#" class="close-link"><i class="icon_close_alt2"></i></a>
 				<h3 class="white">Nous Contacter</h3>

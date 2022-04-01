@@ -16,9 +16,9 @@
         rel="stylesheet">
     <link href="//fonts.googleapis.com/css2?family=Sail&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="{{ secure_asset('css/style-starter.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style-starter.css') }}">
 
-    <link rel="stylesheet" href="{{ secure_asset('css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
 
 
 
@@ -32,7 +32,7 @@
 
                 <!-- Logo -->
                 <a class="navbar-brand" href="{{url('/')}}">
-                    <img src="{{ secure_asset('images/massali.png') }}" alt="Your logo" title="Your logo" style="height:35px;" />
+                    <img src="{{ asset('images/massali.png') }}" alt="Your logo" title="Your logo" style="height:35px;" />
                 </a>
                  <!-- //Logo -->
 
@@ -168,21 +168,7 @@
                     @endauth
                     </ul>
                 </div>
-                <!-- toggle switch for light and dark theme -->
-                <div class="cont-ser-position">
-                    <nav class="navigation">
-                        <div class="theme-switch-wrapper">
-                            <label class="theme-switch" for="checkbox">
-                                <input type="checkbox" id="checkbox">
-                                <div class="mode-container">
-                                    <i class="gg-sun"></i>
-                                    <i class="gg-moon"></i>
-                                </div>
-                            </label>
-                        </div>
-                    </nav>
-                </div>
-                <!-- //toggle switch for light and dark theme -->
+                
             </nav>
         </div>
     </header>
@@ -223,15 +209,15 @@
 
     <!-- common jquery plugin -->
 
-    <script src="{{ secure_asset('js/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
     <!-- //common jquery plugin -->
 
     <!-- slider-js -->
 
-    <script src=" {{ secure_asset('js/jquery.min.js') }}"></script>
-    <script src="{{ secure_asset('js/modernizr-2.6.2.min.js') }}"></script>
+    <script src=" {{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/modernizr-2.6.2.min.js') }}"></script>
 
-    <script src="{{ secure_asset('js/jquery.zoomslider.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.zoomslider.min.js') }}"></script>
 
     <script>
         $(document).ready(function () {
@@ -262,7 +248,7 @@
 
     <!-- theme switch js (light and dark)-->
 
-    <script src="{{ secure_asset('js/theme-change.js') }}"></script>
+    <script src="{{ asset('js/theme-change.js') }}"></script>
     <script>
         function autoType(elementClass, typingSpeed) {
             var thhis = $(elementClass);
@@ -341,49 +327,9 @@
 
     <!--bootstrap-->
 
-    <script src="{{ secure_asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <!-- //bootstrap-->
     <!-- //Js scripts -->
-
-
-    {{-- <script type="text/javascript">
-        $('body').on('keyup','#search-form', function(){
-            const searchQword=$(this).val();
-
-            $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-
-            $.ajax({
-                method: 'POST',
-                url: '{{ route("search_achat") }}',
-                dataType: 'json',
-                data: {
-                     searchQword:searchQword
-                },
-                success:function(response){
-                    
-                   var tableRow='';
-                   $('#transactions').html('');
-                   
-                   $.each(response,function(index,trs){
-                    tableRow='<tr><td>'+index+'</td><td>'+
-
-                        trs.event_name+'</td><td>'+trs.type_id+'</td><td>'
-                         trs.price +'FCFA'+'</td><td>'+
-                        event_status(trs.event_id)+'</td><td>'+
-                            trs.created_at +'</td></tr>';
-                            $('#transactions').append(tableRow);
-                   });
-
-                   
-                   
-                }
-            });
-        });
-     </script>  --}}
 </body>
 
 

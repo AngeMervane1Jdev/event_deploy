@@ -1,7 +1,7 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" >
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!-- <link rel="stylesheets" href="{{ secure_asset('css/register.css')}}"> -->
+<!-- <link rel="stylesheets" href="{{ asset('css/register.css')}}"> -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 <!------ Include the above in your HEAD tag ---------->
 <!doctype html>
@@ -22,7 +22,7 @@
         rel="stylesheet">
     <link href="//fonts.googleapis.com/css2?family=Sail&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="{{ secure_asset('css/start1.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/start1.css') }}">
 </head>
 
 <header id="site-header" class="fixed-top">
@@ -31,7 +31,7 @@
 
                   <!-- Logo -->
                   <a class="navbar-brand" href="{{url('/')}}">
-                    <img src="{{ secure_asset('images/massali.png') }}" alt="Your logo" title="Your logo" style="height:35px;" />
+                    <img src="{{ asset('images/massali.png') }}" alt="Your logo" title="Your logo" style="height:35px;" />
                 </a>
                  <!-- //Logo -->
                 <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse"
@@ -89,21 +89,6 @@
                     @endif
                     </ul>
                 </div>
-                <!-- toggle switch for light and dark theme -->
-                <div class="cont-ser-position">
-                    <nav class="navigation">
-                        <div class="theme-switch-wrapper">
-                            <label class="theme-switch" for="checkbox">
-                                <input type="checkbox" id="checkbox">
-                                <div class="mode-container">
-                                    <i class="gg-sun"></i>
-                                    <i class="gg-moon"></i>
-                                </div>
-                            </label>
-                        </div>
-                    </nav>
-                </div>
-                <!-- //toggle switch for light and dark theme -->
             </nav>
         </div>
     </header>
@@ -114,8 +99,8 @@
                 <section class="w3l-breadcrumb">
                     <div class="container">
                         <ul class="breadcrumbs-custom-path">
-                            <li><a href="/">Accueil</a></li>
-                            <li class="active" style="color: black"><span class="fa fa-chevron-right mx-2" aria-hidden="true"></span> Inscription</li>
+                            <li><a href="/" style="font-size:20px;">Accueil</a></li>
+                            <li class="active" style="color: #ff5100"><span class="fa fa-chevron-right mx-2" aria-hidden="true"></span> Inscription</li>
                         </ul>
                     </div>
                 </section>
@@ -233,7 +218,7 @@
 
                                                 <input name="type" value=1 id="type" type="number" hidden/>
                                                 <h3 class="text-center text-dark mb-3">Informations agence</h3>
-                                                <div class="row" style="padding-left: 10%;padding-right: 10%; margin-top:0px">
+                                                <div class="row class_row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                         <input id="agence_name" placeholder="Nom agence" type="text" class="form-control @error('agence_name') is-invalid @enderror" name="agence_name" value="{{ old('agence_name') }}"  autocomplete="agence_name">
@@ -374,7 +359,7 @@
 
 
 
-<script src="{{ secure_asset('js/index.js') }}"></script>
+<script src="{{ asset('js/index.js') }}"></script>
 
 <!-- copyright -->
 <section class="w3l-copyright">
@@ -422,15 +407,15 @@
 
 <!-- common jquery plugin -->
 
-<script src="{{ secure_asset('js/jquery-3.3.1.min.js') }}"></script>
+<script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
 <!-- //common jquery plugin -->
 
 <!-- slider-js -->
 
-<script src=" {{ secure_asset('js/jquery.min.js') }}"></script>
-<script src="{{ secure_asset('js/modernizr-2.6.2.min.js') }}"></script>
+<script src=" {{ asset('js/jquery.min.js') }}"></script>
+<script src="{{ asset('js/modernizr-2.6.2.min.js') }}"></script>
 
-<script src="{{ secure_asset('js/jquery.zoomslider.min.js') }}"></script>
+<script src="{{ asset('js/jquery.zoomslider.min.js') }}"></script>
 
 <script>
     $(document).ready(function () {
@@ -461,7 +446,7 @@
 
 <!-- theme switch js (light and dark)-->
 
-<script src="{{ secure_asset('js/theme-change.js') }}"></script>
+<script src="{{ asset('js/theme-change.js') }}"></script>
 <script>
     function autoType(elementClass, typingSpeed) {
         var thhis = $(elementClass);
@@ -540,122 +525,223 @@
 
 <!--bootstrap-->
 
-<script src="{{ secure_asset('js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('js/bootstrap.min.js') }}"></script>
 
 
 
 
 <style>
-   .register{
+@media (max-width:45rem){
+    .register{
     background: -webkit-linear-gradient(left, #ff5100 0%, #000);
     margin-top: 3%;
     padding: 3%;
+    }
+
+    .radius{
+        border-radius: 25px ;
+    }
+  
+    .register-left{
+        text-align: center;
+        color: #fff;
+        margin-top: 4%;
+    }
+
+    .register-right{
+        background: #f8f9fa;
+    }
+    .register-left img{
+        margin-top: 15%;
+        margin-bottom: 5%;
+        width: 25%;
+        -webkit-animation: mover 2s infinite  alternate;
+        animation: mover 1s infinite  alternate;
+    }
+    @-webkit-keyframes mover {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(-20px); }
+    }
+    @keyframes mover {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(-20px); }
+    }
+    /* .register-left p{
+        font-weight: lighter;
+        padding: 12%;
+        margin-top: -9%;
+    } */
+ 
+    .btnRegister{
+        border: none;
+        padding: 2%;
+        background: #ff5100;
+        color: #fff;
+        font-weight: 600;
+        cursor: pointer;
+    }
+    .register .nav-tabs{
+        margin-top: 3%;
+        width: 100%;
+        border: none;
+        background: #ff5100;
+        border-radius: 1.5rem;
+      
+        margin-bottom: 10px;
+    }
+    .register .nav-tabs .nav-link{
+        padding: 2%;
+        height: 34px;
+       
+        font-weight: 600;
+        color: #fff;
+        border-top-right-radius: 1.5rem;
+        border-bottom-right-radius: 1.5rem;
+    }
+    .register .nav-tabs .nav-link:hover{
+        border:0px;
+    }
+    .register .nav-tabs .nav-link.active{
+
+        color: #ff5100;
+        border: 2px solid #ff5100;
+        border-top-left-radius: 1.5rem;
+        border-bottom-left-radius: 1.5rem;
+    }
+    .register-heading{
+       display:none;
+    }
 }
 
-.radius{
-     border-radius: 25px ;
-}
-.register2 {
-    /* background: var(--bg-light); */
-    background: url(../images/bgp2.jpg) no-repeat top;
-    background-size: cover;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    -ms-background-size: cover;
-    z-index: 1;
-   
-}
-.register-left{
-    text-align: center;
-    color: #fff;
-    margin-top: 4%;
-}
-.register-left input{
-    border: none;
-    border-radius: 1.5rem;
-    padding: 2%;
-    width: 60%;
-    background: #f8f9fa;
-    font-weight: bold;
-    color: #383d41;
-    margin-top: 30%;
-    margin-bottom: 3%;
-    cursor: pointer;
-}
-.register-right{
-    background: #f8f9fa;
-    border-top-left-radius: 10% 50%;
-    border-bottom-left-radius: 10% 50%;
-}
-.register-left img{
-    margin-top: 15%;
-    margin-bottom: 5%;
-    width: 25%;
-    -webkit-animation: mover 2s infinite  alternate;
-    animation: mover 1s infinite  alternate;
-}
-@-webkit-keyframes mover {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(-20px); }
-}
-@keyframes mover {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(-20px); }
-}
-.register-left p{
-    font-weight: lighter;
-    padding: 12%;
-    margin-top: -9%;
-}
-.register .register-form{
-    padding-top: 10%;
-    padding-right: 10%;
-    padding-left: 10%;
-    margin-top: 10%;
-}
-.btnRegister{
-    float: right;
-    margin-top: 10%;
-    border: none;
-    border-radius: 1.5rem;
-    padding: 2%;
-    background: #ff5100;
-    color: #fff;
-    font-weight: 600;
-    width: 50%;
-    cursor: pointer;
-}
-.register .nav-tabs{
+
+
+
+
+@media(min-width: 45rem){
+    .register{
+    background: -webkit-linear-gradient(left, #ff5100 0%, #000);
     margin-top: 3%;
-    border: none;
-    background: #ff5100;
-    border-radius: 1.5rem;
-    width: 28%;
-    float: right;
-}
-.register .nav-tabs .nav-link{
-    padding: 2%;
-    height: 34px;
-    font-weight: 600;
-    color: #fff;
-    border-top-right-radius: 1.5rem;
-    border-bottom-right-radius: 1.5rem;
-}
-.register .nav-tabs .nav-link:hover{
-    border: none;
-}
-.register .nav-tabs .nav-link.active{
-    width: 100px;
-    color: #ff5100;
-    border: 2px solid #ff5100;
-    border-top-left-radius: 1.5rem;
-    border-bottom-left-radius: 1.5rem;
-}
-.register-heading{
-    text-align: center;
-    margin-top: 8%;
-    margin-bottom: -15%;
-    color: #495057;
+    padding: 3%;
+    }
+
+    .radius{
+        border-radius: 25px ;
+    }
+    .register2 {
+        /* background: var(--bg-light); */
+        background: url(../images/bgp2.jpg) no-repeat top;
+        background-size: cover;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        -ms-background-size: cover;
+        z-index: 1;
+    
+    }
+    .register-left{
+        text-align: center;
+        color: #fff;
+        margin-top: 4%;
+    }
+    .register-left input{
+        border: none;
+        border-radius: 1.5rem;
+        padding: 2%;
+        width: 60%;
+        background: #f8f9fa;
+        font-weight: bold;
+        color: #383d41;
+        margin-top: 30%;
+        margin-bottom: 3%;
+        cursor: pointer;
+    }
+    .register-right{
+        background: #f8f9fa;
+        border-top-left-radius: 10% 50%;
+        border-bottom-left-radius: 10% 50%;
+    }
+    .register-left img{
+        margin-top: 15%;
+        margin-bottom: 5%;
+        width: 25%;
+        -webkit-animation: mover 2s infinite  alternate;
+        animation: mover 1s infinite  alternate;
+    }
+    @-webkit-keyframes mover {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(-20px); }
+    }
+    @keyframes mover {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(-20px); }
+    }
+    .register-left p{
+        font-weight: lighter;
+        padding: 12%;
+        margin-top: -9%;
+    }
+    .register .register-form{
+        padding-top: 10%;
+        padding-right: 10%;
+        padding-left: 10%;
+        margin-top: 10%;
+    }
+    .btnRegister{
+        float: right;
+        margin-top: 10%;
+        border: none;
+        border-radius: 1.5rem;
+        padding: 2%;
+        background: #ff5100;
+        color: #fff;
+        font-weight: 600;
+        width: 50%;
+        cursor: pointer;
+    }
+    /* .register .nav-tabs{
+        margin-top: 3%;
+        border: none;
+        background: #ff5100;
+        border-radius: 1.5rem;
+        width: 28%;
+        float: right;
+    } */
+    .nav-tabs{
+        margin-top:10px;
+        margin-right: 10px;
+        border: none;
+        background: #ff5100;
+        border-radius: 1.5rem;
+       display:flex;
+        float: right;
+    }
+    .register .nav-tabs .nav-link{
+        width: 100%;
+        padding: 2%;
+        height: 34px;
+        font-weight: 600;
+        color: #fff;
+        border-top-right-radius: 1.5rem;
+        border-bottom-right-radius: 1.5rem;
+    }
+    .register .nav-tabs .nav-link:hover{
+        border: none;
+    }
+    .register .nav-tabs .nav-link.active{
+        width: 110px;
+        color: #ff5100;
+        border: 2px solid #ff5100;
+        border-top-left-radius: 1.5rem;
+        border-bottom-left-radius: 1.5rem;
+    }
+    .register-heading{
+        text-align: center;
+        margin-top: 8%;
+        margin-bottom: -15%;
+        color: #495057;
+    }
+    .class_row{
+        padding-left: 10%;padding-right: 10%; margin-top:0px
+    }
 }
 </style>

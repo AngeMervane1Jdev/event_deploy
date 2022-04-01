@@ -1,7 +1,7 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" >
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!-- <link rel="stylesheets" href="{{ secure_asset('css/register.css')}}"> -->
+<!-- <link rel="stylesheets" href="{{ asset('css/register.css')}}"> -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
 <!doctype html>
@@ -22,7 +22,7 @@
         rel="stylesheet">
     <link href="//fonts.googleapis.com/css2?family=Sail&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="{{ secure_asset('css/start1.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/start1.css') }}">
 </head>
 
 
@@ -32,7 +32,7 @@
 
                  <!-- Logo -->
                  <a class="navbar-brand" href="{{url('/')}}">
-                    <img src="{{ secure_asset('images/massali.png') }}" alt="Your logo" title="Your logo" style="height:35px;" />
+                    <img src="{{ asset('images/massali.png') }}" alt="Your logo" title="Your logo" style="height:35px;" />
                 </a>
                  <!-- //Logo -->
                 <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse"
@@ -90,21 +90,7 @@
                     @endif
                     </ul>
                 </div>
-                <!-- toggle switch for light and dark theme -->
-                <div class="cont-ser-position">
-                    <nav class="navigation">
-                        <div class="theme-switch-wrapper">
-                            <label class="theme-switch" for="checkbox">
-                                <input type="checkbox" id="checkbox">
-                                <div class="mode-container">
-                                    <i class="gg-sun"></i>
-                                    <i class="gg-moon"></i>
-                                </div>
-                            </label>
-                        </div>
-                    </nav>
-                </div>
-                <!-- //toggle switch for light and dark theme -->
+               
             </nav>
         </div>
     </header>
@@ -120,8 +106,8 @@
                 <section class="w3l-breadcrumb">
                     <div class="container">
                         <ul class="breadcrumbs-custom-path">
-                            <li><a href="/">Accueil</a></li>
-                            <li class="active" style="color: white"><span class="fa fa-chevron-right mx-2" aria-hidden="true"></span> Connexion</li>
+                            <li><a href="/" style="font-size:20px;">Accueil</a></li>
+                            <li class="active" style="color: #ff5100"><span class="fa fa-chevron-right mx-2" aria-hidden="true"></span> Connexion</li>
                         </ul>
                     </div>
                 </section>
@@ -148,58 +134,19 @@
 
                 </div>
 
-               <!--  <div class="contacts12-main">
-                <form method="POST" action="{{ route('login') }}" class="login">
-                        @csrf
-
-                                <input style="margin-bottom:15px;" id="email" type="email" placeholder="Adresse Email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"  autocomplete="email">
-
-                                    @error('email')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-
-
-                                  <input style="margin-bottom:15px;" id="password" type="password" placeholder="Mot de passe" class="form-control @error('password') is-invalid @enderror" name="password"  autocomplete="new-password">
-
-                                    @error('password')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-
-                            <button type="submit" class="btn btn-style">Se connecter</button>
-                            @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                    </form>
-                </div> -->
-
                       <div class="container register radius ">
                             <div class="row">
-                                <div class="col-md-3 register-left">
-                                    <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
-                                    <h3>Un évènement, une histoire</h3>
-                                    <span style="color:#fff">Créez votre compte au près de nous. Créer où participer à des évènements inoubliables</span><br/>
-                                    <br/>
-                                    <a class="btn" style="background-color: #ff5100;color:#fff" href="{{route('register')}}">S'inscrire</a>
-                                    <br/>
-                                    <br/>
-                                </div>
-                                <div class="col-md-6 register-right">                                 
-                                    <div class="tab-content" id="myTabContent">
+                               
+                                <div class="container register-right">  
                                     
-                                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                        <div >
                                             <form method="POST" action="{{ route('login') }}" enctype="multipart/form-data"
                                                 >
                                                     @csrf
-                                                <h3 class="register-heading">Welcome</h3>
-                                                <div class="row register-form ali">
+                                                <h3 class="register-heading text-light">Welcome</h3>
+                                                <div class="register-form">
                                                    
-                                                    <div class="form-group" style=" margin-left: 70px;">
+                                                    <div >
                                                       <input style="margin-bottom:15px;" id="email" type="email" placeholder="Adresse Email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"  autocomplete="email">
 
                                                         @error('email')
@@ -216,23 +163,23 @@
                                                                     <strong>{{ $message }}</strong>
                                                                 </span>
                                                             @enderror
-
-                                                                <!-- <button type="submit" class="btn btn-style">Se connecter</button> -->
-                                                            <div>
-                                                                     <input type="submit" class="btnRegister"  value="SE CONNECTER"/>
-                                                                
+                                                                  <input type="submit" class="btnRegister"  value="Se connecter"/>
                                                                 @if (Route::has('password.request'))
-                                                                        <a class="btn btn-link" href="{{ route('password.request') }}">
-                                                                            {{ __('Forgot Your Password?') }}
+                                                                        <a class="btn text-dark" href="{{ route('password.request') }}">
+                                                                            {{ __('Mot de passe oublié?') }}
                                                                         </a>
                                                                     @endif
+                                                                <!-- <button type="submit" class="btn btn-style">Se connecter</button> -->
+                                                            <div>
+                                    
+                                                                   
                                                             </div>
                                                         </div>
 
                                                     </div>
                                                 </form>
                                             </div>
-                                        </div>
+                                       
                                     </div>
                                 </div>
                             </div>
@@ -328,15 +275,15 @@
 
     <!-- common jquery plugin -->
 
-    <script src="{{ secure_asset('js/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
     <!-- //common jquery plugin -->
 
     <!-- slider-js -->
 
-    <script src=" {{ secure_asset('js/jquery.min.js') }}"></script>
-    <script src="{{ secure_asset('js/modernizr-2.6.2.min.js') }}"></script>
+    <script src=" {{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/modernizr-2.6.2.min.js') }}"></script>
 
-    <script src="{{ secure_asset('js/jquery.zoomslider.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.zoomslider.min.js') }}"></script>
 
     <script>
         $(document).ready(function () {
@@ -367,7 +314,7 @@
 
     <!-- theme switch js (light and dark)-->
 
-    <script src="{{ secure_asset('js/theme-change.js') }}"></script>
+    <script src="{{ asset('js/theme-change.js') }}"></script>
     <script>
         function autoType(elementClass, typingSpeed) {
             var thhis = $(elementClass);
@@ -446,7 +393,7 @@
 
     <!--bootstrap-->
 
-    <script src="{{ secure_asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <!-- //bootstrap-->
     <!-- //Js scripts -->
 </body>
@@ -454,119 +401,73 @@
 </html>
 
 <style>
-   .register{
+@media(max-width:45rem){
+    .register{
     background: -webkit-linear-gradient(left, #ff5100 0%, #000);
     margin-top: 3%;
     padding: 3%;
-}
+    }
 
-.radius{
-     border-radius: 25px ;
-}
-.register2 {
-    /* background: var(--bg-light); */
-    background: url(../images/bgp2.jpg) no-repeat top;
-    background-size: cover;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    -ms-background-size: cover;
-    z-index: 1;
-   
-}
-.register-left{
+    .radius{
+        border-radius: 12px ;
+    }
+  
+    .register-left p{
+        font-weight: lighter;
+        padding: 12%;
+        margin-top: -9%;
+    }
+    .register .register-form{
+        padding:10%;
+        margin-top: 10%;
+        
+    }
+
+    .register-heading{
+        text-align: center;
+        margin-top: 8%;
+        margin-bottom: -15%;
+        color: #495057;
+    }
+    .btnRegister{
     text-align: center;
-    color: #fff;
-    margin-top: 4%;
-}
-.register-left input{
-    border: none;
-    border-radius: 1.5rem;
-    padding: 2%;
-    width: 60%;
-    background: #f8f9fa;
-    font-weight: bold;
-    color: #383d41;
-    margin-top: 30%;
-    margin-bottom: 3%;
-    cursor: pointer;
-}
-.register-right{
-    background: #f8f9fa;
-    border-top-left-radius: 20% 50%;
-    border-bottom-left-radius: 20% 50%;
-    border-top-right-radius: 20% 50%;
-    border-bottom-right-radius: 20% 50%;
-
-}
-.register-left img{
-    margin-top: 15%;
-    margin-bottom: 5%;
-    width: 25%;
-    -webkit-animation: mover 2s infinite  alternate;
-    animation: mover 1s infinite  alternate;
-}
-@-webkit-keyframes mover {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(-20px); }
-}
-@keyframes mover {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(-20px); }
-}
-.register-left p{
-    font-weight: lighter;
-    padding: 12%;
-    margin-top: -9%;
-}
-.register .register-form{
-    padding-top: 10%;
-    padding-right: 10%;
-    padding-left: 10%;
-    margin-top: 10%;
-}
-.btnRegister{
-    float: right;
     margin-top: 10%;
     border: none;
     border-radius: 1.5rem;
-    padding: 2%;
+    padding: 5%;
     background: #ff5100;
     color: #fff;
     font-weight: 600;
-    width: 50%;
     cursor: pointer;
 }
-.register .nav-tabs{
-    margin-top: 3%;
-    border: none;
-    background: #ff5100;
-    border-radius: 1.5rem;
-    width: 28%;
-    float: right;
 }
-.register .nav-tabs .nav-link{
-    padding: 2%;
-    height: 34px;
-    font-weight: 600;
-    color: #fff;
-    border-top-right-radius: 1.5rem;
-    border-bottom-right-radius: 1.5rem;
+@media (min-width:46rem){
+        .register{
+            text-align: center;
+            background: -webkit-linear-gradient(left, #ff5100 0%, #000);
+            margin-top: 3%;
+            padding: 3%;
+         }
+
+
+        .register-right{
+            background: #f8f9fa;
+            text-align: center;
+            height:200px;
+            width:50%;
+
+        }
+
+
+        .btnRegister{
+            text-align: center;
+            border: none;
+            border-radius: 1.5rem;
+            background: #ff5100;
+            color: #fff;
+            cursor: pointer;
+        }
 }
-.register .nav-tabs .nav-link:hover{
-    border: none;
-}
-.register .nav-tabs .nav-link.active{
-    width: 100px;
-    color: #ff5100;
-    border: 2px solid #ff5100;
-    border-top-left-radius: 1.5rem;
-    border-bottom-left-radius: 1.5rem;
-}
-.register-heading{
-    text-align: center;
-    margin-top: 8%;
-    margin-bottom: -15%;
-    color: #495057;
-}
+
+
 </style>
