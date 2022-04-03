@@ -8,7 +8,7 @@
 	<div class="course">
 		<div class="course-preview">
 			<h6 style="color:white;">Ticket</h6>
-            <p class="prix2">XOF {{$ticket->price}}</p>
+            <p class="prix2" >XOF {{$ticket->price}}</p>
 		</div>
 		<div class="course-info ">
 			<h6>Numéro</h6>
@@ -20,14 +20,11 @@
             @else
                   SIMPLE
             @endif
-            @auth
-            @if(Auth::user()->type_user_id==3)
+            </h2>
 
             <p><a href="{{ route('new_portemonnaie',[$ticket->id,$ticket->price]) }}" class=" show-me-ticket" style="background-color:#f15000;color:white;border-radius:10px" >Acheter</a>
             <a href="{{ route('add_ticket_to_panier',$ticket->id) }}" class=" show-me-ticket" style="background-color:#f15000;color:white;border-radius:10px "  >Ajouter au panier</a></p>
 
-            @endif
-            @endauth
 			<h1 class="prix">XOF {{$ticket->price}}</h1>
             
             
@@ -41,9 +38,7 @@
                                     <a href="{{route('event_ticket_delete',$ticket->id)}}" class="btn btn-danger" >Supprimer</a>
                                
                                 @endif
-                        @else
-                            <a href="{{ route('new_portemonnaie',[$ticket->id,$ticket->price]) }}" class="btn btn-sucess">Acheter</a>
-                            <a href="{{ route('add_ticket_to_panier',$ticket->id) }}" class="btn btn-sucess">Ajouter au panier</a>
+                    
 
                         @endauth
                     </div>

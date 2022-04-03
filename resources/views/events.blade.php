@@ -120,7 +120,6 @@
                         <div class="btns" style="text-align:center; margin-top:11px">
                             <a href="{{route('show_event',$event->id)}}" class="btn btn-yellow">Details</a>
 
-                            <a href="{{route('show_event',$event->id)}}" class="btn btn-black">Ticket</a>
 
                         </div>
                         

@@ -212,7 +212,7 @@ class PanierController extends Controller
         $panier=Panier::findOrCreate();
         $is_panier=1;
         if (count(json_decode($panier->tickets_validated,true))==0) {
-            return redirect()->back()->withMessage("Veuillez cocher au moins un ticket");
+            return redirect()->back()->withMessage(1);
         }
         return view('/portemonnaie/new',compact("id","is_panier"));
     }

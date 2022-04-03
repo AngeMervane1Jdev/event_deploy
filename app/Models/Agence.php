@@ -18,6 +18,7 @@ class Agence extends Model
         'name',
         'type',
         'description',
+        'adress',
         'banner',
         'agence_name',
         'logo',

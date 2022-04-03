@@ -30,9 +30,9 @@
                     <img src="https://img.icons8.com/material-outlined/24/fa314a/camera--v2.png"/>
                  </label >
               </div>
-              <h5 class="my-3">John Smith</h5>
+              <h5 class="my-3">{{Auth::user()->name}}</h5>
               <p class="text-muted mb-1">Administrateur</p>
-              <p class="text-muted mb-4">admin@gamil.com</p>
+              <p class="text-muted mb-4">{{Auth::user()->email}}</p>
               <div class=" justify-content-center mb-2">
                 <button type="button" class="btn btn-primary " onclick="affCache('ajouter')">Follow</button>
               
@@ -49,7 +49,7 @@
                   <p class="mb-0" style="color: black ; font-weight:bold">Full Name</p>
                 </div>
                 <div class="col-sm-9">
-                  <p class="text-muted mb-0">Johnatan Smith</p>
+                  <p class="text-muted mb-0">{{Auth::user()->name}}</p>
                 </div>
               </div>
               <hr>
@@ -58,7 +58,7 @@
                   <p class="mb-0" class="mb-0" style="color: black ; font-weight:bold">Email</p>
                 </div>
                 <div class="col-sm-9">
-                  <p class="text-muted mb-0">example@example.com</p>
+                  <p class="text-muted mb-0">{{Auth::user()->email}}</p>
                 </div>
               </div>
               <hr>
@@ -67,7 +67,7 @@
                   <p class="mb-0" class="mb-0" style="color: black ; font-weight:bold">Phone</p>
                 </div>
                 <div class="col-sm-9">
-                  <p class="text-muted mb-0">(229) 234-5678</p>
+                  <p class="text-muted mb-0">{{Auth::user()->contact}}</p>
                 </div>
               </div>
             
