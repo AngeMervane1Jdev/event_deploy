@@ -18819,7 +18819,6 @@ a:hover {
         display: none;
     }
     .prix {
-        
         display: inline;
         color: black;
         font-size: 20px;
@@ -18860,6 +18859,7 @@ a:hover {
         display: flex;
         max-width: 100%;
         margin-bottom: 20px;
+        width: 300px;
     }
     
     .course h6 {
@@ -18891,7 +18891,6 @@ a:hover {
     .prix{
         display: none;
     }.prix2{
-        display:inline-block
         font-size: 10px;
     }
 

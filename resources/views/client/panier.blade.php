@@ -3,7 +3,7 @@
 @section('content')
 
  <!-- inner banner -->
- <div class="inner-banner " style="background: url('{{secure_asset('images/inner4.jpg')}}') no-repeat top; background-size: cover;">
+ <div class="inner-banner " style="background: url('{{ secure_asset('images/inner4.jpg')}}') no-repeat top; background-size: cover;">
      
         <section class="w3l-breadcrumb">
             <div class="container py-md-5 py-4">
@@ -20,7 +20,7 @@
     <div class="blog-section py-5" id="events">
         <div class="container py-md-5 py-4">
         @if (session()->has('message'))
-            <div class="alert alert-success" id="success-alert">
+            <div class="alert alert-success" id="success-alert" style="float: inline-start;">
                 <button type="button" class="close" data-dismiss="alert">x</button>
                 <strong>Message! </strong>{{ session('message') }}.
             </div>
@@ -42,7 +42,7 @@
 
 
             <div class="container">
-                <link rel="stylesheet" href="{{secure_asset('css/table.css')}}">
+                <link rel="stylesheet" href="{{ secure_asset('css/table.css')}}">
                 @if ($tickets!=null)
                 <div class="seach_events" >
                     <div class="input-group ">

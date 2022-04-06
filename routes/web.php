@@ -22,8 +22,9 @@ use App\Models\Categorie;
     Route::get('Admin', function(){
         return view('admin.app');})->name('admin');
     
-    Route::get('Admin/home', function(){
-        return view('admin.home');})->name('admin_home');
+    Route::get('Admin/home',[\App\Http\Controllers\AdminController::class,"home"])->name('admin_home');
+    Route::get('Admin/event/{id}/liste-des-transactions',[\App\Http\Controllers\AdminController::class,"transactions"])->name('transactions');
+
 
         Route::get('Admin/profile', function(){
             return view('admin.profile');})->name('admin_profile');

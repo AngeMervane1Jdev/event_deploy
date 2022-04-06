@@ -24,6 +24,26 @@ class AdminController extends Controller
          $this->modelUser=new User;
     }
 
+    public function transactions($id)
+    {
+
+        $transactions=Transaction::all()->whereStrict("event_id",$id);
+        return view("/admin/transactions",compact('transactions'));
+    }
+
+    public function home()
+    {
+        $users=count(User::all());
+        $transactions=Transaction::all();
+        $tickets=count(Tiket::all());
+        $amount=0;
+        foreach ($transactions as $value) {
+         $amount=+$value->amount;   
+        }
+        $trs=count($transactions);
+        return view('admin/home',compact('users','amount','trs','tickets'));
+    }
+
     public function show() {
         $users=User::all();
         return view('admin.listOrganize',compact('users'));

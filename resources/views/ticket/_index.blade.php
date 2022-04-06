@@ -20,9 +20,10 @@
             @else
                   SIMPLE
             @endif
+            </h2>
 
-            <p><a href="{{ route('new_portemonnaie',[$ticket->id,$ticket->price]) }}" class=" show-me-ticket" style="background-color:#f15000;color:white;border-radius:10px" >Acheter</a>
-            <a href="{{ route('add_ticket_to_panier',$ticket->id) }}" class=" show-me-ticket" style="background-color:#f15000;color:white;border-radius:10px "  >Ajouter au panier</a></p>
+            <p><a href="{{ route('new_portemonnaie',[$ticket->id,$ticket->price]) }}" class=" show-me-ticket" style="background-color:#f15000;color:white;border-radius:10px;padding-left:5px;padding-right:5px" >Acheter</a>
+            <a href="{{ route('add_ticket_to_panier',$ticket->id) }}" class=" show-me-ticket" style="background-color:#f15000;color:white;border-radius:10px ;padding-left:5px;padding-right:5px"  >Ajouter au panier</a></p>
 
 			<h1 class="prix">XOF {{$ticket->price}}</h1>
             
@@ -31,15 +32,14 @@
 	</div>
 </div>
        <div class="btns" style="text-align: center;">
-                        @auth
-                                @if( Auth::user()->id== $event->user()->get()[0]->id)
-                                    <a href="{{route('event_ticket_edit',$ticket->id)}}" class="btn btn-info">Modifier</a>
-                                    <a href="{{route('event_ticket_delete',$ticket->id)}}" class="btn btn-danger" >Supprimer</a>
-                               
-                                @endif
-                      
-                        @endauth
-                    </div>
+            @auth
+                    @if( Auth::user()->id== $event->user()->get()[0]->id)
+                        <a href="{{route('event_ticket_edit',$ticket->id)}}" class="btn btn-info">Modifier</a>
+                        <a href="{{route('event_ticket_delete',$ticket->id)}}" class="btn btn-danger" >Supprimer</a>
+                    
+                    @endif
+            @endauth
+        </div>
 @endforeach
 @endif
 

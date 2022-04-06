@@ -3,13 +3,13 @@
 
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb my-breadcrumb">
-        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+        <li class="breadcrumb-item"><a href="/Admin">Home</a></li>
         <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
     </ol>
 </nav>
 <div class="welcome-msg pt-3 pb-4">
-    <h1>Hi <span class="text-primary">Mfid</span>, Soyez la bienvenue</h1>
-    <p>Very detailed & featured admin.</p>
+    <h1>Salut <span class="text-primary">{{Auth::user()->name}}</span>, Soyez la bienvenue</h1>
+
 </div>
 
 <!-- statistics data -->
@@ -21,15 +21,15 @@
                 <div class="col-sm-6 pr-sm-2 statistics-grid">
                     <div class="card card_border border-primary-top p-4">
                         <i class="lnr lnr-users"> </i>
-                        <h3 class="text-primary number">29.75 M</h3>
-                        <p class="stat-text">Total Users</p>
+                        <h3 class="text-primary number">{{$users}}</h3>
+                        <p class="stat-text">Total utilisateurs</p>
                     </div>
                 </div>
                 <div class="col-sm-6 pl-sm-2 statistics-grid">
                     <div class="card card_border border-primary-top p-4">
-                        <i class="lnr lnr-eye"> </i>
-                        <h3 class="text-secondary number">51.25 K</h3>
-                        <p class="stat-text">Daily Visitors</p>
+                        <i class="lnr lnr-cart"> </i>
+                        <h3 class="text-secondary number">{{$trs}}</h3>
+                        <p class="stat-text">Total transactions</p>
                     </div>
                 </div>
             </div>
@@ -38,16 +38,16 @@
             <div class="row">
                 <div class="col-sm-6 pr-sm-2 statistics-grid">
                     <div class="card card_border border-primary-top p-4">
-                        <i class="lnr lnr-cloud-download"> </i>
-                        <h3 class="text-success number">166.89 M</h3>
-                        <p class="stat-text">Downloads</p>
+                        <i class="lnr lnr-star"> </i>
+                        <h3 class="text-success number">{{$tickets}}</h3>
+                        <p class="stat-text">Total tickets</p>
                     </div>
                 </div>
                 <div class="col-sm-6 pl-sm-2 statistics-grid">
                     <div class="card card_border border-primary-top p-4">
-                        <i class="lnr lnr-cart"> </i>
-                        <h3 class="text-danger number">1,250k</h3>
-                        <p class="stat-text">Purchased</p>
+                        <i class="lnr lnr-store"> </i>
+                        <h3 class="text-danger number">{{$amount}}</h3>
+                        <p class="stat-text">Prix total de transactions</p>
                     </div>
                 </div>
             </div>

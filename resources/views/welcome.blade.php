@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-<link rel="stylesheet" href="{{secure_asset('css/card.css') }}">
+<link rel="stylesheet" href="{{ secure_asset('css/card.css') }}">
 
 @section('content')
     <section class="w3l-main-slider" id="home">
@@ -188,10 +188,10 @@
                                 <div class="face face1">
                                     <div class="content">
                                         @if($event->cover!=null)
-                                        <img src="{{secure_asset('Upload/events/Covers/'.$event->cover)}}" class="icon">
+                                        <img src="{{ secure_asset('Upload/events/Covers/'.$event->cover)}}" class="icon">
 
                                         @else
-                                        <img class="icon" src="{{secure_asset('images/logo.png')}}" alt="Image Title"  />
+                                        <img class="icon" src="{{ secure_asset('images/logo.png')}}" alt="Image Title"  />
                                         @endif
                                     </div>
                                 </div>
@@ -240,7 +240,7 @@
                         <div class="col-lg-6">
                             <div class="services-single d-flex p-sm-5 p-4">
                                 <div class="service-icon mr-sm-4 mr-3">
-                                    <img src="{{secure_asset('images/s3.png')}}" alt="" class="img-fluid">
+                                    <img src="{{ secure_asset('images/s3.png')}}" alt="" class="img-fluid">
                                 </div>
                                 <div class="services-content">
                                     <h5><a href="services.html">Ajouter un prometeur</a></h5>
@@ -252,7 +252,7 @@
                         <div class="col-lg-6">
                             <div class="services-single d-flex p-sm-5 p-4">
                                 <div class="service-icon mr-sm-4 mr-3">
-                                    <img src="{{secure_asset('images/s1.png')}}" alt="" class="img-fluid">
+                                    <img src="{{ secure_asset('images/s1.png')}}" alt="" class="img-fluid">
                                 </div>
                                 <div class="services-content">
                                     <h5><a href="services.html">Organiser un evènement</a></h5>
@@ -266,7 +266,7 @@
                         <div class="col-lg-6">
                             <div class="services-single d-flex p-sm-5 p-4 mb-lg-0">
                                 <div class="service-icon mr-sm-4 mr-3">
-                                    <img src="{{secure_asset('images/s2.png')}}" alt="" class="img-fluid">
+                                    <img src="{{ secure_asset('images/s2.png')}}" alt="" class="img-fluid">
                                 </div>
                                 <div class="services-content">
                                     <h5><a href="services.html">Publier votre evènement</a></h5>
@@ -278,7 +278,7 @@
                         <div class="col-lg-6">
                             <div class="services-single d-flex p-sm-5 p-4 mb-0">
                                 <div class="service-icon mr-sm-4 mr-3">
-                                    <img src="{{secure_asset('images/s4.png')}}" alt="" class="img-fluid">
+                                    <img src="{{ secure_asset('images/s4.png')}}" alt="" class="img-fluid">
                                 </div>
                                 <div class="services-content">
                                     <h5><a href="services.html">Evolution de L'évènement</a></h5>

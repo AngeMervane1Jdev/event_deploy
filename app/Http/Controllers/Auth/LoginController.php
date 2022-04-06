@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
+use App\Models\Tiket;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
+use App\Models\Transaction;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
@@ -41,8 +44,9 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, $user)
     {
-        if ( $user->is_admin ) {
-            return view('admin/home');
+        if ($user->is_admin ) {
+           
+           return redirect()->route('admin_home');
         }
 
     }

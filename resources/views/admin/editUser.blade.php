@@ -18,27 +18,27 @@
     }
 
     .profile-button {
-        background: :#3c53a2;
+        background: #3c53a2;
         box-shadow: none;
         border: none
     }
 
     .profile-button:hover {
-        background: :#3c53a2;
+        background: #3c53a2;
     }
 
     .profile-button:focus {
-        background: :#3c53a2;
+        background: #3c53a2;
         box-shadow: none
     }
 
     .profile-button:active {
-        background: :#3c53a2;
+        background: #3c53a2;
         box-shadow: none
     }
 
     .back:hover {
-        color: :#3c53a2;
+        color: #3c53a2;
         cursor: pointer
     }
   </style>

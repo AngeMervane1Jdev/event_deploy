@@ -1,8 +1,9 @@
 <?php
 
-use App\Models\Commande;
 use App\Models\Event;
 use App\Models\Tiket;
+use App\Models\Commande;
+use Illuminate\Support\Facades\DB;
 
 if (!function_exists("date_formater")) {
     function date_formater($date){
@@ -49,6 +50,18 @@ if (!function_exists("event_and_tiket")) {
 
 
        return $events;
+    }
+}
+
+if(!function_exists("tickeEvent")){
+    function tickeEvent($id){
+        $eventTicket=DB::table('type_tikets')
+        ->join('tikets','tikets.type_id','=','type_tikets.id')
+        ->join('events','tikets.event_id','=','events.id')
+        ->where('events.id','=',$id)
+        ->select('type_tikets.*','tikets.*')
+        ->get();
+        return $eventTicket;
     }
 }
 

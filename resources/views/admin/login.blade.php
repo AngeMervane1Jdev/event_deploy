@@ -16,7 +16,8 @@
             <h3 >Connexion <span></span></h3>
         </div>
         <div class="card-body1">
-            <form action="#" method="post">
+            <form method="post" action="{{ route('login') }}" >
+                @csrf
                 <div class="form-group">
                     <label for="exampleInputEmail1" class="input__label">Email address</label>
                     <input type="email" class="form-control input-style" id="exampleInputEmail1"
@@ -35,4 +36,6 @@
     </div>
     <!-- //forms 1 -->
 </section>
+
+
 @endsection

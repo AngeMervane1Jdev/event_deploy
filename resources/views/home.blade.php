@@ -3,7 +3,7 @@
 @section('content')
 
  <!-- inner banner -->
- <div class="inner-banner " style="background: url('{{secure_asset('images/in.jpg')}}') no-repeat top; background-size: cover;">
+ <div class="inner-banner " style="background: url('{{ secure_asset('images/in.jpg')}}') no-repeat top; background-size: cover;">
         <section class="w3l-breadcrumb">
             <div class="container py-md-5 py-4">
                 <h4 class="inner-text-title font-weight-bold text-white mb-sm-3 mb-2">Profil</h4>
@@ -26,10 +26,10 @@
                 <div class="card-bodys">
                   <div class="d-flex flex-column align-items-center text-center profile-pic">
                   @if(Auth::user()->profil_image!=null)
-                  <img src="{{secure_asset('profils/'.Auth::user()->profil_image)}}" width="150" class="rounded-circle">
+                  <img src="{{ secure_asset('profils/'.Auth::user()->profil_image)}}" width="150" class="rounded-circle">
 
                     @else
-                        <img src="{{secure_asset('images/user-admin.png')}}" id="profileImage" width="150" class="rounded-circle">
+                        <img src="{{ secure_asset('images/user-admin.png')}}" id="profileImage" width="150" class="rounded-circle">
                         @endif
                         <div class="file-input">
                             <form action="" method="get">

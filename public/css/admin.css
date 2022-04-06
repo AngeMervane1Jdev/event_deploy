@@ -16433,7 +16433,7 @@ a.github {
     color: var(--secondary);
 }
 
-.card_border:hover i.lnr.lnr-cloud-download {
+.card_border:hover i.lnr.lnr-star {
     color: var(--success);
 }
 
