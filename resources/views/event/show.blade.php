@@ -22,36 +22,16 @@
 <div class=" " id="events">
     @include("/event/slide")
     <div class="container py-md-5 py-4">
-        @if (session()->has('message'))
-
-        <a href="#modalOpen" id="modalContentin" class=" is-primary"></a>
-
-        <div class="modal" id="modalOpen">
-            <div class="modal-background"></div> <!-- Overlay arrière-plan -->
-            <div class="modal-card">
-                <header class="modal-card-head">
-                    <p class="modal-card-title"></p>
-                    <!-- Bouton de fermeture -->
-                    <a href="#" id="modalContentout" title="Fermer la fenêtre">
-                        <i class="fas fa-times btn_close"></i> <!-- Icône font awesome -->
-                    </a>
-                </header>
-
-                <section class="modal-card-body row h-50 justify-content-center align-items-center">
-
-                    <div class="alert alert-success" id="success-alert">
-                        <button type="button" class="close" data-dismiss="alert">x</button>
-                        <strong>Message! </strong>{{ session('message') }}.
-                    </div>
-                </section>
-
-                <footer class="modal-card-foot">
-                    <a href="" class=" is-primary"></a> <!-- Bouton optionnel -->
-                </footer>
-            </div>
-        </div>
+        @if(session()->has('message'))
+           <script>
+                window.onload = function() {
+               swal({
+                   title: "{{session('message')}}",
+                   type: 'warning'
+               })
+            }
+           </script>
         @endif
-
         <div class="waviy text-center ">
             <span style="--i:1">E</span>
             <span style="--i:2">v</span>

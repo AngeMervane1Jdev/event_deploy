@@ -86,5 +86,9 @@ class User extends Authenticatable
 
         return $transaction;    
     }
+    public function profilsRated()
+    {
+        return $this->belongsToMany (Profil::class);
+    }
  
 }

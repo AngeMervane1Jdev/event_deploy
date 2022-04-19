@@ -19,11 +19,26 @@
 
     <div class="blog-section py-5" id="events">
         <div class="container py-md-5 py-4">
-        @if (session()->has('message'))
-            <div class="alert alert-success" id="success-alert" style="float: inline-start;">
-                <button type="button" class="close" data-dismiss="alert">x</button>
-                <strong>Message! </strong>{{ session('message') }}.
-            </div>
+        @if(session()->has('message'))
+           <script> 
+           window.onload = function() {
+               if("{{session('message')}}"==2){
+                 swal({
+                   title: "Veuillez valider au moins un ticket",
+                   icon: 'warning',
+                
+                 })
+               }
+               else{
+                swal({
+                   title: "{{session('message')}}",
+                   icon: 'success',
+                
+               })
+              
+               }
+            }
+           </script>
         @endif
             <div class="waviy text-center mb-md-5 mb-4">
                 <span style="--i:1">M</span>

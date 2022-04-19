@@ -211,8 +211,10 @@ class PanierController extends Controller
     {
         $panier=Panier::findOrCreate();
         $is_panier=1;
-        if (count(json_decode($panier->tickets_validated,true))==0) {
-            return redirect()->back()->withMessage(1);
+        if ($panier->tickets_validated==null) {
+            return redirect()->back()->withMessage(2);
+        }else if(count(json_decode($panier->tickets_validated,true))==0){
+            return redirect()->back()->withMessage(2); 
         }
         return view('/portemonnaie/new',compact("id","is_panier"));
     }

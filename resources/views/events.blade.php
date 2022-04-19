@@ -6,7 +6,7 @@
         <section class="w3l-breadcrumb">
             <div class="container py-md-5 py-4">
                 @auth
-                <h4 class="inner-text-title font-weight-bold text-white mb-sm-3 mb-2">{{ Auth::user()->name }}</h4>
+                <h4 class="inner-text-title font-weight-bold text-white mb-sm-3 mb-2">Evènements</h4>
                 @endauth
                 <ul class="breadcrumbs-custom-path">
                     <li><a href="/">Accueil</a></li>

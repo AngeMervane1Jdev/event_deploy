@@ -148,6 +148,7 @@ class RegisterController extends Controller
 
 
         //return view('<h1>'.$type_user_id.'</h1>');
+         
          return User::create([
              'name' => $data['name'],
              "profil_image"=>$file1,

@@ -364,7 +364,7 @@
     <!-- //disable body scroll which navbar is in active -->
 
     <!--bootstrap-->
-
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="{{ secure_asset('js/bootstrap.min.js') }}"></script>
     <!-- //bootstrap-->
     <!-- //Js scripts -->

@@ -165,7 +165,7 @@
                         <span style="--i:1">t</span>
                         <span style="--i:8">s</span>
                         <span style="--i:3"></span>
-                        <span style="--i:2">-</span>
+                        <span style="--i:2"> </span>
                         <span style="--i:3"></span>
                         <span style="--i:4">D</span>
                         <span style="--i:5">i</span>
@@ -234,7 +234,7 @@
         <div class="covers14-block py-5">
             <div class="container py-md-5 py-4">
 
-                <h3 class="title-style text-center mb-md-5 mb-4">Les actions disponibles</h3>
+                <h3 class="title-style text-center mb-md-5 mb-4">Les actions Disponibles</h3>
                 <div class="content-sec-11">
                     <div class="row">
                         <div class="col-lg-6">

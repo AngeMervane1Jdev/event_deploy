@@ -72,6 +72,11 @@ Route::group(['middleware'=>['auth','is_client'],'prefix'=>'/messali/client' ],f
 
 });
 Route::group(['middleware' => ['auth']],function(){
+
+    Route::get('/rate',[App\Http\Controllers\RateProfilController::class,"rate"])->name("rating");
+    Route::get('/rate/promoteurs',[App\Http\Controllers\RateProfilController::class,"organizers"])->name("rate_promotors");
+    Route::get('/rate/spectateurs',[App\Http\Controllers\RateProfilController::class,"clients"])->name("rate_clients");
+
     Route::get('/event/new',[App\Http\Controllers\EventsController::class,"new"])->name("new_event");
     Route::post('/event/create',[App\Http\Controllers\EventsController::class,"create"])->name("create_event");
     Route::post('/event/update',[App\Http\Controllers\EventsController::class,"update"])->name("update_event");
