@@ -17,13 +17,13 @@
 
                         @foreach($images as $image)
                          @if($images[0]==$image)
-                            <div class="carousel-item active carousel-item-left"> <img class="d-block w-100" src="{{ secure_asset('Upload/events/Images/'.$image)}}" alt="First slide">
+                            <div class="carousel-item active carousel-item-left"> <img class="d-block w-100" src="{{secure_asset('Upload/events/Images/'.$image)}}" alt="First slide">
                                 <div class="carousel-caption d-none d-md-block">
                                     <h4> <i class="fa fa-map-marker"></i> Premier Design  </h4>
                                 </div>
                             </div>
                          @else
-                           <div class="carousel-item carousel-item-left"> <img class="d-block w-100" src="{{ secure_asset('Upload/events/Images/'.$image)}}" alt="First slide">
+                           <div class="carousel-item carousel-item-left"> <img class="d-block w-100" src="{{secure_asset('Upload/events/Images/'.$image)}}" alt="First slide">
                                 <div class="carousel-caption d-none d-md-block">
                                     <h4> <i class="fa fa-map-marker"></i> Premier Design  </h4>
                                 </div>

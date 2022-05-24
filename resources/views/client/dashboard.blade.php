@@ -2,10 +2,10 @@
 
 @section('content')
 
-<link rel="stylesheet" href="{{ secure_asset('css/tables.css') }}">
+<link rel="stylesheet" href="{{secure_asset('css/tables.css') }}">
 
 <!-- inner banner -->
-<div class="inner-banner " style="background: url('{{ secure_asset('images/in.jpg')}}') no-repeat top; background-size: cover;">
+<div class="inner-banner " style="background: url('{{secure_asset('images/in.jpg')}}') no-repeat top; background-size: cover;">
     <section class="w3l-breadcrumb">
         <div class="container py-md-5 py-4">
             <h4 class="inner-text-title font-weight-bold text-white mb-sm-3 mb-2">Client</h4>
@@ -22,35 +22,20 @@
     <div class=" py-md-5 py-4">
 
 
-        @if (session()->has('message'))
-        
-        <a href="#modalOpen" id="modalContentin" class=" is-primary"></a>
-
-        <div class="modal" id="modalOpen">
-            <div class="modal-background"></div> <!-- Overlay arrière-plan -->
-            <div class="modal-card">
-                <header class="modal-card-head">
-                    <p class="modal-card-title"></p>
-                    <!-- Bouton de fermeture -->
-                    <a href="#" id="modalContentout" title="Fermer la fenêtre">
-                        <i class="fas fa-times btn_close"></i> <!-- Icône font awesome -->
-                    </a>
-                </header>
-
-                <section class="modal-card-body row h-50 justify-content-center align-items-center">
-
-                    <div class="alert alert-success" id="success-alert">
-                        <button type="button" class="close" data-dismiss="alert">x</button>
-                        <strong>Message! </strong>{{ session('message') }}.
-                    </div>
-                </section>
-
-                <footer class="modal-card-foot">
-                    <a href="" class=" is-primary"></a> <!-- Bouton optionnel -->
-                </footer>
-            </div>
-        </div>
-
+    @if(session()->has('message'))
+           <script>
+                window.onload = function() {
+                    Swal.fire({
+                    title: "{{session('message')}}",
+                    showClass: {
+                        popup: 'animate__animated animate__fadeInDown'
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__fadeOutUp'
+                    }
+                    })
+            }
+           </script>
         @endif
         <div class="waviy text-center mb-md-5 mb-4">
             <span style="--i:1">T</span>

@@ -15,6 +15,7 @@ use App\Mail\RegisterMail;
 use App\Models\Panier;
 use App\Models\TypeAgence;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -92,7 +93,10 @@ class RegisterController extends Controller
         $type_user_id=intval($data["type"]);
 
 
-        if($type_user_id==1){     // si il s'agit d'un organisateur on crée une agence
+        if($type_user_id==1){  
+            
+            // 
+            // si il s'agit d'un organisateur on crée une agence
 
             // quand les champ destinés à la création d'une agence sont vides
             if($data["agence_name"]==$data["description"] and !array_key_exists("logo",$data) and !array_key_exists("banner",$data) and $data["description"]==null){
@@ -142,7 +146,7 @@ class RegisterController extends Controller
         //  ]);
 
 
-      //*   Mail::to($data['email'])->send(new RegisterMail($datareg));
+        //*   Mail::to($data['email'])->send(new RegisterMail($datareg));
 
          /**************************************************************** */
 
@@ -161,4 +165,5 @@ class RegisterController extends Controller
          ]);
 
     }
+
 }

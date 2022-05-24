@@ -40,10 +40,10 @@
                             <td>{{  $user->email}}</td>
                             <td>
                             @if($user->profil_image!=null)
-                                <img src="{{ secure_asset('profils/'.$user->profil_image)}}" width="150" class="rounded-circle">
+                                <img src="{{secure_asset('profils/'.$user->profil_image)}}" width="150" class="rounded-circle">
 
                              @else
-                                <img src="{{ secure_asset('images/defaults/profil.png')}}" id="profileImage" width="50" class="rounded-circle">
+                                <img src="{{secure_asset('images/defaults/profil.png')}}" id="profileImage" width="50" class="rounded-circle">
                              @endif
                             </td>
                             <td>{{ $user->contact }} </td>

@@ -3,10 +3,10 @@
 use App\Models\User;
 
 use App\Models\Event;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\MailController;
 use App\Models\Categorie;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -71,11 +71,9 @@ Route::group(['middleware'=>['auth','is_client'],'prefix'=>'/messali/client' ],f
     Route::get("panier/removeAll/{id}",[\App\Http\Controllers\PanierController::class,"remove_all"])->name('delete_all_from_panier');
 
 });
+
 Route::group(['middleware' => ['auth']],function(){
 
-    Route::get('/rate',[App\Http\Controllers\RateProfilController::class,"rate"])->name("rating");
-    Route::get('/rate/promoteurs',[App\Http\Controllers\RateProfilController::class,"organizers"])->name("rate_promotors");
-    Route::get('/rate/spectateurs',[App\Http\Controllers\RateProfilController::class,"clients"])->name("rate_clients");
 
     Route::get('/event/new',[App\Http\Controllers\EventsController::class,"new"])->name("new_event");
     Route::post('/event/create',[App\Http\Controllers\EventsController::class,"create"])->name("create_event");
@@ -84,10 +82,8 @@ Route::group(['middleware' => ['auth']],function(){
     Route::get('/event/delete/{id}',[App\Http\Controllers\EventsController::class,"delete"])->name("delete_event");
     Route::get('/event/publish/{id}',[App\Http\Controllers\EventsController::class,"publish"])->name("publish_event");
     
-    
     Route::post('/event/addimages',[App\Http\Controllers\FileUploadController::class,"fileUpload"])->name("add_images");
     Route::get('/image-upload/{i}', [App\Http\Controllers\FileUploadController::class, 'createForm'])->name("add_images_form");
-
 
     Route::get('/ticket/add/{id}',[App\Http\Controllers\TicketsController::class,"new"])->name('event_ticket_add');
     Route::get('/ticket/show/{id}',[App\Http\Controllers\TicketsController::class,"show"])->name('event_ticket_show');
@@ -102,7 +98,7 @@ Route::group(['middleware' => ['auth']],function(){
     Route::post('/portemonnaie/update',[App\Http\Controllers\PortemonnaieController::class,"update"])->name('portemonnaie_update');
     Route::get('/commande/publish/{id}',[App\Http\Controllers\CommandController::class,"publish"])->name("publish_commande");
 
-
+    Route::post('user/update/{id}', [\App\Http\Controllers\DashboardController::class,"update"])->name('user_profile');
 });
 
 Route::group(['middleware' => ['auth','is_organizer']],function(){
@@ -122,6 +118,10 @@ Route::post('/emails/TestMail', [MailController::class, 'contact_mail'])->name('
 Route::get('/ticket/index/{id}',[App\Http\Controllers\TicketsController::class,"index"])->name('event_ticket_all');
 Route::get('/event/show/{id}',[App\Http\Controllers\EventsController::class,"show"])->name("show_event");
 Route::get("/events",[App\Http\Controllers\EventsController::class,"events"])->name("events");
+
+
+
+Route::get("/messali/profil/{id}",[\App\Http\Controllers\HomeController::class,"profil"])->name('user_profil');
 
 
 Route::get("/messali/promotor/dashboard",[\App\Http\Controllers\DashboardController::class,"organizer_promotor"])->middleware(['is_promotor'])->name('promotor_dashboard');

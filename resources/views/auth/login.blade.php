@@ -1,7 +1,7 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!-- <link rel="stylesheets" href="{{ secure_asset('css/register.css')}}"> -->
+<!-- <link rel="stylesheets" href="{{secure_asset('css/register.css')}}"> -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"
     integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
 </script>
@@ -24,7 +24,7 @@
         rel="stylesheet">
     <link href="//fonts.googleapis.com/css2?family=Sail&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="{{ secure_asset('css/start1.css') }}">
+    <link rel="stylesheet" href="{{secure_asset('css/start1.css') }}">
 </head>
 
 
@@ -34,7 +34,7 @@
 
             <!-- Logo -->
             <a class="navbar-brand" href="{{url('/')}}">
-                <img src="{{ secure_asset('images/massali.png') }}" alt="Your logo" title="Your logo" style="height:35px;" />
+                <img src="{{secure_asset('images/massali.png') }}" alt="Your logo" title="Your logo" style="height:35px;" />
             </a>
             <!-- //Logo -->
             <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse"
@@ -283,15 +283,15 @@ function topFunction() {
 
 <!-- common jquery plugin -->
 
-<script src="{{ secure_asset('js/jquery-3.3.1.min.js') }}"></script>
+<script src="{{secure_asset('js/jquery-3.3.1.min.js') }}"></script>
 <!-- //common jquery plugin -->
 
 <!-- slider-js -->
 
-<script src=" {{ secure_asset('js/jquery.min.js') }}"></script>
-<script src="{{ secure_asset('js/modernizr-2.6.2.min.js') }}"></script>
+<script src=" {{secure_asset('js/jquery.min.js') }}"></script>
+<script src="{{secure_asset('js/modernizr-2.6.2.min.js') }}"></script>
 
-<script src="{{ secure_asset('js/jquery.zoomslider.min.js') }}"></script>
+<script src="{{secure_asset('js/jquery.zoomslider.min.js') }}"></script>
 
 <script>
 $(document).ready(function() {
@@ -322,7 +322,7 @@ $(document).ready(function() {
 
 <!-- theme switch js (light and dark)-->
 
-<script src="{{ secure_asset('js/theme-change.js') }}"></script>
+<script src="{{secure_asset('js/theme-change.js') }}"></script>
 <script>
 function autoType(elementClass, typingSpeed) {
     var thhis = $(elementClass);
@@ -401,7 +401,7 @@ $(function() {
 
 <!--bootstrap-->
 
-<script src="{{ secure_asset('js/bootstrap.min.js') }}"></script>
+<script src="{{secure_asset('js/bootstrap.min.js') }}"></script>
 <!-- //bootstrap-->
 <!-- //Js scripts -->
 </body>

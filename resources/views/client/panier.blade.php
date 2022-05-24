@@ -3,8 +3,8 @@
 @section('content')
 
  <!-- inner banner -->
- <div class="inner-banner " style="background: url('{{ secure_asset('images/inner4.jpg')}}') no-repeat top; background-size: cover;">
-     
+ <div class="inner-banner " style="background: url('{{secure_asset('images/panier.jpg')}}') no-repeat top; background-size: cover;">
+
         <section class="w3l-breadcrumb">
             <div class="container py-md-5 py-4">
                 <h4 class="inner-text-title font-weight-bold text-white mb-sm-3 mb-2">Panier</h4>
@@ -20,22 +20,33 @@
     <div class="blog-section py-5" id="events">
         <div class="container py-md-5 py-4">
         @if(session()->has('message'))
-           <script> 
+           <script>
            window.onload = function() {
                if("{{session('message')}}"==2){
-                 swal({
+                 Swal.fire({
                    title: "Veuillez valider au moins un ticket",
                    icon: 'warning',
-                
+                   showClass: {
+                        popup: 'animate__animated animate__fadeInDown'
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__fadeOutUp'
+                    }
                  })
                }
                else{
                 swal({
                    title: "{{session('message')}}",
                    icon: 'success',
-                
+                   showClass: {
+                        popup: 'animate__animated animate__fadeInDown'
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__fadeOutUp'
+                    }
+
                })
-              
+
                }
             }
            </script>
@@ -57,7 +68,7 @@
 
 
             <div class="container">
-                <link rel="stylesheet" href="{{ secure_asset('css/table.css')}}">
+                <link rel="stylesheet" href="{{secure_asset('css/table.css')}}">
                 @if ($tickets!=null)
                 <div class="seach_events" >
                     <div class="input-group ">
@@ -67,7 +78,7 @@
                 <hr>
                 <div class="row">
                     <div class="col-md-12">
-                        
+
                         <div class="table-wrap">
                             <table class="container table-dark" >
                                 <thead>
@@ -77,7 +88,7 @@
                                         <th>Prix unitaire</th>
                                         <th style="height:72.5px;margin-top:35px">Quantité</th>
                                         <th>Prix total</th>
-                                       
+
                                         <th>Retirer</th>
                                     </tr>
                                 </thead>
@@ -91,7 +102,7 @@
 
                                  <!-- On parcourt les produits du panier en session : session('basket') -->
                                  @foreach ($tickets as $ticket)
-             
+
                                         <!-- On incrémente le total général par le total de chaque produit du panier -->
                                         @php $quantity=$quantities[$loop->iteration-1]; @endphp
                                         @php $total += $ticket->price*$quantity @endphp
@@ -101,9 +112,9 @@
 
                                         {{-- td du checkbox --}}
 
-                                        <td>                             
+                                        <td>
                                                 <label class="checkbox-wrap checkbox-primary"  >
-                                                
+
                                                 @if(in_array($ticket->id,$tickets_validated))
                                                 <input type="checkbox" checked value="{{  $ticket->id  }}" onclick="
                                                         var id=parseInt('{{$ticket->id}}');
@@ -111,7 +122,7 @@
                                                         this.checked ? selected(parseInt(id),price,1) : selected(parseInt(id),price,-1);
                                                 ">
                                                 @else
-                                                
+
                                                 <input type="checkbox" value="{{  $ticket->id  }}" onclick="
                                                         var id=parseInt('{{$ticket->id}}');
                                                         var price=parseInt('{{$ticket->price}}');
@@ -121,33 +132,33 @@
                                                 @endif
                                               <span class="checkmark"></span>
                                             </label>
-                                            
+
                                         </td>
 
                                         {{-- Fin --}}
 
-                                   
+
                                         <td>
                                             <div class="">
                                                 <span><a style="color: black;font-weight:bold" href="{{ route('show_event',$ticket->event()->get()[0]->id) }}" title="Afficher le produit" class="mt-5 title_event">{{ $ticket->event()->get()[0]->event_name }}</a> </span>
-                                               
+
                                             </div>
                                         </td>
                                         <td><span id='price{{$ticket->id}}'>{{ $ticket->price }}</span> XOF</td>
                                         <td>
                                                 <select class="form-control" id="select{{$ticket->id}}" onchange="
-                                                    
+
                                                     var id=parseInt('{{$ticket->id}}');
                                                     var price=parseInt('{{$ticket->price}}');
                                                     var quantity=parseInt($('#select{{$ticket->id}} option:selected').text());
-                                          
+
 
                                                      $('#price_total').text(parseInt($('#price_total').text())+ price*quantity- parseInt($('#total_price'+id).text()));
 
                                                      $('#total_price'+id).text(price*quantity);
                                                       quantityChange(id,quantity);
-                                                    
-                                                    
+
+
                                                     ">
                                                        <option>{{$quantity}}</option>
                                                         @for($i=1;$i<=10;$i++)
@@ -156,15 +167,15 @@
                                                            @endif
                                                         @endfor
                                                 </select>
-                                                
+
                                         </td>
                                         <td  ><span id="total_price{{$ticket->id}}">{{$ticket->price*$quantity}} </span> XOF</td>
                                         <td>
-                                           <span aria-hidden="true"> <a class="btn btn-danger btn-sm" data-confirm="vous estes sur" rel='nofollow' data-method="delete"  href="{{route('remove_ticket__from_panier',$ticket->id)}}"><i class="fa fa-trash-o"></i></a></i></span>     
-                                           
+                                           <span aria-hidden="true"> <a class="btn btn-danger btn-sm" data-confirm="vous estes sur" rel='nofollow' data-method="delete"  href="{{route('remove_ticket__from_panier',$ticket->id)}}"><i class="fa fa-trash-o"></i></a></i></span>
+
                                         </td>
                                     </tr>
-                                
+
                                  @endforeach
                                  <tr>
                                      <td style="color: black">Tout Selectionner</td>
@@ -177,7 +188,7 @@
                                             ">
                                             <span class="checkmark"></span>
                                             </label>
-    
+
                                      </td>
                                      <td></td>
                                     <td></td>
@@ -194,9 +205,9 @@
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        
+
                                     </tr>
-                                    
+
                                     <tr style="background: black">
                                         <td style="color: white;font-weight:bold;" class="panier_total_price" >Total à payer:</td>
                                         <td >
@@ -208,9 +219,9 @@
                                         <td></td>
                                         <td></td>
                                     </tr>
-                                   
+
                                 </tbody>
-                               
+
                             </table>
                         </div>
                     </div>
@@ -223,25 +234,25 @@
                 <!-- Lien pour vider le panier -->
             <p style="display: inline-block; text-align:center">
               <a class="btn btn-danger vider m-2" href="#" data-toggle="modal" data-target="#modal2" title="Retirer tous les produits du panier" >Vider le panier</a>
-              <a class="btn btn-success acheter" href="{{ route('paid_all_from_panier',$id) }}" title="Passer au paiement" >Faire le paiement</a> 
+              <a class="btn btn-success acheter" href="{{ route('paid_all_from_panier',$id) }}" title="Passer au paiement" >Faire le paiement</a>
             </p>
            </div>
 
         </div>
 
-        
+
 
         <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content modal-popup">
-                   
+
                     <form  method="GET" action="" class="popup-form">
                         @csrf
                         <div class="form-group">
                             <p>Voullez-vous supprimer</p>
                         </div>
                         <button type="submit" class="btn" style="background-color: red; color:white">Oui,supprimer</button>
- 
+
                         <button type="" class="btn close-link" style="background-color: red; color:white">Non, merci</button>
                     </form>
                 </div>
@@ -252,7 +263,7 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content modal-popup">
                     <a href="#" class="close-link"><i class="icon_close_alt2"></i></a>
-                    
+
                     <form  method="POST" action="" class="popup-form">
                         @csrf
                         <div class="form-group">
@@ -260,7 +271,7 @@
                         </div>
                         <button type="submit" class="btn" style="background-color: red; color:white"><a href="" class=""  >Oui</a></button>
                         <!-- {{ route('delete_all_from_panier',$id) }} -->
-                        
+
                         <button type="submit" class="btn" style="background-color: red; color:white"><a style=" color:white" class="" href="#">Non</a></button>
                     </form>
                 </div>
@@ -319,9 +330,9 @@
         });
 
     }
-    
+
     function deselect_all() {
-        
+
         var url="/panier/ticket/deselect-all";
         $.ajaxSetup({
                     headers: {
@@ -342,7 +353,7 @@
                }
 
 
-        });
+            }); 
     }
 
 
@@ -372,7 +383,7 @@
     }
 
     function selected(id,price,type) {
-      
+
         var url="/ticket/selected";
         if(type==-1)
         var url="/ticket/deselected";
@@ -400,7 +411,7 @@
 
 
     </script>
-    </div>   
+    </div>
 
 
 <style>
@@ -418,8 +429,8 @@
     .acheter .vider{
         display:inline-block;
         font-size: 15px;
-       
-    
+
+
     }
 }
 

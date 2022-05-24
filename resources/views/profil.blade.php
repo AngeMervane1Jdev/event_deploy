@@ -50,10 +50,10 @@
  <div class="inner-banner " style="background: url('{{secure_asset('images/calendar.jpg')}}') no-repeat top; background-size: cover;">
         <section class="w3l-breadcrumb">
             <div class="container py-md-5 py-4">
-                <h4 class="inner-text-title font-weight-bold text-white mb-sm-3 mb-2">Profil</h4>
+                <h4 class="inner-text-title font-weight-bold text-white mb-sm-3 mb-2">Profil Organisateur</h4>
                 <ul class="breadcrumbs-custom-path">
                     <li><a href="/">Accueil</a></li>
-                    <li class="active"><span class="fa fa-chevron-right mx-2" aria-hidden="true"></span>Profil</li>
+                    <li class="active"><span class="fa fa-chevron-right mx-2" aria-hidden="true"></span>Profil Organisateur</li>
                 </ul>
             </div>
         </section>
@@ -68,68 +68,63 @@
             <div class="col-md-4 mb-3">
               <div class="cards">
                 <div class="card-bodys">
-                  <div class="d-flex flex-column align-items-center text-center profile-pic">
-                  @if(Auth::user()->profil_image!=null)
-                  <img src="{{secure_asset('profils/'.Auth::user()->profil_image)}}" width="150" class="rounded-circle">
+                  <div class="d-flex flex-column align-items-center text-center">
+                  @if($user->profil_image!=null)
+                  <img src="{{secure_asset('profils/'.$user->profil_image)}}" width="150" class="rounded-circle">
 
                   @else
-                       
-                        <div class="profile-pic">
-                          <label class="-label" for="file">
-                            <span class="glyphicon glyphicon-camera"></span>
-                            <span style="color: #ffffff;">Change Image</span>
-                          </label>
-                          <input id="file" type="file" name="file"  onchange="loadFile(event)"/>
+                        <div class="profile-pic" style="cursor: none;">
+                          <label class="-label" for="file"> </label>
                           <img src="{{secure_asset('images/user-admin.png')}}" id="output" width="200" />
                         </div>
 
                     <div class="mt-3">
-                      <h4>{{Auth::user()->name}}</h4>
-                      @if(Auth::user()->type_user_id==1)
+                      <h4>{{$user->name}}</h4>
+                      @if($user->type_user_id==1)
                       <p class=" mb-1" style="color:#fd7e14">Organisateur</p>
                       @endif
-                      @if(Auth::user()->type_user_id==2)
+                      @if($user->type_user_id==2)
                       <p class=" mb-1" style="color:#fd7e14">Promoteur</p>
                       @endif
-                      @if(Auth::user()->type_user_id==3)
+                      @if($user->type_user_id==3)
                       <p class=" mb-1" style="color:#fd7e14">Spectateur</p>
                       @endif
                     </div>
                     <div class="star-rating ">
-                            @if(Auth::user()->rate > 0)
-                            <div id="{{ Auth::user()->id . '.1' }}" data-toggle="tooltip" title="1"  class="star-yellow">
+                            @if($user->rate > 0)
+                            <div id="{{ $user->id . '.1' }}" data-toggle="tooltip" title="1"  class="star-yellow">
                                 @else
-                                <div id="{{ Auth::user()->id . '.1' }}" data-toggle="tooltip" title="1" style="color: #fafafa;">
+                                <div id="{{ $user->id . '.1' }}" data-toggle="tooltip" title="1" style="color: #fafafa;">
                             @endif
                             <i style="padding:5px" class="material-icons">star_rate</i>
                             </div>
 
-                            @if(Auth::user()->rates > 1)
-                            <div id="{{ Auth::user()->id . '.2' }}" data-toggle="tooltip" title="2"   class="star-yellow">
+                            @if($user->rates > 1)
+                            <div id="{{ $user->id . '.2' }}" data-toggle="tooltip" title="2"   class="star-yellow">
                             @else 
-                            <div id="{{ Auth::user()->id . '.2' }}" data-toggle="tooltip" title="2" style="color: #fafafa;">
+                            <div id="{{ $user->id . '.2' }}" data-toggle="tooltip" title="2" style="color: #fafafa;">
                             @endif
                             <i style="padding:5px" class="material-icons">star_rate</i>
                             </div>
-                            @if(Auth::user()->rates > 2)
-                            <div id="{{ Auth::user()->id . '.3' }}" data-toggle="tooltip" title="3"  class="star-yellow">
+                            @if($user->rates > 2)
+                            <div id="{{ $user->id . '.3' }}" data-toggle="tooltip" title="3"  class="star-yellow">
                                 @else 
-                            <div id="{{ Auth::user()->id . '.3' }}" data-toggle="tooltip" title="3" style="color: #fafafa;">
+                            <div id="{{ $user->id . '.3' }}" data-toggle="tooltip" title="3" style="color: #fafafa;">
                             @endif
                             <i style="padding:5px" class="material-icons">star_rate</i>
                             </div>
 
-                            @if(Auth::user()->rates > 3)
-                            <div id="{{ Auth::user()->id . '.4' }}" data-toggle="tooltip" title="4"  class="star-yellow">
+                            @if($user->rates > 3)
+                            <div id="{{ $user->id . '.4' }}" data-toggle="tooltip" title="4"  class="star-yellow">
                                 @else
-                            <div id="{{ Auth::user()->id . '.4' }}" data-toggle="tooltip" title="4" style="color: #fafafa;" >
+                            <div id="{{ $user->id . '.4' }}" data-toggle="tooltip" title="4" style="color: #fafafa;" >
                             @endif
                             <i style="padding:5px" class="material-icons">star_rate</i>
                             </div>
-                            @if(Auth::user()->rates > 4)
-                            <div id="{{ Auth::user()->id . '.5' }}" data-toggle="tooltip" title="5"   class="star-yellow">
+                            @if($user->rates > 4)
+                            <div id="{{ $user->id . '.5' }}" data-toggle="tooltip" title="5"   class="star-yellow">
                                 @else
-                            <div id="{{ Auth::user()->id . '.5' }}" data-toggle="tooltip" title="5" style="color: #fafafa;">
+                            <div id="{{ $user->id . '.5' }}" data-toggle="tooltip" title="5" style="color: #fafafa;">
                             @endif
                             <i style="padding:5px" class="material-icons">star_rate</i>
                             </div>
@@ -140,11 +135,11 @@
                 </div>
               </div>
             </div>
-            {{RateUser(Auth::user()->id)}}
+
             <div class="col-md-8  ">
               <div class="cards mb-3">
                 <div class="card-bodys">
-            <form action="{{ route('user_profile',Auth::user()->id) }}" class="form-horizontal" method="POST">
+             <form>
                 @csrf
                   <div class="row">
                     <div class="col-sm-3">
@@ -152,55 +147,32 @@
                     </div>
                     <div class="col-sm-9 ">
                         <div class="col-lg-8">
-                            <input class="form-control" type="text" name="pseudo" value="{{Auth::user()->pseudo }}" >
+                            <input class="form-control" type="text" name="pseudo" value="{{$user->pseudo }}" >
                           </div>
                     </div>
                   </div>
-                  <div class="row" style="margin-top: 25px">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Mot de passe actuel (obligatoire)</h6>
-                    </div>
-                    <div class="col-sm-9 ">
-                        <div class="col-lg-8">
-                            <input class="form-control" type="password" name="password">
-                          </div>
-                     </div>
-                  </div>
-                  <div class="row" style="margin-top: 25px">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Nouveau mot de passe(facultatif)</h6>
-                    </div>
-                    <div class="col-sm-9 ">
-                        <div class="col-lg-8">
-                            <input class="form-control" type="password" name="new-password">
-                          </div>
-                     </div>
-                  </div>
+                  
 
                   <div class="row" style="margin-top: 25px">
                     <div class="col-sm-3">
-                      <h6 class="mb-0">Phone</h6>
+                      <h6 class="mb-0">N° de téléphone</h6>
                     </div>
                     <div class="col-sm-9 ">
                         <div class="col-lg-8">
-                            <input class="form-control" type="text" name="contact" value="{{Auth::user()->contact}}">
+                            <input class="form-control" type="text" name="contact" value="{{$user->contact}}">
                           </div>
                     </div>
-                    @if(Auth::user()->type_user_id==3)
-                    <div class="btns" >
-                        <button type="submit" class="btn btn-info" style="margin-top:15px" >Enregistrer les modifications</button>
-                      </div>
-                      @endif
+                   
                   </div>
 
-                @if(Auth::user()->type_user_id==1)
+                @if($user->type_user_id==1)
                 <div class="row" style="margin-top: 25px">
                     <div class="col-sm-3">
-                      <h6 class="mb-0">Agence Name</h6>
+                      <h6 class="mb-0">Agence</h6>
                     </div>
                     <div class="col-sm-9 ">
                           <div class="col-lg-8">
-                            <input class="form-control" type="text" name="agence_name" value=" {{Auth::user()->agence()->get()[0]->agence_name }}">
+                            <input class="form-control" type="text" name="agence_name" value=" {{$user->agence()->get()[0]->agence_name }}">
                           </div>
                     </div>
                   </div>
@@ -211,14 +183,15 @@
                     </div>
                     <div class="col-sm-9 ">
                           <div class="col-lg-8">
-                            <input class="form-control" type="text" name="description" value=" {{Auth::user()->agence()->get()[0]->description}}">
+                            <input class="form-control" value=" {{$user->agence()->get()[0]->description}}">
                           </div>
                     </div>
-                    <div class="btns" >
-                      <button  type="submit" class="btn btn-info" style="margin-top:15px" >Enregistrer les modifications</button>
-                    </div>
+                    {{RateUser($user->id)}}
                   </div>
                   @endif
+                  <div class="btns" >
+                      <a  type="submit" href="https://wa.me/{{$user->contact}}?text=Bonjour" class="btn btn-info" style="margin-top:15px" >Contacter</a>
+                    </div>
                 </form>
                 </div>
               </div>
@@ -231,16 +204,10 @@
     </div>
 </div>
 
-  <script type="text/javascript">
-  var loadFile = function (event) {
-  var image = document.getElementById("output");
-  image.src = URL.createObjectURL(event.target.files[0]);
-  var profil=document.getElementById("file");
-  console.log(profil.value);
+<script>
 
-  };
-  </script>
 
+</script>
 
 <style>
 .star-rating div {
@@ -254,6 +221,10 @@
   .star-rating div:hover,
   .star-rating div:hover div{
     color: red
+  }
+
+  input{
+      cursor: pointer;
   }
 
   .hover_img a { position:relative; }

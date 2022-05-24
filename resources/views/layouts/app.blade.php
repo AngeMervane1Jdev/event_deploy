@@ -11,14 +11,18 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Massali') }}</title>
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
 
     <link href="//fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;400;500;600;700&display=swap"
         rel="stylesheet">
     <link href="//fonts.googleapis.com/css2?family=Sail&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="{{ secure_asset('css/style-starter.css') }}">
+    <link rel="stylesheet" href="{{secure_asset('css/style-starter.css') }}">
 
-    <link rel="stylesheet" href="{{ secure_asset('css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{secure_asset('css/font-awesome.min.css') }}">
 
     <style>
     /* Vise l'identifiant "modalOpen" situé sur le conteneur modal */
@@ -38,7 +42,7 @@
 
                 <!-- Logo -->
                 <a class="navbar-brand" href="{{url('/')}}">
-                    <img src="{{ secure_asset('images/massali.png') }}" alt="Your logo" title="Your logo"
+                    <img src="{{secure_asset('images/massali.png') }}" alt="Your logo" title="Your logo"
                         style="height:35px;" />
                 </a>
                 <!-- //Logo -->
@@ -87,6 +91,7 @@
                         </li>
                         @endif
 
+                     @if(Request::path()!="home")
                         @if(Auth::user()->type_user_id==2)
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
@@ -115,6 +120,8 @@
                         </li>
                         @endif
 
+                   @endif
+
 
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
@@ -124,7 +131,7 @@
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 
                                 <a class="dropdown-item" href="{{ url('/home') }}"
-                                    style="color:#ffffff;">{{ Auth::user()->name }}</a>
+                                    style="color:#ffffff;">{{ isset(Auth::user()->pseudo) ? Auth::user()->pseudo : Auth::user()->pseudo }}</a>
                                 <div>
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                 document.getElementById('logout-form').submit();">
@@ -247,15 +254,15 @@
 
     <!-- common jquery plugin -->
 
-    <script src="{{ secure_asset('js/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{secure_asset('js/jquery-3.3.1.min.js') }}"></script>
     <!-- //common jquery plugin -->
 
     <!-- slider-js -->
 
-    <script src=" {{ secure_asset('js/jquery.min.js') }}"></script>
-    <script src="{{ secure_asset('js/modernizr-2.6.2.min.js') }}"></script>
+    <script src=" {{secure_asset('js/jquery.min.js') }}"></script>
+    <script src="{{secure_asset('js/modernizr-2.6.2.min.js') }}"></script>
 
-    <script src="{{ secure_asset('js/jquery.zoomslider.min.js') }}"></script>
+    <script src="{{secure_asset('js/jquery.zoomslider.min.js') }}"></script>
 
     <script>
     $(document).ready(function() {
@@ -286,7 +293,7 @@
 
     <!-- theme switch js (light and dark)-->
 
-    <script src="{{ secure_asset('js/theme-change.js') }}"></script>
+    <script src="{{secure_asset('js/theme-change.js') }}"></script>
     <script>
     function autoType(elementClass, typingSpeed) {
         var thhis = $(elementClass);
@@ -364,8 +371,8 @@
     <!-- //disable body scroll which navbar is in active -->
 
     <!--bootstrap-->
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="{{ secure_asset('js/bootstrap.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.16/dist/sweetalert2.all.min.js"></script>
+    <script src="{{secure_asset('js/bootstrap.min.js') }}"></script>
     <!-- //bootstrap-->
     <!-- //Js scripts -->
 </body>

@@ -3,7 +3,7 @@
 @section('content')
 
  <!-- inner banner -->
- <div class="inner-banner " style="background: url('{{ secure_asset('images/in2.jpg')}}') no-repeat top; background-size: cover;">
+ <div class="inner-banner " style="background: url('{{secure_asset('images/in2.jpg')}}') no-repeat top; background-size: cover;">
         <section class="w3l-breadcrumb">
             <div class="container py-md-5 py-4">
             <h4 class="inner-text-title font-weight-bold text-white mb-sm-3 mb-2">Evènement</h4>
@@ -152,9 +152,10 @@
                                                         <div class="row" >
                                                             
                                                             <div class="col " style="float:left;margin-top:20px">
-                                                                <button type="submit" class="form-control col btn text-light" style="background-color:#f15000;width:100px;">
+                                                                <button onclick="anim();" class="form-control col btn text-light" style="background-color:#f15000;width:100px;">
                                                                     {{ __('Créer') }}
                                                                 </button>
+                                                                <input type="submit" value="" hidden id="Submit">
                                                             </div>
                                                                 
                                                         </div>
@@ -187,6 +188,34 @@
 }
 
 </style>
+<script>
+function anim(params) {
+    let timerInterval
+Swal.fire({
+  title: 'Création de votre évènement',
+  html: 'Dans quelques seconds <b></b> ...',
+  timer: 5000,
+  timerProgressBar: true,
+  didOpen: () => {
+    Swal.showLoading()
+    const b = Swal.getHtmlContainer().querySelector('b')
+    timerInterval = setInterval(() => {
+      b.textContent = Swal.getTimerLeft()
+    }, 100)
+  },
+  
+  willClose: () => {
+
+    clearInterval(timerInterval)
+  }
+}).then((result) => {
+  /* Read more about handling dismissals below */
+  if (result.dismiss === Swal.DismissReason.timer) {
+   
+  }
+})
+}
+</script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.js"></script>

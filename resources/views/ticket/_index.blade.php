@@ -21,10 +21,10 @@
                   SIMPLE
             @endif
             </h2>
-
+            @if( Auth::user()->id!=$event->user()->get()[0]->id)
             <p><a href="{{ route('new_portemonnaie',[$ticket->id,$ticket->price]) }}" class=" show-me-ticket" style="background-color:#f15000;color:white;border-radius:10px;padding-left:5px;padding-right:5px" >Acheter</a>
             <a href="{{ route('add_ticket_to_panier',$ticket->id) }}" class=" show-me-ticket" style="background-color:#f15000;color:white;border-radius:10px ;padding-left:5px;padding-right:5px"  >Ajouter au panier</a></p>
-
+            @endif
 			<h1 class="prix">XOF {{$ticket->price}}</h1>
             
             

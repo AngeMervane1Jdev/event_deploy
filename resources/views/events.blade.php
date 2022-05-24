@@ -2,7 +2,7 @@
 @section('content')
 
  <!-- inner banner -->
- <div class="inner-banner " style="background: url('{{ secure_asset('images/inner-bannerList.jpg')}}') no-repeat top; background-size: cover;">
+ <div class="inner-banner " style="background: url('{{secure_asset('images/inner-bannerList.jpg')}}') no-repeat top; background-size: cover;">
         <section class="w3l-breadcrumb">
             <div class="container py-md-5 py-4">
                 @auth
@@ -21,12 +21,21 @@
 
     </div>
 
-    @if (session()->has('message'))
-    <div class="alert alert-success" id="success-alert">
-        <button type="button" class="close" data-dismiss="alert">x</button>
-        <strong>Message! </strong>{{ session('message') }}.
-    </div>
-    @endif
+    @if(session()->has('message'))
+           <script>
+                window.onload = function() {
+                    Swal.fire({
+                    title: "{{session('message')}}",
+                    showClass: {
+                        popup: 'animate__animated animate__fadeInDown'
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__fadeOutUp'
+                    }
+                    })
+            }
+           </script>
+        @endif
 
     <div class="" id="events">
         <div class="container ">
@@ -65,9 +74,9 @@
                         <article class="postcard dark red">
                             <a class="postcard__img_link" href="#">
                             @if($event->cover!=null)
-                              <img src="{{ secure_asset('Upload/events/Covers/'.$event->cover)}}" class="postcard__img">
+                              <img src="{{secure_asset('Upload/events/Covers/'.$event->cover)}}" class="postcard__img">
                             @else
-                              <img class="postcard__img" src="{{ secure_asset('images/logo.png')}}" alt="Image Title"  />
+                              <img class="postcard__img" src="{{secure_asset('images/logo.png')}}" alt="Image Title"  />
                             @endif
                             </a>
                             <div class="postcard__text">
@@ -87,11 +96,8 @@
                                 <p> Lieu: {{$event->zone}}</p>
 
                                  <p>
-                                     @if (isset($event->name))
-                                     <span style="color:#fd7e14; font-size:17px;"> Organisateur: {{strtoupper($event->name)}}</span>
-                                     @else
-                                     <span style="color:#fd7e14; font-size:17px;"> Organisateur: {{strtoupper($event->user->name)}}</span>
-                                     @endif
+                                     <span style="font-size:17px;"> Organisateur: <a target="black" href="{{route('user_profil',$event->user->id)}}">{{strtoupper($event->user->name)}}</a></span>
+                                
                                 </p>
                                  </div>
                                <ul class="postcard__tagbox">

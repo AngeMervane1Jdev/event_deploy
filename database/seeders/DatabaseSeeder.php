@@ -7,17 +7,9 @@ use App\Models\User;
 use App\Models\Event;
 use App\Models\Tiket;
 use App\Models\Agence;
-use App\Models\Commande;
-use App\Models\Profil;
-use App\Models\TypeUser;
-use App\Models\Type;
-use App\Models\TypeTiket;
-use App\Models\Transaction;
 use App\Models\TypeAgence;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
-use Mockery\Matcher\Type as MatcherType;
-
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -61,16 +53,11 @@ class DatabaseSeeder extends Seeder
         }
         Agence::create(['agence_name'=>"Massali","description"=>"Description massali","type"=>"[\"sportif\"]"]);
         Agence::create(['agence_name'=>"Agence","description"=>"the agence description","type"=>"[\"sportif\"]"]);
-         User::create(["name"=>"organisateur","email"=>"o@o.com","password"=>Hash::make("00000000"),"contact"=>"00000000","agence_id"=>1,"type_user_id"=>1]);
-         User::create(["name"=>"promoteur","email"=>"p@p.com","password"=>Hash::make("00000000"),"contact"=>"00000000","type_user_id"=>2]);
-         User::create(["name"=>"client","email"=>"c@c.com","password"=>Hash::make("00000000"),"contact"=>"00000000","type_user_id"=>3]);
-        User::create(["name"=>"massali","email"=>"a@a.com","password"=>Hash::make("00000000"),"contact"=>"0000000","agence_id"=>1,"type_user_id"=>2,"is_admin"=>true]);
+         User::create(["pseudo"=>"Organize","name"=>"organisateur","email"=>"o@o.com","password"=>Hash::make("00000000"),"contact"=>"00000000","agence_id"=>1,"type_user_id"=>1]);
+         User::create(["pseudo"=>"promo","name"=>"promoteur","email"=>"p@p.com","password"=>Hash::make("00000000"),"contact"=>"00000000","type_user_id"=>2]);
+         User::create(["pseudo"=>"client","name"=>"client","email"=>"c@c.com","password"=>Hash::make("00000000"),"contact"=>"00000000","type_user_id"=>3]);
+        User::create(["pseudo"=>"massali","name"=>"massali","email"=>"a@a.com","password"=>Hash::make("00000000"),"contact"=>"0000000","agence_id"=>1,"type_user_id"=>2,"is_admin"=>true]);
          
-
-        Profil::create(["user_id"=>1,"rates"=>0,"type_user"=>1]);
-        Profil::create(["user_id"=>2,"rates"=>0,"type_user"=>1]);
-        Profil::create(["user_id"=>3,"rates"=>0,"type_user"=>0]);
-        Profil::create(["user_id"=>4,"rates"=>0,"type_user"=>1]);
      
           Event::create(["event_name"=>"best event32","event_description"=>"event description","zone"=>"IUT","end_time"=>date_add(now(),date_interval_create_from_date_string("11 days")),"start_time"=>date_add(now(),date_interval_create_from_date_string("1 days")),"user_id"=>2,"status"=>0,"cats"=>json_encode('e')]);
           Event::create(["event_name"=>"best event25","event_description"=>"event description","zone"=>"IUT","end_time"=>date_add(now(),date_interval_create_from_date_string("15 days")),"start_time"=>date_add(now(),date_interval_create_from_date_string("1 days")),"user_id"=>1,"status"=>1,"cats"=>json_encode('e')]);

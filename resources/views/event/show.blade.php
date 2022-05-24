@@ -3,7 +3,7 @@
 @section('content')
 
 <!-- inner banner -->
-<div class="inner-banner " style="background: url('{{ secure_asset('images/in.jpg')}}') no-repeat top; background-size: cover;">
+<div class="inner-banner " style="background: url('{{secure_asset('images/in.jpg')}}') no-repeat top; background-size: cover;">
     <section class="w3l-breadcrumb">
         <h4 class="inner-text-title font-weight-bold text-white mb-sm-3 mb-2">Evènement</h4>
 
@@ -25,10 +25,15 @@
         @if(session()->has('message'))
            <script>
                 window.onload = function() {
-               swal({
-                   title: "{{session('message')}}",
-                   type: 'warning'
-               })
+                    Swal.fire({
+                    title:"{{ session('message')}}",
+                    showClass: {
+                        popup: 'animate__animated animate__fadeInDown'
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__fadeOutUp'
+                    }
+                    })
             }
            </script>
         @endif
@@ -59,9 +64,9 @@
                 <article class="postcard dark red">
                     <a class="postcard__img_link" href="#">
                         @if($event->cover!=null)
-                        <img src="{{ secure_asset('Upload/events/Covers/'.$event->cover)}}" class="postcard__img">
+                        <img src="{{secure_asset('Upload/events/Covers/'.$event->cover)}}" class="postcard__img">
                         @else
-                        <img class="postcard__img" src="{{ secure_asset('images/logo.png')}}" alt="Image Title" />
+                        <img class="postcard__img" src="{{secure_asset('images/logo.png')}}" alt="Image Title" />
                         @endif
                     </a>
                     <div class="postcard__text">
@@ -79,8 +84,7 @@
                                 {{date('d/m/Y H:i', strtotime($event->end_time))}}
                             </time>
                             <p> Lieu: {{$event->zone}}</p>
-                            <p><span style="color:#fd7e14; font-size:17px;"> Organissateur:
-                                    {{strtoupper($event->user()->get()->first()->name)}}</span></p>
+                            <p>   <span style="font-size:17px;"> Organisateur: <a target="black" href="{{route('user_profil',$event->user->id)}}">{{strtoupper($event->user->name)}}</a></span></p>
                         </div>
                         <ul class="postcard__tagbox">
 

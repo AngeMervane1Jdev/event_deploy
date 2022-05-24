@@ -1,7 +1,7 @@
 @extends('admin.app')
 @section('content')
-<link rel="stylesheet" href="{{ secure_asset('css/adminTable.css')}}">
-<link rel="stylesheet" href="{{ secure_asset('css/tables.css') }}">
+<link rel="stylesheet" href="{{secure_asset('css/adminTable.css')}}">
+<link rel="stylesheet" href="{{secure_asset('css/tables.css') }}">
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb my-breadcrumb">
         <li class="breadcrumb-item"><a href="index.html">Home</a></li>
