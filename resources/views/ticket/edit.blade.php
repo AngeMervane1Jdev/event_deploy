@@ -2,7 +2,7 @@
 
 @section('content')
  <!-- inner banner -->
- <div class="inner-banner ">
+ <div class="inner-banner "  style="background: url('{{secure_asset('images/Org.png')}}') no-repeat top; background-size: cover;">
         <section class="w3l-breadcrumb">
             <div class="container py-md-5 py-4">
                 <h4 class="inner-text-title font-weight-bold text-white mb-sm-3 mb-2">{{ Auth::user()->name }}</h4>
@@ -50,7 +50,7 @@
                     <label for="type">Type de ticket</label>
                     <select class="form-control" name="type_id" id="type_id">
                 <option value="none" selected="" disabled="">Select type de ticket</option>
-                    {{$types}}
+                 
                         @foreach($types as $type)
                             <option value="{{$type->id}}" {{$ticket->type_id==$type->id ? "selected" :"unselected"}}>{{$type->type_name}}</option>
                         @endforeach

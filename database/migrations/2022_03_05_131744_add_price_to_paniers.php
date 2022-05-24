@@ -15,6 +15,7 @@ class AddPriceToPaniers extends Migration
     {
         Schema::table('paniers', function (Blueprint $table) {
             $table->double('price');
+            $table->json('tickets_validated')->nullable();
         });
     }
 

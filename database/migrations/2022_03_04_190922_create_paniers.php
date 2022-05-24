@@ -16,7 +16,7 @@ class CreatePaniers extends Migration
         Schema::create('paniers', function (Blueprint $table) {
             $table->id();
             $table->foreignId("user_id")->constrained('users')->cascadeOnDelete();
-            $table->string("tickets");
+            $table->json("tickets")->nullable();
             $table->timestamps();
         });
     }

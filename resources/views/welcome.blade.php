@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-<link rel="stylesheet" href="{{ asset('css/card.css') }}">
+<link rel="stylesheet" href="{{secure_asset('css/card.css') }}">
 
 @section('content')
     <section class="w3l-main-slider" id="home">
@@ -12,10 +12,10 @@
                     <div class="container">
                         <div class="banner-infhny">
                             <!-- fireworks effect -->
-                            <div class="pyro">
+                            <!-- <div class="pyro">
                                 <div class="before"></div>
                                 <div class="after"></div>
-                            </div>
+                            </div> -->
                             <!-- first text effect -->
                             <section>
                                 <div id="Text8">
@@ -113,8 +113,8 @@
                             </div>
                             <!-- fireworks effect -->
                             <div class="pyro pyro-2 position-relative">
-                                <div class="before"></div>
-                                <div class="after"></div>
+                                <!-- <div class="before"></div>
+                                <div class="after"></div> -->
                             </div>
 
 
@@ -150,10 +150,10 @@
     <!-- Evenement disponible section -->
     <section class="w3l-covers-14 evenement position-relative">
         <div class="covers14-block py-5">
-            <div class="container py-md-5 py-4">
+            <div class="container py-md-5 ">
 
 
-                    <div class="waviy text-center mb-md-5 mb-4">
+                    <div class="waviy text-center ">
                         <span style="--i:1">E</span>
                         <span style="--i:2">v</span>
                         <span style="--i:3">è</span>
@@ -165,7 +165,7 @@
                         <span style="--i:1">t</span>
                         <span style="--i:8">s</span>
                         <span style="--i:3"></span>
-                        <span style="--i:2">-</span>
+                        <span style="--i:2"> </span>
                         <span style="--i:3"></span>
                         <span style="--i:4">D</span>
                         <span style="--i:5">i</span>
@@ -180,74 +180,43 @@
                         <span style="--i:9">s</span>
                     </div>
 
-                <div class="content-sec-11">
-                    <div class="row">
-                    @forelse ($events as $event)
-                        <div class="col-lg-6">
-                            <div class=" d-flex ">
-                            <div class="container py-4">
+                    <div class="list containerlist container content-sec-11">
+                       <div class="card-group">
+                       @forelse ($events as $event)
+ 
+                            <div class="cardlist" >
+                                <div class="face face1">
+                                    <div class="content">
+                                        @if($event->cover!=null)
+                                        <img src="{{secure_asset('Upload/events/Covers/'.$event->cover)}}" class="icon">
 
-                                <article class="postcard home dark red">
-                                    <a class="postcard__img_link" href="#">
-                                    @if($event->cover!=null)
-                                    <img src="{{secure_asset('Upload/events/Covers/'.$event->cover)}}" class="postcard__img">
-
-                                    @else
-                                    <img class="postcard__img" src="{{secure_asset('images/logo.png')}}" alt="Image Title"  />
-                                    @endif
-                                    </a>
-                                    <div class="postcard__text">
-                                        <h1 class="postcard__title red"><a href="#">{{$event->event_name}}</a></h1>
-
-                                        <div class="postcard__bar"> </div>
-                                        <div class="postcard__subtitle small">
-                                            <time datetime="2020-05-25 12:00:00">
-                                                 <img src="https://img.icons8.com/ios-filled/15/ffffff/calendar--v1.png"/> Le {{date_formater($event->start_time)["jour"]}} {{date_formater($event->start_time)["jourMois"]}} {{date_formater($event->start_time)["mois"]}} {{date_formater($event->start_time)["annee"]}}
-                                            </time>
-
-                                        </div>
-                                        <div class="postcard__subtitle small">
-                                        <time datetime="2020-05-25 12:00:00" style="margin-top:20px;">
-                                                <img src="https://img.icons8.com/ios-filled/15/ffffff/time.png"/> {{date_formater($event->start_time)["heure"]}}h {{date_formater($event->start_time)["minutes"]}}min
-                                            </time>
-                                        </div>
-                                    <ul class="postcard__tagbox">
-                                        <li class="tag__item">
-                                            <div class="postcard__subtitle small" style="margin-left:50px;margin-right:auto;color:var(--orange);">
-                                                    <p><img src="https://img.icons8.com/material-outlined/15/ffffff/address.png"/>  {{$event->zone}}</p>
-                                                </div>
-                                            </li>
-
-
-                                            <li class="tag__item play red" style="margin-left:auto;margin-right:auto;">
-
-                                                </a>
-                                            </li>
-                                    </ul>
-
+                                        @else
+                                        <img class="icon" src="{{secure_asset('images/logo.png')}}" alt="Image Title"  />
+                                        @endif
                                     </div>
-                                </article>
-                                    <div class="btns" style="text-align:center">
-                                        <a href="{{route('show_event',$event->id)}}" class="btn btn-yellow">Details</a>
+                                </div>
+                                <div class="face face2">
+                                    <div class="content">
+                                        <h1>{{$event->event_name}}</h1>
+                                        <p> {{date('d/m/Y H:i:s', strtotime($event->start_time))}}</p>
+                                        <p><span style="color: rgb(128, 124, 124)">Lieu</span>: {{$event->zone}}</p>
 
-                                        <a href="{{route('show_event',$event->id)}}" class="btn btn-black">Ticket</a>
-
+                                        <div class="btns" style="text-align:center; margin-top:12px">
+                                            <a href="{{route('show_event',$event->id)}}" class="btn btn-yellow">Détails</a>
+                                        </div>
                                     </div>
-                             </div>
-
-                        </div>
-
-                        </div>
-
-                        @empty
-                                <h1 style="text-align: center;font-size:20px">Aucun evenement en cours</h1>
-
-                         @endforelse
+                                </div>
                     </div>
-                </div>
-                @if (count($events)>0)
+                   
+                    @empty
+                    <h1 style="text-align: center;font-size:20px">Aucun évenement en cours</h1>
+             @endforelse
+                  </div>                  
+                   </div>
+
+                @if (count($events)>5)
                     <div class="mt-5 text-center">
-                         <a type="button" class="btn btn-style" href="{{ route('events') }}">En savoir plus</a>
+                         <a type="button" class="btn btn-style" href="{{ route('events') }}">Voir savoir plus</a>
                     </div>
                 @endif
             </div>
@@ -265,7 +234,7 @@
         <div class="covers14-block py-5">
             <div class="container py-md-5 py-4">
 
-                <h3 class="title-style text-center mb-md-5 mb-4">Les actions disponibles</h3>
+                <h3 class="title-style text-center mb-md-5 mb-4">Les actions Disponibles</h3>
                 <div class="content-sec-11">
                     <div class="row">
                         <div class="col-lg-6">
@@ -333,151 +302,31 @@
     </section>
     <!-- //actions section -->
 
-
-    <!-- team sections -->
-    <section class="w3l-team-main" id="team">
-        <div class="team py-5">
-            <div class="container py-md-5 py-4">
-                <div class="waviy white-text text-center mb-sm-5 mb-4">
-                    <span style="--i:1">O</span>
-                    <span style="--i:2">u</span>
-                    <span style="--i:3">r</span>
-                    <span style="--i:4"></span>
-                    <span style="--i:5">T</span>
-                    <span style="--i:6">e</span>
-                    <span style="--i:7">a</span>
-                    <span style="--i:8">m</span>
-                    <span style="--i:9"></span>
-                    <span style="--i:10">M</span>
-                    <span style="--i:11">e</span>
-                    <span style="--i:12">m</span>
-                    <span style="--i:13">b</span>
-                    <span style="--i:14">e</span>
-                    <span style="--i:15">r</span>
-                    <span style="--i:16">s</span>
-                </div>
-                <!-- fireworks effect -->
-
-                <div class="row team-row mt-md-5 mt-4">
-                    <div class="col-lg-3 col-6 team-wrap">
-                        <div class="team-member text-center">
-                            <div class="team-img">
-                                <img src="{{secure_asset('images/c1.png')}}" alt="" class="radius-image">
-                            </div>
-                            <a href="#url" class="team-title">Mr Ange CYRILLE</a>
-                            <div class="team-details text-center">
-                                <div class="socials mt-20">
-                                    <a href="#url">
-                                        <span class="fa fa-facebook-f"></span>
-                                    </a>
-                                    <a href="#url">
-                                        <span class="fa fa-twitter"></span>
-                                    </a>
-                                    <a href="#url">
-                                        <span class="fa fa-instagram"></span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end team member -->
-                    <div class="col-lg-3 col-6 team-wrap">
-                        <div class="team-member text-center">
-                            <div class="team-img">
-                                <img src="{{secure_asset('images/testi1.jpg')}}" alt="" class="radius-image">
-                            </div>
-                            <a href="#url" class="team-title">Mr Mfid DAOUDA</a>
-                            <div class="team-details text-center">
-                                <div class="socials mt-20">
-                                    <a href="#url">
-                                        <span class="fa fa-facebook-f"></span>
-                                    </a>
-                                    <a href="#url">
-                                        <span class="fa fa-twitter"></span>
-                                    </a>
-                                    <a href="#url">
-                                        <span class="fa fa-instagram"></span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end team member -->
-                    <div class="col-lg-3 col-6 team-wrap mt-lg-0 mt-5">
-                        <div class="team-member last text-center">
-                            <div class="team-img">
-                                <img src="{{secure_asset('images/testi2.jpg')}}" alt="" class="radius-image">
-                            </div>
-                            <a href="#url" class="team-title">Mr Chola PATRICK</a>
-                            <div class="team-details text-center">
-                                <div class="socials mt-20">
-                                    <a href="#url">
-                                        <span class="fa fa-facebook-f"></span>
-                                    </a>
-                                    <a href="#url">
-                                        <span class="fa fa-twitter"></span>
-                                    </a>
-                                    <a href="#url">
-                                        <span class="fa fa-instagram"></span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end team member -->
-                    <div class="col-lg-3 col-6 team-wrap mt-lg-0 mt-5">
-                        <div class="team-member last text-center">
-                            <div class="team-img">
-                                <img src="{{secure_asset('images/testi3.jpg')}}" alt="" class="radius-image">
-                            </div>
-                            <a href="#url" class="team-title">Mr Gille DAHOUE</a>
-                            <div class="team-details text-center">
-                                <div class="socials mt-20">
-                                    <a href="#url">
-                                        <span class="fa fa-facebook-f"></span>
-                                    </a>
-                                    <a href="#url">
-                                        <span class="fa fa-twitter"></span>
-                                    </a>
-                                    <a href="#url">
-                                        <span class="fa fa-instagram"></span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end team member -->
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- //team sections -->
-
-    <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
+    <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+		<div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content modal-popup">
 				<a href="#" class="close-link"><i class="icon_close_alt2"></i></a>
 				<h3 class="white">Nous Contacter</h3>
 				<form  method="POST" action="{{route('send-mail')}}" class="popup-form">
                     @csrf
 					<div class="form-group">
-						<input type="text" name="name" class="form-control form-white" placeholder="Nom Complet *" required="required" data-validation-required-message="Entrez votre nom SVP">
+						<input type="text" name="name" class="form-control form-white" placeholder="Nom" required="required" data-validation-required-message="Entrez votre nom SVP">
 
 					</div>
 
 					<div class="form-group">
-						<input type="email" name="email" class="form-control form-white" placeholder="Addresse Email *" required="required" data-validation-required-message="Veillez entrer votre email SVP">
+						<input type="email" name="email" class="form-control form-white" placeholder="Addresse Email" required="required" data-validation-required-message="Veillez entrer votre email SVP">
 
 					</div>
 
 					<div class="form-group">
-						<input type="text" name="phone" class="form-control form-white" placeholder="Numéro de Téléphone *" required="required" data-validation-required-message="Entrez votre Numéro de Téléphone SVP">
+						<input type="text" name="phone" class="form-control form-white" placeholder="Numéro de Téléphone" required="required" data-validation-required-message="Entrez votre Numéro de Téléphone SVP">
 
 					</div>
 
 
 					<div class="form-group">
-						<textarea class="form-control form-white" name="message" id="message" placeholder="Votre Message *" required="required" data-validation-required-message="Veillez taper un messages SVP"></textarea>
+						<textarea class="form-control form-white" name="message" id="message" placeholder="Votre Message" required="required" data-validation-required-message="Veillez taper un messages SVP"></textarea>
 					</div>
 
 					<button type="submit" class="btn" style="background-color: red; color:white">Submit</button>

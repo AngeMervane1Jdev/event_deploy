@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,13 +20,18 @@ class HomeController extends Controller
     }
 
     /**
-     * Show the application dashboard.
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
     {   
-        $events=Event::all()->where("user_id",'=',Auth::user()->id);
-        return view('home',compact('events'));
+        
+        return view('home');
+    }
+
+    public function profil($id)
+    {
+       $user=User::find($id);
+       return view("profil",compact("user"));
     }
 }

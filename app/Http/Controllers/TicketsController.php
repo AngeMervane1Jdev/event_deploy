@@ -22,7 +22,7 @@ class TicketsController extends Controller
     function index($id){
 
         $tickets=Tiket::all()->where('event_id',"=",$id);
-        return view('ticket/index',compact("tickets"));
+        return view('ticket/index',compact("tickets","id"));
 
     }
 

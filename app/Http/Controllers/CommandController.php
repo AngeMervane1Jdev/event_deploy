@@ -66,82 +66,87 @@ class CommandController extends Controller
 
     public function sale_ticket(Request $coming_request){
 
-      $num=$coming_request->phone_number;
-      $reseau="";
-    
-      if($coming_request->is_panier==1){
-         $panier= Panier::findOrFail($coming_request->id);
-         $amount=$panier->price;
-         $tickets_id=$panier->tickets;
-      }
-      else{
-        $ticket=Tiket::findOrFail($coming_request->id);
-        $amount=$ticket->price;
-        $tickets_id=$ticket->id;
-      }
-
-     
-     
+        $num=$coming_request->phone_number;
+        $reseau="";
       
+        if($coming_request->is_panier==1){
+          $panier= Panier::findOrFail($coming_request->id);
+          $amount=$panier->price;
+          $tickets_id=json_decode($panier->tickets_validated,true);
+        }
+        else{
+          $ticket=Tiket::findOrFail($coming_request->id);
+          $amount=$ticket->price;
+          $tickets_id[1]=$ticket->id;
+        }
 
-      if(in_array(intval(substr($num,0,2)),$this->MTN_PREFIXES)){
-       $reseau="mtn";
-       $clientID=$this->MTN_CLIENT_ID;
-      }elseif(in_array(intval(substr($num,0,2)),$this->MOOV_PREFIXES)){
-         $reseau="moov";
-         $clientID=$this->MOOV_CLIENT_ID;
-      }else{
+        if(in_array(intval(substr($num,0,2)),$this->MTN_PREFIXES)){
+            $reseau="mtn";
+            $clientID=$this->MTN_CLIENT_ID;
+        }elseif(in_array(intval(substr($num,0,2)),$this->MOOV_PREFIXES)){
+            $reseau="moov";
+            $clientID=$this->MOOV_CLIENT_ID;
+        }else{
 
-        return redirect()->back() ->with('alert', 'Les réseaux prit en compte sont MTN et MOOV ');
-      }
-      $num="229".$num;
+            return redirect()->back() ->withMessage('Les réseaux prit en compte sont MTN et MOOV ');
+        }
+        $num="229".$num;
 
-      $request=$this->request_header($reseau);
-      $transref=$this->get_new_transref();
-      $body=[
-        "msisdn"=> $num,
-        "amount"=> 1,
-        "transref" =>$transref,
-        "narration"=>"payment",
-        "clientid"=>$clientID
-      ];
-      $request->setBody(json_encode($body));
 
-          try {
-            $response = $request->send();
-            echo json_decode($response->getBody())->responsecode;
+        $request=$this->request_header($reseau);
+        $transref=$this->get_new_transref();
+        $body=[
+          "msisdn"=> $num,
+          "amount"=> 1,
+          "transref" =>$transref,
+          "narration"=>"payment",
+          "clientid"=>$clientID
+        ];
+        $request->setBody(json_encode($body));
 
-            if ($response->getStatus() == 202 || $response->getStatus() == 200) {
-                  $status=$this->check_request_status($transref,$clientID,$reseau);
-                  if(json_decode($response->getBody())->responsecode=="0"){
+        try {
+          $response = $request->send();
 
-                    Transaction::create([
-                      "numero"=> $num,
-                      "amount"=> $amount,
-                      "transref" =>$transref,
-                      "client_id"=>Auth::user()->id,
-                      'ticket_id'=>$tickets_id,
-                      "date"=>date('d-m-y h:i:s')
+          if ($response->getStatus() == 202 || $response->getStatus() == 200) {
+                $result=$this->check_request_status($transref,$clientID,$reseau);
+                if($result){
+                  Transaction::CreateOrUpdate([
+                    "numero"=> $num,
+                    "amount"=> $amount,
+                    "transref" =>$transref,
+                    "client_id"=>Auth::user()->id,
+                    'ticket_id'=>json_encode($tickets_id),
+                    "date"=>date('d-m-y h:i:s'),
+                    "status"=>1
+                  ]);
+                  if($coming_request->is_panier==1){
+                      $panier->price=0;
+                      $panier->tickets="";
+                  }
+
+                  return redirect()->back()->withMessage('1');
+                }
+                else{
+                  Transaction::CreateOrUpdate([
+                    "numero"=> $num,
+                    "amount"=> $amount,
+                    "transref" =>$transref,
+                    "client_id"=>Auth::user()->id,
+                    'ticket_id'=>json_encode($tickets_id),
+                    "date"=>date('d-m-y h:i:s'),
+                    "status"=>-1
                    ]);
-                   if($coming_request->is_panier==1){
-                    $panier->price=0;
-                    $panier->tickets="";
-                   }
-
-                    return redirect()->back()->withMessage('Envoi éffectué avec succes');
-                  }
-                  else{
-                    return redirect()->back()->withMessage("Echec d'envoi !! ".json_decode($response->getBody())->responsecode);
-                  }
-            }
-            else {
-              echo 'Unexpected HTTP status: ' . $response->getStatus() . ' ' .
-              $response->getReasonPhrase();
-            }
+                  return redirect()->back()->withMessage("Echec d'envoi !! ".json_decode($response->getBody())->responsecode);
+                }
           }
-          catch(HTTP_Request2_Exception $e) {
-            echo 'Error: ' . $e->getMessage();
+          else {
+            return redirect()->back()->withMessage('Unexpected HTTP status: ' . $response->getReasonPhrase());
+          
           }
+        }
+        catch(HTTP_Request2_Exception $e) {
+          $response->getReasonPhrase('Error: ' . $e->getMessage());
+        }
 
     }
 
@@ -171,8 +176,8 @@ class CommandController extends Controller
           }
         }
         else {
-          echo 'Unexpected HTTP status: ' . $response->getStatus() . ' ' .
-          $response->getReasonPhrase();
+          $response->getReasonPhrase( 'Unexpected HTTP status: ' . $response->getStatus() . ' ' .
+          $response->getReasonPhrase());
         }
       }
       catch(HTTP_Request2_Exception $e) {

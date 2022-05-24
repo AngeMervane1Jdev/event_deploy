@@ -1,8 +1,11 @@
 <?php
 
-use App\Models\Commande;
 use App\Models\Event;
 use App\Models\Tiket;
+use App\Models\Commande;
+use App\Models\Transaction;
+use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 if (!function_exists("date_formater")) {
     function date_formater($date){
@@ -49,6 +52,82 @@ if (!function_exists("event_and_tiket")) {
 
 
        return $events;
+    }
+}
+
+if(!function_exists("tickeEvent")){
+    function tickeEvent($id){
+        $eventTicket=DB::table('type_tikets')
+        ->join('tikets','tikets.type_id','=','type_tikets.id')
+        ->join('events','tikets.event_id','=','events.id')
+        ->where('events.id','=',$id)
+        ->select('type_tikets.*','tikets.*')
+        ->get();
+        return $eventTicket;
+    }
+}
+
+if(!function_exists("RateUser")){
+    function RateUser($id){
+       $rate=1;
+        $tickets=DB::table("tikets")
+        ->join("events","events.id","=","tikets.event_id")
+        ->join("users","users.id","=","events.user_id")
+        ->where("users.id","=",$id);
+
+       $tickets= count($tickets->select("*")->get());
+       $events=count(Event::where('user_id',"=",$id)->get());
+
+       if($events>0 and $events<=5){
+        $rate=1.0;
+
+       }
+     else if($events>5 and $events<=10){
+        $rate=2.0;
+
+       }
+       else if($events>10 and $events<=50){
+           $rate=3.0;
+
+       }
+       elseif ($events>50 and $events<=100) {
+        $rate=4.0;
+
+       }
+       else if($events>100){
+           $rate=5.0;
+       }
+      User::whereId($id)->update(['rate'=>$rate]);
+ 
+    }
+}
+
+if(!function_exists("RateClient")){
+    function RateClient($id){
+    $rate=1.0;
+        $tickets=count(Transaction::where('client_id',$id)->get());
+       
+       if($tickets>0 and $tickets<=5){
+        $rate=1.0;
+
+       }
+     else if($tickets>5 and $tickets<=10){
+        $rate=2.0;
+
+       }
+       else if($tickets>10 and $tickets<=50){
+           $rate=3.0;
+
+       }
+       elseif ($tickets>50 and $tickets<=100) {
+        $rate=4.0;
+
+       }
+       else if($tickets>100){
+           $rate=5.0;
+       }
+      User::whereId($id)->update(['rate'=>$rate]);
+ 
     }
 }
 

@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Tiket extends Model
 {
@@ -16,4 +17,6 @@ class Tiket extends Model
     public function event(){
         return $this->belongsTo(Event::class);
     }
+
+
 }
